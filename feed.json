@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T05:40:14.410Z",
+  "generatedAt": "2026-11-11T05:54:56.002Z",
   "editions": [
     {
       "date": "2026-11-09",
@@ -2126,6 +2126,20 @@
       ],
       "limitations": "Calibration and candidate selection require representative samples and additional offline work. The repository targets particular model configurations and NVIDIA CUDA hardware. Editorial caution: passing those sample-based quality checks does not establish reliability on a different domain, model or context distribution; the reported performance was not independently reproduced here.",
       "implications": "The useful design question is not simply how much attention can be removed. It is which information needs precise treatment, which can survive approximation, and whether the runtime preserves those savings through the whole request.",
+      "figures": [
+        {
+          "title": "Figure 2 · How TriAttention chooses its attention policy",
+          "alt": "TriAttention framework: per-layer calibration compares candidate output error and cost, global allocation selects per-head plans, and two distance boundaries encode the mixed-precision regions.",
+          "caption": "Read from left to right: measure candidate errors, allocate the shared budget, then encode each head’s plan. This policy selection happens offline. Open the full-size image for the equations and legend.",
+          "sourceLabel": "Original paper · Figure 2",
+          "sourceUrl": "https://arxiv.org/html/2611.07256v1",
+          "kind": "image",
+          "src": "triattention-figure-2.png",
+          "credit": "Hanzhi Zhang et al., TriAttention: Unified Sparse Mixed-Precision Attention for Long-Context LLM Inference, Figure 2. Unmodified.",
+          "licenseLabel": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+        }
+      ],
       "sources": [
         {
           "label": "arXiv record and publication date",
@@ -2149,7 +2163,7 @@
         }
       ],
       "publishedAt": "2026-11-11T05:39:49.198Z",
-      "updatedAt": "2026-11-11T05:39:49.198Z"
+      "updatedAt": "2026-11-11T05:54:47.128Z"
     },
     {
       "date": "2026-11-08",
@@ -2238,6 +2252,76 @@
       ],
       "limitations": "This is an initial architecture study at modest scale. The reported accuracy comparison does not establish lower production latency, and full-attention performance remains higher on GSM8K.",
       "implications": "Our reading: adaptable execution order is worth exploring, but serving efficiency and benefits at larger scales still need evidence.",
+      "figures": [
+        {
+          "title": "How LoL chooses its next layer",
+          "alt": "LoL places a routed core between ordinary blocks. At each depth, its router chooses a shared block for each window.",
+          "caption": "Illustrative structure, not a measured execution path. Blocks can be reused at later depths.",
+          "sourceLabel": "Author implementation",
+          "sourceUrl": "https://github.com/arahmani1/library-of-layers/blob/main/model/lol_window.py",
+          "kind": "diagram",
+          "lanes": [
+            {
+              "label": "Fixed stack · the same order",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Layer 1"
+                },
+                {
+                  "label": "Layer 2"
+                },
+                {
+                  "label": "Layer 3"
+                }
+              ]
+            },
+            {
+              "label": "LoL · ordinary blocks surround the routed core",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Prelude",
+                  "detail": "Initial ordinary blocks"
+                },
+                {
+                  "label": "Routed core",
+                  "detail": "Choose from shared blocks",
+                  "tone": "accent"
+                },
+                {
+                  "label": "Coda",
+                  "detail": "Final ordinary blocks"
+                }
+              ]
+            },
+            {
+              "label": "Inside the core · choose again at each depth",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Earlier windows",
+                  "detail": "Completed context"
+                },
+                {
+                  "label": "Router",
+                  "detail": "Select for each window",
+                  "tone": "accent"
+                },
+                {
+                  "label": "One library block",
+                  "detail": "The library is shared across depths",
+                  "tone": "accent"
+                },
+                {
+                  "label": "Updated state",
+                  "detail": "Continue to the next depth"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "sources": [
         {
           "label": "Original paper and publication record",
@@ -2261,7 +2345,7 @@
         }
       ],
       "publishedAt": "2026-11-11T05:39:16.775Z",
-      "updatedAt": "2026-11-11T05:39:16.775Z"
+      "updatedAt": "2026-11-11T05:54:36.005Z"
     }
   ]
 }

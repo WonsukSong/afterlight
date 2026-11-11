@@ -126,7 +126,8 @@ def validate_papers(papers):
     require(isinstance(papers, list), "Invalid paper archive")
     days, identities = set(), set()
     for paper in papers:
-        shape(paper, ["date", "paperId", "title", "headline", "authors", "publicationDate", "venue", "status", "category", "summary", "problem", "method", "results", "limitations", "implications", "sources"], ["revisionDate", "publishedAt", "updatedAt", "retrospective"])
+        shape(paper, ["date", "paperId", "title", "headline", "authors", "publicationDate", "venue", "status", "category", "summary", "problem", "method", "results", "limitations", "implications", "sources"], ["revisionDate", "publishedAt", "updatedAt", "retrospective", "figures"])
+        validate_figures(paper.get("figures", []))
         if "retrospective" in paper:
             require(type(paper["retrospective"]) is bool, "Invalid archive flag")
         day, published = date(paper["date"]), date(paper["publicationDate"])
@@ -161,6 +162,43 @@ def validate_papers(papers):
             if identity.startswith("arxiv:") and url.hostname == "arxiv.org" and re.fullmatch(r"/(abs|pdf|html)/" + re.escape(identity[6:]) + r"(v[0-9]+)?(\.pdf)?/?", url.path):
                 canonical_link = True
         require(canonical_link, "Missing canonical paper link")
+
+
+def validate_figures(figures):
+    require(isinstance(figures, list) and len(figures) <= 2, "Invalid paper figures")
+    def https(value):
+        text(value)
+        url = urllib.parse.urlsplit(value)
+        require(url.scheme == "https" and bool(url.netloc) and not url.username and not url.password, "Invalid figure URL")
+    for figure in figures:
+        require(isinstance(figure, dict), "Invalid figure")
+        common = ["kind", "title", "alt", "caption", "sourceLabel", "sourceUrl"]
+        kind = figure.get("kind")
+        require(kind in ("diagram", "image"), "Invalid figure type")
+        shape(figure, common + (["lanes"] if kind == "diagram" else ["src", "credit", "licenseLabel", "licenseUrl"]))
+        for key in ["title", "alt", "caption", "sourceLabel"]:
+            text(figure[key])
+        https(figure["sourceUrl"])
+        if kind == "diagram":
+            require(isinstance(figure["lanes"], list) and 1 <= len(figure["lanes"]) <= 3, "Invalid diagram lanes")
+            for lane in figure["lanes"]:
+                shape(lane, ["label", "flow", "nodes"])
+                text(lane["label"])
+                require(lane["flow"] in ("sequence", "parallel"), "Invalid diagram flow")
+                require(isinstance(lane["nodes"], list) and 1 <= len(lane["nodes"]) <= 4, "Invalid diagram nodes")
+                for node in lane["nodes"]:
+                    shape(node, ["label"], ["detail", "tone"])
+                    text(node["label"])
+                    if "detail" in node: text(node["detail"])
+                    if "tone" in node: require(node["tone"] in ("neutral", "accent", "muted"), "Invalid diagram tone")
+        else:
+            for key in ["credit", "licenseLabel"]: text(figure[key])
+            https(figure["licenseUrl"])
+            src = figure["src"]
+            text(src)
+            if not re.fullmatch(r"[a-z0-9][a-z0-9._-]*\.(png|jpe?g|webp)", src, re.I):
+                https(src)
+                require(re.search(r"\.(png|jpe?g|webp)$", urllib.parse.urlsplit(src).path, re.I), "Use a raster figure")
 
 
 def fetch_feed():
