@@ -126,7 +126,9 @@ def validate_papers(papers):
     require(isinstance(papers, list), "Invalid paper archive")
     days, identities = set(), set()
     for paper in papers:
-        shape(paper, ["date", "paperId", "title", "headline", "authors", "publicationDate", "venue", "status", "category", "summary", "problem", "method", "results", "limitations", "implications", "sources"], ["revisionDate", "publishedAt", "updatedAt"])
+        shape(paper, ["date", "paperId", "title", "headline", "authors", "publicationDate", "venue", "status", "category", "summary", "problem", "method", "results", "limitations", "implications", "sources"], ["revisionDate", "publishedAt", "updatedAt", "retrospective"])
+        if "retrospective" in paper:
+            require(type(paper["retrospective"]) is bool, "Invalid archive flag")
         day, published = date(paper["date"]), date(paper["publicationDate"])
         require(published <= day, "Paper postdates its selection")
         if "revisionDate" in paper:

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T05:20:00.681Z",
+  "generatedAt": "2026-11-11T05:40:14.410Z",
   "editions": [
     {
       "date": "2026-11-09",
@@ -2046,29 +2046,29 @@
       "venue": "arXiv · cs.AR · v1",
       "status": "Preprint",
       "category": "AI chip architecture",
-      "summary": "A simulation explores high-bandwidth flash (HBF) for LLM serving. Fewer GPUs can help, but savings depend on latency, workload and flash cost.",
-      "problem": "Model storage can force extra GPU purchases even when compute demand is modest.",
+      "summary": "HBF adds storage near GPUs. This study asks when latency and cost justify it.",
+      "problem": "Models can outgrow GPU memory before exhausting compute. Host offloading adds movement delays, while replacing fast memory with flash can damage bandwidth.",
       "method": [
         {
-          "title": "Preserve fast memory, add capacity",
-          "description": "Cascaded HBF retains near memory; shared-site HBF replaces some. Active attention state stays near the GPU while cold weights stream from flash."
+          "title": "Stream cold weights; keep active state close",
+          "description": "Active attention state stays near the GPU; cold weights stream from flash. Mixture-of-experts models activate selected experts per token. Consequently, the relevant traffic is the weights each batch touches, not the total stored model size."
         },
         {
-          "title": "Inspect the experiment",
-          "description": "The authors publish simulator code, frozen timing profiles, workload definitions and archived results. The artifact runs on CPU; we have not independently reproduced it."
+          "title": "Compare adding memory with replacing it",
+          "description": "Shared-site HBF sacrifices some near-memory capacity and bandwidth; cascaded HBF preserves them. The comparison tests whether added capacity compensates for weakening the fast working set. Those two integration choices should not be treated as equivalent."
+        },
+        {
+          "title": "Ask three separate questions: does it fit, respond fast enough, and cost less?",
+          "description": "The released evaluation compares nine models, five workloads, two GPU platforms and installations of 1–100 GPUs. It asks about the cheapest passing installation at fixed demand separately from useful throughput at a fixed GPU count. The authors provide simulator code, timing profiles, workload inputs and archived outputs; we have not independently reproduced them.\n\nIllustration, not a paper result: replacing four extra GPUs with one flash tier saves money only if the tier costs less than those GPUs and still meets the response-time target. More capacity alone does not answer either question."
         }
       ],
       "results": [
         {
-          "finding": "32 conventional GPUs → 4 with cascaded HBF",
-          "setup": "Simulated RTX 4090-scale Qwen3-235B, four short-chat users, BF16 weights, 512 input/64 output tokens. First-token limit: 5 seconds; mean/p99 token gaps: 100/200 ms."
-        },
-        {
-          "finding": "98 GPU-count wins; 63 remain cost wins",
-          "setup": "Across 468 fixed-demand comparisons. The cost scenario assumes each HBF stack adds half a GPU's price."
+          "finding": "32 GPUs → 4 in one simulated example",
+          "setup": "Qwen3-235B, RTX 4090-scale, four short-chat users; BF16, 512/64 input/output tokens. First-token/mean-token/p99-token limits: 5 s/100 ms/200 ms."
         }
       ],
-      "limitations": "These are projections, not hardware measurements. Only two of 14 audited GPU-count wins survive every sensitivity setting. Quantization and different serving policies could change the conclusions.",
+      "limitations": "Simulation, not hardware measurement. Just two of 14 audited GPU-count wins survive every sensitivity setting. Quantization or different serving policies may change the answer.",
       "implications": "The design question is what a customer is actually buying: arithmetic, memory capacity or low response latency. Those constraints can justify different products. For a chip team, the next step would be to measure cold-weight traffic under the intended precision and latency target, then test the affordable flash-link bandwidth and integration cost.",
       "sources": [
         {
@@ -2085,7 +2085,183 @@
         }
       ],
       "publishedAt": "2026-11-11T05:18:59.840Z",
-      "updatedAt": "2026-11-11T05:18:59.840Z"
+      "updatedAt": "2026-11-11T05:39:07.763Z"
+    },
+    {
+      "date": "2026-11-09",
+      "retrospective": true,
+      "paperId": "arxiv:2611.07256",
+      "title": "TriAttention: Unified Sparse Mixed-Precision Attention for Long-Context LLM Inference",
+      "headline": "Spend precision where attention needs it",
+      "authors": "Hanzhi Zhang, Qiao Zhang, Qinglei Cao, Heng Fan, Yan Huang, Kewei Sha, Yunhe Feng",
+      "publicationDate": "2026-11-05",
+      "venue": "arXiv",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "A three-way attention policy combines skipping, INT4 and INT8, then preserves its savings in the cache used during generation. Offline calibration selects the policy before inference.",
+      "problem": "Long prompts create two costs: comparing token pairs during prompt processing, then rereading earlier keys and values for every generated token. Sparsity removes comparisons but can discard useful context. Uniform low precision keeps context cheaply but also reduces numerical accuracy in sensitive interactions. Treating retention and precision separately limits that trade-off.",
+      "method": [
+        {
+          "title": "Keep, approximate or skip",
+          "description": "Each head gets two distance boundaries that divide attention tiles into INT8, INT4 and skipped regions. The intermediate option retains interactions that tolerate approximation but would be harmful to remove. A compact boundary table replaces a context-sized policy, while fused attention combines retained regions into one normalized output."
+        },
+        {
+          "title": "Allocate by measured damage, then check quality",
+          "description": "The released calibration code compares candidate outputs after the attention output projection and normalizes their error, so heads can be compared on a common scale. Its allocator searches error-plus-cost choices across all heads; the cost includes both retained tile counts and their precision. Selection then evaluates complete model predictions, choosing the cheapest candidate that passes every represented length group. The code checks both prediction-distribution divergence and deterioration in reference-response likelihood. This second check matters because small errors in individual heads can accumulate across the model."
+        },
+        {
+          "title": "Carry the savings into each generated token",
+          "description": "The decode implementation packs retained prompt blocks into INT4/INT8 buffers instead of preserving a full prompt cache. When several query heads share keys and values, it stores the union they need and uses the highest requested key precision, preventing one head's compression choice from removing another head's evidence. Per-head masks preserve their different access patterns. Newly generated keys and values go into a separate BF16 tail. The practical benefit is less prompt data to read repeatedly, rather than only a faster initial prompt pass."
+        }
+      ],
+      "results": [
+        {
+          "finding": "Complete-request throughput increased about 1.62×: 22.80 versus 14.06 tokens/s.",
+          "setup": "Authors' Table 1: Llama-3.2-3B-Instruct, A100-SXM4 40GB, batch 1, 65,536 input and 128 output tokens; BF16 SDPA baseline."
+        },
+        {
+          "finding": "64K LooGLE-SD quality remained close: 47.94 versus BF16's 48.40.",
+          "setup": "Authors' LV-Eval experiment with the same Llama model; this is one task, not a guarantee for every workload."
+        }
+      ],
+      "limitations": "Calibration and candidate selection require representative samples and additional offline work. The repository targets particular model configurations and NVIDIA CUDA hardware. Editorial caution: passing those sample-based quality checks does not establish reliability on a different domain, model or context distribution; the reported performance was not independently reproduced here.",
+      "implications": "The useful design question is not simply how much attention can be removed. It is which information needs precise treatment, which can survive approximation, and whether the runtime preserves those savings through the whole request.",
+      "sources": [
+        {
+          "label": "arXiv record and publication date",
+          "url": "https://arxiv.org/abs/2611.07256"
+        },
+        {
+          "label": "Full paper: method and measured results",
+          "url": "https://arxiv.org/pdf/2611.07256"
+        },
+        {
+          "label": "Author implementation: calibration and allocation",
+          "url": "https://github.com/HanzhiZhang-Ulrica/TriAttention/tree/main/triattention"
+        },
+        {
+          "label": "Author implementation: quality selection",
+          "url": "https://github.com/HanzhiZhang-Ulrica/TriAttention/blob/main/triattention/select.py"
+        },
+        {
+          "label": "Author implementation: compressed decode cache",
+          "url": "https://github.com/HanzhiZhang-Ulrica/TriAttention/blob/main/triattention/kernels/decode.py"
+        }
+      ],
+      "publishedAt": "2026-11-11T05:39:49.198Z",
+      "updatedAt": "2026-11-11T05:39:49.198Z"
+    },
+    {
+      "date": "2026-11-08",
+      "retrospective": true,
+      "paperId": "arxiv:2610.37230",
+      "title": "TAO: Tool-Aware Joint Scheduling for LLM-Based Agentic Serving",
+      "headline": "Schedule the return trip from tools to GPUs",
+      "authors": "Shuhuai Li, Shengdong Ye, Dongdong Ge, Yinyu Ye, Jianghao Lin",
+      "publicationDate": "2026-10-27",
+      "venue": "arXiv · cs.DC · v1",
+      "status": "Preprint",
+      "category": "AI systems",
+      "summary": "An agent alternates between generating text and waiting for tools. TAO coordinates which sessions return to which GPU servers, using cache value, tool readiness and capacity together.",
+      "problem": "Load balancing can spread requests evenly or favor a server with reusable context. Neither alone says when a tool will finish. Choosing sessions one by one can also fill capacity before a better combination is considered.",
+      "method": [
+        {
+          "title": "Release the execution slot while a tool runs",
+          "description": "When a session calls an external tool, TAO moves it to a shared waiting pool, freeing GPU execution capacity for other sessions. The tool continues on the CPU side. Execution capacity is distinct from physical context storage: the inference engine still manages the attention cache and its eviction.\n\nIllustration: a coding assistant waiting for a test should not prevent another ready assistant from using an available execution slot."
+        },
+        {
+          "title": "Compare cache value, readiness and size in order",
+          "description": "For each session–server pair, TAO first considers cache reuse value discounted over time, then near-term tool-return readiness, then token footprint. These priorities are ordered rather than mixed into a hand-tuned weighted score. Runtime hints and past tool durations help predict readiness.\n\nThe useful distinction is between having reusable work and being ready to use it. A fast return to the wrong server can still require repeated computation."
+        },
+        {
+          "title": "Choose a feasible group, not just the next session",
+          "description": "An asynchronous dynamic program compares groups of sessions and their placements within server capacity. Before applying a plan, it rechecks current capacity and session state.\n\nThink of packing several boxes together instead of filling each with the next item in line. This is an illustration of joint choice, not an additional measured result. The optimality claim applies to the frozen, discretized scheduling problem, not every future event."
+        }
+      ],
+      "results": [
+        {
+          "finding": "Task latency fell 26.8%; decode throughput rose 29.5%.",
+          "setup": "DeepSeek-V4 Flash, SWE-Lite, 64 workers, two servers with four H100s each; compared with the best tested baseline per metric, not an average across workloads."
+        }
+      ],
+      "limitations": "The trade-off can reverse. On AutomationBench with 128 workers, TAO took longer to produce a first token than Dynamo and trailed ThunderAgent in task latency and throughput. Protecting running sessions can increase the wait before another session starts.",
+      "implications": "Our reading: evaluate the whole agent task, including the wait from tool completion to model resumption. Model tokens per second alone can miss the delay the user experiences.",
+      "sources": [
+        {
+          "label": "Original paper and publication record",
+          "url": "https://arxiv.org/abs/2610.37230"
+        },
+        {
+          "label": "Full paper: method and evaluation",
+          "url": "https://arxiv.org/html/2610.37230v1"
+        },
+        {
+          "label": "Author explanation and discussion",
+          "url": "https://huggingface.co/papers/2610.37230"
+        }
+      ],
+      "publishedAt": "2026-11-11T05:39:34.095Z",
+      "updatedAt": "2026-11-11T05:39:34.095Z"
+    },
+    {
+      "date": "2026-11-07",
+      "retrospective": true,
+      "paperId": "arxiv:2611.03526",
+      "title": "Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime",
+      "headline": "Let the model choose which layer comes next",
+      "authors": "Abdellah Rahmani, Sean McLeish, Ang Li, Sanae Lotfi, Pascal Frossard, Micah Goldblum",
+      "publicationDate": "2026-11-02",
+      "venue": "arXiv · cs.LG · v1",
+      "status": "Preprint",
+      "category": "Models & architectures",
+      "summary": "LoL replaces a fixed sequence of Transformer layers with a reusable library. A learned router chooses the next whole layer as computation proceeds.",
+      "problem": "Conventional Transformers execute layers in a predetermined order. Expert selection and layer skipping add flexibility, but usually preserve that order. LoL asks whether the sequence of computations itself should depend on the input.",
+      "method": [
+        {
+          "title": "Choose a whole layer, then choose again",
+          "description": "The author implementation builds a shared collection of complete Transformer blocks, with ordinary blocks before and after the routed middle. At each middle step, the router scores the available blocks, selects one per window (a group of tokens), and sends that window to it. The selected block's update is weighted by its routing probability before being added to the current state. Because the next step consults the same collection again, a block can be reused; its position is no longer permanently tied to one depth."
+        },
+        {
+          "title": "Make each choice using completed context",
+          "description": "Routing also needs a rule about what it may inspect. The released router computes a summary of earlier windows within the same document and uses that summary to score the next block. It excludes the current window from that history. This gives the choice access to useful context without letting later words influence earlier predictions. The implementation also adds learned noise to routing scores during training, encouraging exploration of alternative blocks, and turns that noise off for evaluation."
+        },
+        {
+          "title": "Move the window boundaries to reconnect information",
+          "description": "Separate windows make it possible to send different pieces of text through different blocks, but fixed partitions would restrict which tokens can interact. The attention implementation shifts the partition boundaries as depth increases and processes each resulting window with causal attention. Tokens separated by one boundary can consequently share a later window. The effect is gradual exchange across neighboring groups while preserving the rule that a token can use only preceding context."
+        }
+      ],
+      "results": [
+        {
+          "finding": "On GSM8K, LoL scored 27.9%, versus 27.5% for a sliding-window Transformer and 29.7% for a full-attention Transformer.",
+          "setup": "The paper's 1B-parameter, math-trained comparison used approximately 90 ExaFLOPs per run. These results show competitiveness, not a consistent accuracy lead."
+        }
+      ],
+      "limitations": "This is an initial architecture study at modest scale. The reported accuracy comparison does not establish lower production latency, and full-attention performance remains higher on GSM8K.",
+      "implications": "Our reading: adaptable execution order is worth exploring, but serving efficiency and benefits at larger scales still need evidence.",
+      "sources": [
+        {
+          "label": "Original paper and publication record",
+          "url": "https://arxiv.org/abs/2611.03526"
+        },
+        {
+          "label": "Full paper — method and benchmark conditions",
+          "url": "https://arxiv.org/html/2611.03526v1"
+        },
+        {
+          "label": "Author code — shared blocks and dispatch",
+          "url": "https://github.com/arahmani1/library-of-layers/blob/main/model/lol_window.py"
+        },
+        {
+          "label": "Author code — causal router",
+          "url": "https://github.com/arahmani1/library-of-layers/blob/main/model/routers.py"
+        },
+        {
+          "label": "Author code — shifted attention windows",
+          "url": "https://github.com/arahmani1/library-of-layers/blob/main/model/attention_strategies.py"
+        }
+      ],
+      "publishedAt": "2026-11-11T05:39:16.775Z",
+      "updatedAt": "2026-11-11T05:39:16.775Z"
     }
   ]
 }
