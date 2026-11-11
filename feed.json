@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T06:26:12.148Z",
+  "generatedAt": "2026-11-11T07:33:14.187Z",
   "editions": [
     {
       "date": "2026-11-09",
@@ -2366,6 +2366,210 @@
       ],
       "publishedAt": "2026-11-11T05:39:16.775Z",
       "updatedAt": "2026-11-11T06:26:03.237Z"
+    },
+    {
+      "date": "2026-11-06",
+      "retrospective": true,
+      "paperId": "arxiv:2611.09868",
+      "title": "CodeQuant2: Enhanced Outlier Mitigation and Adaptive Clustering for Low-Precision LRMs",
+      "headline": "Low-bit reasoning needs better calibration—and a deployable kernel",
+      "authors": "Xingyu Liu, Xiangyang Yin, Tianhua Xia, Haiyu Wang, Sai Qian Zhang · NYU",
+      "publicationDate": "2026-11-06",
+      "venue": "arXiv · v1; author manuscript labeled NeurIPS 2026",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "CodeQuant2 combines reasoning-aware calibration, learned weight codebooks and lookup-based decoding. Deployment still needs integration.",
+      "problem": "Reasoning generates long token sequences, making small quantization errors consequential. Calibration on ordinary text can miss early-decoding activation outliers. Meanwhile, decompressing clustered weights before ordinary GEMM introduces memory traffic that can consume the expected inference saving.",
+      "method": [
+        {
+          "title": "Calibrate where reasoning starts",
+          "description": "The release mixes full-precision GSM8K reasoning prefixes with WikiText-2 at 1:9, using up to 256 generated tokens. It tunes rotation and scaling, allocates codebooks, then tunes centroids and assignments against local reconstruction losses."
+        },
+        {
+          "title": "Spend codebook capacity selectively",
+          "description": "Matrices start with 16 centroids. Local reconstruction sensitivity and measured GPU latency guide paired changes to 32 and 8 centroids. Their index widths average four bits across matrices; this is not a claim that every weight uses four bits. Quantization targets Q/K/V and gate/up projections."
+        },
+        {
+          "title": "Execute the compressed representation",
+          "description": "The CUDA entrypoint looks up products using packed activation and weight indices, with per-output-channel codebooks and shared-memory tables. Split-K reduction produces outputs without dense weight reconstruction. Callers handle packing; the supplied vLLM evaluation commands do not invoke this kernel."
+        }
+      ],
+      "results": [
+        {
+          "finding": "77.0% average accuracy versus CodeQuant’s 66.4%; BF16 remains at 83.8%.",
+          "setup": "Qwen3-4B-Thinking, A4W4, six math/code benchmarks; AIME uses pass@1. This is a 10.6 percentage-point improvement over CodeQuant, not recovery to full precision."
+        },
+        {
+          "finding": "2.45× decode speedup at batch 1; 2.43× at batch 16.",
+          "setup": "Single NVIDIA A6000, Qwen3-4B-Thinking A4W4 versus BF16; GSM8K-shaped workload with 100 prompt and 4,000 decode tokens. These are decoding measurements, not complete request-cost savings."
+        }
+      ],
+      "limitations": "Implementation check, November 11: the kernel supports 16 centroids and 1–16 decoding rows; 8/32-centroid ACA cases need another representation or kernel. Evaluation instead uses reconstructed dense weights and activation fake quantization. Accuracy reproduction does not demonstrate accelerated serving integration.",
+      "implications": "Editorial assessment: a team serving long reasoning responses should test cost per accepted answer, including retries and generated-token count. Faster decoding helps only if retained quality avoids extra attempts. The commercial opportunity is an integrated quantization-and-serving product: calibration tooling, workload-specific validation and dependable kernels. Before adopting it, budget for connecting the packed representation to the production runtime and measuring concurrency, first-token latency and full-request GPU time. The paper’s speedup alone does not price that integration work.",
+      "figures": [
+        {
+          "title": "From calibration to the separate decoding kernel",
+          "alt": "Offline calibration prepares transforms and clustered weights; a separate CUDA path consumes packed indices for table lookup and reduction.",
+          "caption": "Workflow schematic; the release separates evaluation from accelerated serving.",
+          "sourceLabel": "Authors’ CUDA kernel documentation",
+          "sourceUrl": "https://github.com/SAI-Lab-NYU/CodeQuant2",
+          "kind": "diagram",
+          "lanes": [
+            {
+              "label": "Offline",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Reasoning calibration",
+                  "tone": "neutral"
+                },
+                {
+                  "label": "Rotation/scaling",
+                  "tone": "accent"
+                },
+                {
+                  "label": "Codebook allocation",
+                  "tone": "accent"
+                },
+                {
+                  "label": "Assignment tuning",
+                  "tone": "accent"
+                }
+              ]
+            },
+            {
+              "label": "Kernel",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Packed indices",
+                  "tone": "neutral"
+                },
+                {
+                  "label": "Shared-memory LUT",
+                  "tone": "accent"
+                },
+                {
+                  "label": "Split-K reduction",
+                  "tone": "neutral"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Original paper · arXiv v1",
+          "url": "https://arxiv.org/abs/2611.09868v1"
+        },
+        {
+          "label": "Full paper · methods and benchmark tables",
+          "url": "https://arxiv.org/html/2611.09868v1"
+        },
+        {
+          "label": "Official implementation · checked November 11",
+          "url": "https://github.com/SAI-Lab-NYU/CodeQuant2"
+        }
+      ],
+      "publishedAt": "2026-11-11T07:31:42.435Z",
+      "updatedAt": "2026-11-11T07:31:42.435Z"
+    },
+    {
+      "date": "2026-11-05",
+      "retrospective": true,
+      "paperId": "arxiv:2611.08376",
+      "title": "Muir: Linear Attention with Sensitivity-Allocated Gating and Matched-Filter Readout",
+      "headline": "Better readout from a fixed recurrent memory",
+      "authors": "Tushaar Gangavarapu, Gil Tabak, Clemens JS Schaefer",
+      "publicationDate": "2026-11-05",
+      "venue": "arXiv · cs.LG · v1",
+      "status": "Preprint",
+      "category": "Models & architectures",
+      "summary": "Muir shifts gate capacity toward writes and improves how stored context is read.",
+      "problem": "Background: linear attention compresses past tokens into a fixed recurrent state. The Gated DeltaNet-2 baseline updates it in three steps: decay old memory, erase the association predicted for the incoming key, then write the new value. Its channel-wise erase and write gates separately control the key and value axes. This makes memory editing more selective than one shared scalar gate.\n\nMuir identifies two costs: expensive full-rank gates and slow-decaying rows dominating readout.",
+      "method": [
+        {
+          "title": "Allocate capacity by sensitivity",
+          "description": "Normalized keys concentrate energy in fewer channels, making erase updates less sensitive than writes. Lower-rank erase projections free parameters for a wider FFN within the same total budget."
+        },
+        {
+          "title": "Rebalance the memory read",
+          "description": "A matched-filter gate reweights the query using static gains and per-token modulation, reducing interference from uneven state-row magnitudes and the need to erase useful associations."
+        },
+        {
+          "title": "Fit the training kernel to the hardware",
+          "description": "Boundary-pivoted decay avoids unstable divisions; block matrix products replace sequential triangular solves for large TPU-friendly chunks."
+        }
+      ],
+      "results": [
+        {
+          "finding": "Matches GDN-2 training throughput; reaches its validation loss about 1.2× faster.",
+          "setup": "166M–1.34B models, 100B FineWeb-Edu tokens, eight TPU7x chips. Both recurrent models use the new kernel."
+        }
+      ],
+      "limitations": "10M-token perplexity stability is not 10M-token retrieval accuracy. At 1M tokens, static-readout passkey recall is 90.0% zero-shot and 99.4% after a 64K-context cooldown.",
+      "implications": "Editorial judgement: this is a useful architecture-and-runtime evaluation candidate for long-session products. Ask whether a fixed state preserves the specific facts that customers need, especially after corrections and several unrelated turns. Average language-model loss alone is a weak acceptance test for that decision.\n\nFor an accelerator team, compare matched-quality implementations on the intended device, including prefill, decode and memory usage. The decision should account for kernel porting and model-training effort. A compelling TPU training result can justify an experiment; the product case still needs task accuracy, service latency and the cost of maintaining a separate execution path.",
+      "sources": [
+        {
+          "label": "Original paper · arXiv",
+          "url": "https://arxiv.org/abs/2611.08376"
+        },
+        {
+          "label": "Full paper and reference implementation · v1",
+          "url": "https://arxiv.org/html/2611.08376v1"
+        },
+        {
+          "label": "Background · Gated DeltaNet-2 official implementation",
+          "url": "https://github.com/NVlabs/GatedDeltaNet-2/blob/main/README.md"
+        }
+      ],
+      "publishedAt": "2026-11-11T07:31:17.126Z",
+      "updatedAt": "2026-11-11T07:31:17.126Z"
+    },
+    {
+      "date": "2026-11-04",
+      "retrospective": true,
+      "paperId": "arxiv:2610.22579",
+      "title": "MemLLM: End-to-end In-Storage Acceleration of On-device Retrieval-Augmented Generation using Precomputed KV Caches",
+      "headline": "Move attention to the SSD holding the cache",
+      "authors": "Seungkwan Kang, Hyungseok Ko, Heemin Kim, Myoungsoo Jung",
+      "publicationDate": "2026-10-15",
+      "venue": "arXiv · cs.AR · v1",
+      "status": "Preprint",
+      "category": "AI chip architecture",
+      "summary": "MemLLM targets on-device RAG where saved prefill compute becomes expensive KV traffic.",
+      "problem": "Precomputed document KV avoids repeating prefill, but loading it from SSD can leave the GPU waiting on PCIe. Decode-only storage accelerators still leave initial attention on the host. Retrieved documents have new neighbors, so selective recomputation must update context-dependent entries.",
+      "method": [
+        {
+          "title": "Compute where KV lives",
+          "description": "Per-NAND-channel Elastic-SIMD units process attention; GPU projections and FFNs remain on the host. One datapath handles decode vectors and prefill's thin matrix products; adjacent vector units keep softmax intermediates in registers. Local results combine through online softmax."
+        },
+        {
+          "title": "Fuse reads; retain partial results",
+          "description": "Recomputation and new-query attention share one KV pass. A hardware filter substitutes updated entries. Global SRAM reduces partial outputs without controller-DRAM spills."
+        }
+      ],
+      "results": [
+        {
+          "finding": "4.06× average end-to-end speedup",
+          "setup": "Versus GPU-FullCompute: eight RAG datasets, six FP16 models; Jetson Orin NX 16GB with 8GB available. Trace-driven simulation combines profiled GPU kernels, FPGA-derived timing and SimpleSSD."
+        }
+      ],
+      "limitations": "Simulated system performance. Additional host memory narrows the reported advantage to 1.83× at 16GB.",
+      "implications": "Editorial judgement: an edge-device supplier should first ask whether customers repeatedly query a local document collection large enough to create this transfer problem. Compare a storage accelerator with spending the same product budget on additional DRAM, smaller caches or shorter retrieval context, at matched answer quality and latency.\n\nA convincing product trial should measure the complete user request, including document refresh and cold-cache cases. The purchasing decision also needs SSD cost, endurance, integration effort and software support. Use a prototype to close those gaps before changing a hardware roadmap.",
+      "sources": [
+        {
+          "label": "Original paper · arXiv",
+          "url": "https://arxiv.org/abs/2610.22579"
+        },
+        {
+          "label": "Full paper · v1",
+          "url": "https://arxiv.org/html/2610.22579v1"
+        }
+      ],
+      "publishedAt": "2026-11-11T07:30:57.521Z",
+      "updatedAt": "2026-11-11T07:30:57.521Z"
     }
   ]
 }
