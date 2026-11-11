@@ -13,3 +13,5 @@ Network requests have 25-second timeouts and at most two transient retries. Inva
 Public repositories may have scheduled workflows disabled after 60 days without repository activity. Ongoing news commits normally provide activity. If publication stops for an extended period, check the workflow's enabled status before resuming.
 
 The workflow packages static site files only. Source code changes still require a new frontend build; daily news changes do not rebuild the application.
+
+The Papers collection publishes at most one verified research brief per Pacific selection day. Its linked task reads `/api/paper-guide` and publishes through `/api/papers`. The public feed and this GitHub workflow include papers. Canonical IDs and selection days must remain unique, and the mirror rejects a response that removes a previously published paper.

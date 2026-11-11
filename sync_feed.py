@@ -41,7 +41,7 @@ def timestamp(value):
 
 
 def validate(feed):
-    shape(feed, ["version", "generatedAt", "editions", "weeks", "takes", "persistent"])
+    shape(feed, ["version", "generatedAt", "editions", "weeks", "takes", "persistent"], ["papers"])
     require(feed["version"] == 1 and feed["persistent"] is True, "Persistent public feed required")
     timestamp(feed["generatedAt"])
     require(isinstance(feed["editions"], list) and feed["editions"], "Empty archive")
@@ -118,7 +118,47 @@ def validate(feed):
         shape(take, ["title", "body", "publishedAt"])
         require(isinstance(take["title"], str) and isinstance(take["body"], str), "Invalid published take")
         timestamp(take["publishedAt"])
+    validate_papers(feed.get("papers", []))
     return edition_dates, week_dates
+
+
+def validate_papers(papers):
+    require(isinstance(papers, list), "Invalid paper archive")
+    days, identities = set(), set()
+    for paper in papers:
+        shape(paper, ["date", "paperId", "title", "headline", "authors", "publicationDate", "venue", "status", "category", "summary", "problem", "method", "results", "limitations", "implications", "sources"], ["revisionDate", "publishedAt", "updatedAt"])
+        day, published = date(paper["date"]), date(paper["publicationDate"])
+        require(published <= day, "Paper postdates its selection")
+        if "revisionDate" in paper:
+            require(published <= date(paper["revisionDate"]) <= day, "Invalid revision date")
+        identity = paper["paperId"]
+        require(isinstance(identity, str) and re.fullmatch(r"(?:arxiv:\d{4}\.\d{4,5}|doi:10\.\d{4,9}/\S+|url:https://\S+)", identity), "Invalid canonical paper ID")
+        require(day not in days and identity not in identities, "Duplicate paper or selection day")
+        days.add(day)
+        identities.add(identity)
+        require(paper["status"] in ("Preprint", "Peer-reviewed", "Technical report"), "Invalid review status")
+        require(paper["category"] in ("Models & architectures", "AI systems", "Training & inference optimization", "AI chip architecture"), "Invalid research area")
+        for key in ("title", "headline", "authors", "venue", "summary", "problem", "limitations", "implications"):
+            text(paper[key])
+        for key in ("publishedAt", "updatedAt"):
+            if key in paper:
+                timestamp(paper[key])
+        for key, fields in (("method", ["title", "description"]), ("results", ["finding", "setup"])):
+            require(isinstance(paper[key], list) and 1 <= len(paper[key]) <= 3, "Invalid paper sections")
+            for item in paper[key]:
+                shape(item, fields)
+                for field in fields:
+                    text(item[field])
+        require(isinstance(paper["sources"], list) and 1 <= len(paper["sources"]) <= 5, "Missing paper sources")
+        canonical_link = not identity.startswith("arxiv:")
+        for source in paper["sources"]:
+            shape(source, ["label", "url"])
+            text(source["label"])
+            url = urllib.parse.urlsplit(source["url"])
+            require(url.scheme == "https" and bool(url.netloc), "Invalid paper URL")
+            if identity.startswith("arxiv:") and url.hostname == "arxiv.org" and re.fullmatch(r"/(abs|pdf|html)/" + re.escape(identity[6:]) + r"(v[0-9]+)?(\.pdf)?/?", url.path):
+                canonical_link = True
+        require(canonical_link, "Missing canonical paper link")
 
 
 def fetch_feed():
@@ -148,6 +188,8 @@ def mirror(destination, incoming):
     previous = json.loads(destination.read_text())
     old_dates, old_weeks = validate(previous)
     require(old_dates <= new_dates and old_weeks <= new_weeks, "Incoming feed would remove published history")
+    paper_keys = lambda feed: {(p["date"], p["paperId"]) for p in feed.get("papers", [])}
+    require(paper_keys(previous) <= paper_keys(incoming), "Incoming feed would remove published papers")
     comparable = lambda feed: {key: value for key, value in feed.items() if key != "generatedAt"}
     if comparable(previous) == comparable(incoming):
         return False
@@ -183,7 +225,7 @@ def main():
         return
     incoming = fetch_feed()
     changed = mirror(Path("feed.json"), incoming)
-    summary = f"{len(incoming['editions'])} daily editions; {len(incoming['weeks'])} weekly reviews; snapshot {'updated' if changed else 'unchanged'}."
+    summary = f"{len(incoming['editions'])} daily editions; {len(incoming['weeks'])} weekly reviews; {len(incoming.get('papers', []))} paper briefs; snapshot {'updated' if changed else 'unchanged'}."
     print(summary)
     if os.getenv("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as stream:

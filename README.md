@@ -1,9 +1,7 @@
 # Afterlight
 
-An independent daily AI briefing connecting technology and business.
+An independent AI briefing with Daily, Weekly and Papers collections. Papers covers models, architectures, AI systems, optimization and AI chips: at most one sourced brief per Pacific day.
 
-This repository contains the public GitHub Pages distribution. It reads published editions and weekly reviews from the Afterlight public feed, including signed Editor’s Takes only after publication. News refreshes on page load, when returning to the tab, and every five minutes while visible. A packaged snapshot is available if the feed cannot be reached.
+This repository contains the public GitHub Pages distribution. It reads published content from the Afterlight service and keeps a bundled snapshot. The hourly Actions workflow validates that public feed, commits changed content and deploys Pages. No writer credentials or editor drafts are included.
 
-Editorial access remains on the separate authenticated Afterlight service. No credentials or unpublished editor drafts are included in this repository.
-
-Built from Afterlight source commit `d15ab5d451600bb07105861419e3b4bd375fc7ce`.
+Built from Afterlight source commit `58455fb0435b4dc82f3c6ecdba7623d9b72063fa`.

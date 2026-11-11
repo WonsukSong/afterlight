@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T04:54:53.133Z",
+  "generatedAt": "2026-11-11T05:17:18.785Z",
   "editions": [
     {
       "date": "2026-11-09",
@@ -2034,5 +2034,56 @@
     }
   ],
   "takes": {},
-  "persistent": true
+  "persistent": true,
+  "papers": [
+    {
+      "date": "2026-11-10",
+      "paperId": "arxiv:2611.11036",
+      "title": "When Is High-Bandwidth Flash Cost-Effective for LLM Inference?",
+      "headline": "Can flash memory replace the GPUs bought for capacity?",
+      "authors": "Zhiyu An, Yiping Li, Wan Du · UC Merced",
+      "publicationDate": "2026-11-08",
+      "venue": "arXiv · cs.AR · v1",
+      "status": "Preprint",
+      "category": "AI chip architecture",
+      "summary": "A simulation explores high-bandwidth flash (HBF) for LLM serving. Fewer GPUs can help, but savings depend on latency, workload and flash cost.",
+      "problem": "Model storage can force extra GPU purchases even when compute demand is modest.",
+      "method": [
+        {
+          "title": "Preserve fast memory, add capacity",
+          "description": "Cascaded HBF retains near memory; shared-site HBF replaces some. Active attention state stays near the GPU while cold weights stream from flash."
+        },
+        {
+          "title": "Inspect the experiment",
+          "description": "The authors publish simulator code, frozen timing profiles, workload definitions and archived results. The artifact runs on CPU; we have not independently reproduced it."
+        }
+      ],
+      "results": [
+        {
+          "finding": "32 conventional GPUs → 4 with cascaded HBF",
+          "setup": "Simulated RTX 4090-scale Qwen3-235B, four short-chat users, BF16 weights, 512 input/64 output tokens. First-token limit: 5 seconds; mean/p99 token gaps: 100/200 ms."
+        },
+        {
+          "finding": "98 GPU-count wins; 63 remain cost wins",
+          "setup": "Across 468 fixed-demand comparisons. The cost scenario assumes each HBF stack adds half a GPU's price."
+        }
+      ],
+      "limitations": "These are projections, not hardware measurements. Only two of 14 audited GPU-count wins survive every sensitivity setting. Quantization and different serving policies could change the conclusions.",
+      "implications": "The design question is what a customer is actually buying: arithmetic, memory capacity or low response latency. Those constraints can justify different products. For a chip team, the next step would be to measure cold-weight traffic under the intended precision and latency target, then test the affordable flash-link bandwidth and integration cost.",
+      "sources": [
+        {
+          "label": "Original paper · arXiv",
+          "url": "https://arxiv.org/abs/2611.11036"
+        },
+        {
+          "label": "Read the full paper",
+          "url": "https://arxiv.org/html/2611.11036v1"
+        },
+        {
+          "label": "Authors' simulation artifact",
+          "url": "https://github.com/ryeii/When-Is-HBF-Cost-Effective"
+        }
+      ]
+    }
+  ]
 }
