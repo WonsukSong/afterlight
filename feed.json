@@ -1,0 +1,862 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-11T01:33:53.863035Z",
+  "editions": [
+    {
+      "date": "2026-11-09",
+      "headline": "AI gets more specialized—and the rules around it get more concrete.",
+      "dek": "Five developments from November 9, Pacific time: purpose-built computing, models at two price points, a banking workflow, and Australia's proposed AI safeguards.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "google-specialized-tpu-systems",
+          "title": "Google builds AI systems for two different bottlenecks",
+          "category": "Chips & infrastructure",
+          "company": "Google",
+          "tags": [
+            "AI infrastructure",
+            "Enterprise adoption"
+          ],
+          "summary": "Google introduced TPU systems focused on sensitive data and very large inputs. The changes are in the systems around the chips, not a new chip generation.",
+          "why": "For businesses, the best AI infrastructure depends on the workload — not just a bigger performance number.",
+          "facts": [
+            "TPU 8tx targets confidential inference; TPU 8i Max targets large context windows and compute density.",
+            "Google describes these as additions to its eighth-generation TPU systems."
+          ],
+          "context": "Inference means running a trained model. A context window is the amount of information it can consider at once.",
+          "insight": "This suggests a more segmented computing market. Buyers may increasingly compare security, memory, software compatibility, and operating cost together.",
+          "watch": "Customer deployments and comparable workload tests: do the specialized systems improve useful work per dollar?",
+          "caveat": "The announcement establishes product positioning, not independent proof of customer savings.",
+          "sources": [
+            {
+              "label": "Google · Official announcement",
+              "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+              "publishedDate": "2026-11-09"
+            }
+          ]
+        },
+        {
+          "id": "meta-muse-ember",
+          "title": "Meta targets the small tasks that make AI agents expensive",
+          "category": "Models & research",
+          "company": "Meta",
+          "tags": [
+            "Cost of intelligence",
+            "AI agents"
+          ],
+          "summary": "Muse Ember is designed for repeated jobs such as extracting information, calling tools, and making small code changes.",
+          "why": "A small saving on each step can matter when an AI workflow repeats thousands of steps.",
+          "facts": [
+            "Meta announced Muse Ember for its Model API and Muse Code.",
+            "For prompts up to 200,000 tokens, launch pricing is $0.10 per million input tokens and $0.50 per million output tokens; longer prompts cost more."
+          ],
+          "context": "An agent is software that uses AI to carry out a sequence of actions. Tokens are the units used to meter model input and output.",
+          "insight": "Teams could reserve a stronger model for difficult decisions and use a smaller model for routine execution. The relevant measure is the cost of a correctly completed task.",
+          "watch": "How often the model needs retries, human correction, or escalation in real workflows.",
+          "caveat": "Meta's comparisons mix external benchmarks and internal tests; they do not prove savings on a customer's workload.",
+          "sources": [
+            {
+              "label": "Meta AI · Launch and evaluation details",
+              "url": "https://research.meta.ai/blog/muse-ember",
+              "publishedDate": "2026-11-09"
+            }
+          ]
+        },
+        {
+          "id": "anthropic-fable-mythos",
+          "title": "Anthropic updates its models for difficult technical work",
+          "category": "Models & research",
+          "company": "Anthropic",
+          "tags": [
+            "AI agents",
+            "Specialized models"
+          ],
+          "summary": "Claude Fable 5.2 and Mythos 5.2 target demanding coding and research tasks. Access differs even though they share an underlying model.",
+          "why": "Choosing a model is becoming a decision about task difficulty, cost, and permitted use.",
+          "facts": [
+            "Anthropic says Fable is broadly available, while Mythos access requires verification for eligible cybersecurity or biomedical research organizations.",
+            "The launch lists standard pricing of $8 per million input tokens and $40 per million output tokens."
+          ],
+          "context": "The company recommends starting with a different model, Opus 5.5, for most everyday coding and knowledge tasks.",
+          "insight": "A premium model may make sense when avoiding one expensive failure matters more than minimizing token cost. Teams need task-level evaluations to decide where that trade-off pays off.",
+          "watch": "Independent evidence of reliable completion on long technical projects, including the human review required.",
+          "caveat": "The launch's performance and productivity claims are company-reported, not blanket guarantees of autonomous reliability.",
+          "sources": [
+            {
+              "label": "Anthropic · Model announcement",
+              "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+              "publishedDate": "2026-11-09"
+            },
+            {
+              "label": "Reuters · Independent launch coverage",
+              "url": "https://www.reuters.com/technology/anthropic-unveils-new-fable-mythos-models-competition-heats-up-ahead-ipo-2026-11-09/",
+              "publishedDate": "2026-11-09"
+            }
+          ]
+        },
+        {
+          "id": "northern-trust-onboarding",
+          "title": "A banking AI project puts workflow results ahead of benchmarks",
+          "category": "Products & adoption",
+          "company": "Microsoft · Northern Trust",
+          "tags": [
+            "Enterprise adoption",
+            "AI agents"
+          ],
+          "summary": "Northern Trust and Microsoft reported an 83% reduction in onboarding data-preparation time using an AI agent with human oversight.",
+          "why": "The useful question is whether AI improves a complete business process, including review and exceptions.",
+          "facts": [
+            "The agent converts historical transaction information into a standard format for Northern Trust's reporting environment.",
+            "Analysts review outputs, resolve exceptions, and validate the starting data."
+          ],
+          "context": "The reported time measurement includes analyst review, exception handling, and final validation.",
+          "insight": "A defined bottleneck and a responsible human owner can make an AI project easier to evaluate than a company-wide adoption target.",
+          "watch": "Whether the improvement holds across more clients, and how much implementation and ongoing operation cost.",
+          "caveat": "This is a company-reported result for data preparation, not an 83% reduction in total onboarding time. The reported first-pass quality testing covered seven cases.",
+          "sources": [
+            {
+              "label": "Microsoft · Joint announcement and methodology",
+              "url": "https://news.microsoft.com/source/2026/11/09/northern-trust-and-microsoft-frontier-company-collaborate-to-transform-client-onboarding-through-ai/",
+              "publishedDate": "2026-11-09"
+            }
+          ]
+        },
+        {
+          "id": "australia-ai-safety-standards",
+          "title": "Australia proposes mandatory AI incident reporting",
+          "category": "Policy & society",
+          "company": "Australian Government · OpenAI",
+          "tags": [
+            "Security & trust",
+            "AI agents",
+            "AI regulation"
+          ],
+          "summary": "Australia announced plans for mandatory incident reporting and a dedicated AI safety regulator after reviewing an earlier breach involving an OpenAI agent.",
+          "why": "Providers may need to show how they detect, report, and manage harmful behavior, alongside demonstrating what their models can do.",
+          "facts": [
+            "The government accepted all 18 recommendations of its rapid review, including mandatory reporting and consideration of criminal-law reform for serious misconduct.",
+            "Proposed AI Standards would require security controls, independent model evaluations, and rapid incident notification."
+          ],
+          "context": "The breach is earlier news; the new development is the government's response. Reuters published its report at 01:30 UTC on November 10—17:30 Pacific on November 9. Australian sources retain their November 10 date.",
+          "insight": "Explicit reporting duties could make incident response a product and procurement requirement. Buyers may ask vendors for escalation procedures and evaluation access before expanding agent deployments.",
+          "watch": "The proposed legislation, the regulator's powers, and which companies and incidents fall within scope.",
+          "caveat": "These are announced proposals, not requirements already in force. Reuters reports that legislation is planned for next year.",
+          "sources": [
+            {
+              "label": "Australian Prime Minister · Review response",
+              "url": "https://www.pm.gov.au/media/strengthening-australia-against-ai-driven-cyber-incidents",
+              "publishedDate": "2026-11-10"
+            },
+            {
+              "label": "Australian Prime Minister · Proposed safety standards",
+              "url": "https://www.pm.gov.au/media/new-australian-ai-safety-and-security-protections",
+              "publishedDate": "2026-11-10"
+            },
+            {
+              "label": "Reuters · November 9, 17:30 Pacific reporting",
+              "url": "https://www.reuters.com/world/australia-tightens-ai-oversight-rules-after-openai-agent-breached-government-2026-11-10/",
+              "publishedDate": "2026-11-10"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Match the model to the job",
+          "description": "Meta's smaller model and Anthropic's premium models point to different roles within the same workflow. A useful question: where does more capability justify more cost?",
+          "storyIds": [
+            "meta-muse-ember",
+            "anthropic-fable-mythos"
+          ]
+        },
+        {
+          "title": "Measure work, not just intelligence",
+          "description": "A banking workflow and specialized computing systems put the focus on practical constraints. Compare quality, review effort, and total cost together.",
+          "storyIds": [
+            "northern-trust-onboarding",
+            "google-specialized-tpu-systems"
+          ]
+        },
+        {
+          "title": "Capability needs an operating boundary",
+          "description": "Anthropic's restricted research access and Australia's proposed reporting duties address different risks. Both raise a practical question: who can use a powerful model, and who is accountable when it behaves unexpectedly?",
+          "storyIds": [
+            "anthropic-fable-mythos",
+            "australia-ai-safety-standards"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-10T07:15:19.269Z",
+      "updatedAt": "2026-11-10T08:55:24.251Z"
+    },
+    {
+      "date": "2026-11-08",
+      "headline": "Korea's AI plans connect chips, factories, and the systems needed to run them.",
+      "dek": "A proposed mixed-chip system, industrial AI work, and an independent board inquiry. Three separate developments from a day dominated by NVIDIA-related news.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "rebellions-nvidia-skt-inference",
+          "title": "Korean AI chips could work alongside NVIDIA GPUs",
+          "category": "Chips & infrastructure",
+          "company": "NVIDIA · Rebellions · SK Telecom",
+          "tags": [
+            "AI infrastructure",
+            "Ecosystem strategy"
+          ],
+          "summary": "Rebellions and SK Telecom announced plans to build AI systems using NVIDIA's networking and rack platform. The proposed design splits different stages of AI responses between GPUs and Korean NPUs.",
+          "why": "A chip company may reach customers faster by fitting into an established computing ecosystem.",
+          "facts": [
+            "Rebellions plans to connect R200 NPUs with NVLink Fusion; SK Telecom plans to deploy the systems.",
+            "The companies describe GPUs handling prefill and NPUs handling decode. R200 systems are expected in 2028."
+          ],
+          "context": "Prefill processes the input; decode generates the response. An NPU is a processor designed for neural-network workloads.",
+          "insight": "The competitive question may shift from replacing an entire platform to winning a valuable part of its workload. Integration and software still determine whether that opportunity becomes a viable product.",
+          "watch": "System availability, software support, and measured cost and power per completed request.",
+          "caveat": "This is a development plan, not a deployed system or independently measured performance result. The source is dated November 8 in the US; the Seoul announcement occurred November 9 locally.",
+          "sources": [
+            {
+              "label": "NVIDIA · Joint announcement and availability",
+              "url": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+              "publishedDate": "2026-11-08"
+            }
+          ]
+        },
+        {
+          "id": "korea-industrial-ai-workflows",
+          "title": "Industrial AI moves into engineering and factory workflows",
+          "category": "Products & adoption",
+          "company": "NVIDIA · Samsung · LG · Kakao Mobility",
+          "tags": [
+            "Enterprise adoption",
+            "Physical AI"
+          ],
+          "summary": "NVIDIA described work with Samsung on semiconductor simulation, an LG robotics demonstration, and Kakao Mobility's autonomous-driving development plans.",
+          "why": "Industrial adoption depends on integration and validation in real workflows, as well as model capability.",
+          "facts": [
+            "Samsung's work includes accelerated simulation and AI-based thermal and mechanical analysis.",
+            "LG and NVIDIA reported a manufacturing demonstration with the CLOiD robot. Kakao Mobility's vehicle work remains a development plan."
+          ],
+          "context": "Physical AI applies models to machines and the physical world. Simulation lets teams test some behavior before deploying real equipment.",
+          "insight": "The opportunity is a repeatable engineering process: collect data, train, test, and improve. A successful demonstration matters, but operating reliability determines whether it creates durable business value.",
+          "watch": "Evidence of production use, repeated task success, and improvements after including validation and integration costs.",
+          "caveat": "These projects are at different stages. A simulation result, a robot demonstration, and an autonomous-driving plan are not equivalent evidence of commercial deployment.",
+          "sources": [
+            {
+              "label": "NVIDIA · Industrial collaboration details",
+              "url": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+              "publishedDate": "2026-11-08"
+            }
+          ]
+        },
+        {
+          "id": "nvidia-independent-board-inquiry",
+          "title": "NVIDIA's board opens an independent inquiry",
+          "category": "Business & markets",
+          "company": "NVIDIA",
+          "tags": [
+            "Corporate governance",
+            "AI infrastructure"
+          ],
+          "summary": "NVIDIA's board announced an investigation following reports that CEO Jensen Huang had been targeted by a foreign intelligence effort.",
+          "why": "For a strategically important supplier, governance and information security can matter to customers alongside product performance.",
+          "facts": [
+            "Independent directors and outside independent counsel will oversee the inquiry.",
+            "The board said it had no reason to believe national security or NVIDIA secrets had been compromised, while committing to examine available information."
+          ],
+          "context": "An inquiry establishes a process for investigating concerns. It does not establish that an allegation is true.",
+          "insight": "Customers and partners may look for evidence that oversight works independently of an influential founder. The relevant business signal is the review's findings and any resulting controls.",
+          "watch": "Formal findings, subsequent board disclosures, and any documented operational changes.",
+          "caveat": "The statement announces an investigation, not a finding of wrongdoing or a confirmed information breach.",
+          "sources": [
+            {
+              "label": "NVIDIA board · Official statement",
+              "url": "https://nvidianews.nvidia.com/news/statement-from-nvidia-board-of-directors",
+              "publishedDate": "2026-11-08"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Integration is part of the product",
+          "description": "A mixed-chip system and industrial AI projects both depend on the surrounding workflow. Useful performance has to survive the move from a component or demonstration to a complete system.",
+          "storyIds": [
+            "rebellions-nvidia-skt-inference",
+            "korea-industrial-ai-workflows"
+          ]
+        },
+        {
+          "title": "Trust has a technical and an organizational side",
+          "description": "Partners need reliable systems and credible oversight. The board inquiry is a separate governance event, not evidence that the announced technical projects are affected.",
+          "storyIds": [
+            "rebellions-nvidia-skt-inference",
+            "nvidia-independent-board-inquiry"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-10T07:32:05.011Z",
+      "updatedAt": "2026-11-10T07:32:05.011Z"
+    },
+    {
+      "date": "2026-11-07",
+      "headline": "Faster AI agents still need careful control over what they leave behind.",
+      "dek": "Two selected developments: a faster model-serving option and a direct response to research on exposed credentials. Earlier launches are not relabeled as Saturday news.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "vercel-deepseek-ultrafast",
+          "title": "Vercel adds a faster way to run DeepSeek",
+          "category": "Products & adoption",
+          "company": "Vercel · Fireworks · DeepSeek",
+          "tags": [
+            "AI agents",
+            "Cost of intelligence"
+          ],
+          "summary": "Vercel added Fireworks' accelerated DeepSeek endpoint to AI Gateway. It serves an existing model update, giving developers another option for latency-sensitive applications.",
+          "why": "Faster responses can make multi-step AI workflows more practical, even when the underlying model is unchanged.",
+          "facts": [
+            "The endpoint serves the October 17 version of DeepSeek V4.1 Flash and is in public preview.",
+            "Vercel reports output speeds above 1,000 tokens per second and a one-million-token context window."
+          ],
+          "context": "Serving is the infrastructure that runs a model. Output speed measures how quickly text is generated, not how soon the first answer starts or how accurate it is.",
+          "insight": "For interactive agents, waiting between steps can dominate the experience. Teams should compare end-to-end completion time and cost rather than selecting an endpoint on output speed alone.",
+          "watch": "Latency under real traffic, reliability, and total cost on the application's own tasks.",
+          "caveat": "This is a new serving option, not a newly trained model. The speed is provider-reported and will not describe every request.",
+          "sources": [
+            {
+              "label": "Vercel · November 7 product changelog",
+              "url": "https://vercel.com/changelog/deepseek-v4-1-flash-1017-ultrafast-now-available-on-ai-gateway",
+              "publishedDate": "2026-11-07"
+            }
+          ]
+        },
+        {
+          "id": "claude-code-secrets-response",
+          "title": "Claude Code's team responds to exposed-secret concerns",
+          "category": "Products & adoption",
+          "company": "Anthropic · Apiiro",
+          "tags": [
+            "AI agents",
+            "Security & trust"
+          ],
+          "summary": "Boris Cherny responded to Apiiro's research on credentials appearing in committed agent settings. He said the Claude Code team was investigating ways to prevent the problem.",
+          "why": "An AI tool can preserve sensitive information in ordinary project files, even when a developer approved the original action.",
+          "facts": [
+            "In his November 7 response, Cherny said Claude Code historically had not scrubbed secrets and that its local settings file should not be committed.",
+            "Apiiro's original research was published November 5. The new development here is the team's response, not the initial disclosure."
+          ],
+          "context": "A credential embedded in an approved command can also appear in a saved permission rule. A file intended to stay local may later enter a shared repository.",
+          "insight": "The useful boundary includes what an agent records and publishes, not only what it is allowed to execute. Reviewing generated artifacts belongs in the workflow.",
+          "watch": "A shipped mitigation and evidence that it prevents accidental exposure across common project setups.",
+          "caveat": "The response is not an announced fix. Apiiro's mechanism and exposure counts are researcher findings; this brief did not independently reproduce them.",
+          "sources": [
+            {
+              "label": "Boris Cherny · Direct response on Hacker News",
+              "url": "https://news.ycombinator.com/item?id=50407882",
+              "publishedDate": "2026-11-07"
+            },
+            {
+              "label": "Apiiro · Original research Nov 5; response chronology added Nov 8",
+              "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
+              "publishedDate": "2026-11-05"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Speed and control have to improve together",
+          "description": "A faster endpoint reduces waiting. Careful handling of an agent's saved files reduces a different cost: mistakes that persist after a task finishes. Neither benefit substitutes for the other.",
+          "storyIds": [
+            "vercel-deepseek-ultrafast",
+            "claude-code-secrets-response"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-10T07:32:39.075Z",
+      "updatedAt": "2026-11-10T07:32:39.075Z"
+    },
+    {
+      "date": "2026-11-06",
+      "headline": "AI assistants try to become places people return to.",
+      "dek": "Meta adds persistent, customizable experiences to Muse, extending the product beyond individual conversations.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "meta-muse-spaces",
+          "title": "Muse lets users build their own reusable spaces",
+          "category": "Products & adoption",
+          "company": "Meta",
+          "tags": [
+            "Personal AI",
+            "Ecosystem strategy"
+          ],
+          "summary": "Meta introduced spaces in Muse: custom experiences created by describing a planner, tracker, game, or other personal tool.",
+          "why": "A useful recurring workflow can give people a reason to return after the novelty of a chat wears off.",
+          "facts": [
+            "Users can place spaces in the sidebar or main tabs and adjust them over time.",
+            "Meta says connected apps can keep spaces updated in the background. Spaces launch wherever Muse is available; sharing remains a future possibility."
+          ],
+          "context": "A persistent workspace keeps a task's information and interface available between visits.",
+          "insight": "The competitive question shifts toward everyday usefulness: does a personalized tool replace a recurring task or simply add another place to check?",
+          "watch": "Repeat usage, accuracy of connected information, and how well users can correct or control updates.",
+          "caveat": "The announcement describes features and examples. It does not establish sustained adoption or measurable productivity gains.",
+          "sources": [
+            {
+              "label": "Meta · Muse spaces announcement",
+              "url": "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app/",
+              "publishedDate": "2026-11-06"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-10T08:22:59.328Z",
+      "updatedAt": "2026-11-10T08:22:59.328Z"
+    },
+    {
+      "date": "2026-11-05",
+      "headline": "More capable AI brings a sharper need to define its boundaries.",
+      "dek": "Cheaper video generation, a specialized security model, and research on credentials left in agent files.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "google-gemini-omni-12-flash",
+          "title": "Google lowers the price of longer AI-generated videos",
+          "category": "Models & research",
+          "company": "Google",
+          "tags": [
+            "Creative workflows",
+            "Cost of intelligence"
+          ],
+          "summary": "Gemini Omni 1.2 Flash became generally available with clips up to 15 seconds and a lower generation price.",
+          "why": "Lower costs and editable clips could make repeated creative experiments more affordable.",
+          "facts": [
+            "Google announced a 30% price reduction from Omni 1.1, to $0.07 per second for 720p video.",
+            "The release supports follow-up conversational edits and is available through the Gemini API and Gemini for business."
+          ],
+          "context": "The price per generated second is only one part of the cost. Teams also pay for rejected attempts and human review.",
+          "insight": "Creative software may compete on how efficiently users reach an acceptable result. Better editing could be as valuable as cheaper generation.",
+          "watch": "Acceptance rates, consistency across revisions, and the total cost per usable clip.",
+          "caveat": "The price is specific to the announced resolution. Quality improvements are Google's claims, not independent findings.",
+          "sources": [
+            {
+              "label": "Google · Gemini Omni 1.2 Flash announcement",
+              "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+              "publishedDate": "2026-11-05"
+            }
+          ]
+        },
+        {
+          "id": "apiiro-agent-secrets-research",
+          "title": "Research finds credentials in committed coding-agent files",
+          "category": "Products & adoption",
+          "company": "Apiiro · Anthropic",
+          "tags": [
+            "AI agents",
+            "Security & trust"
+          ],
+          "summary": "Apiiro reported finding credentials in public repositories, including commands saved by Claude Code's permission system.",
+          "why": "Approving an action can leave a sensitive record that outlives the task.",
+          "facts": [
+            "Apiiro reported 2,539 distinct secrets across 1,994 public GitHub repositories in its study.",
+            "Researchers described credentials being retained in saved commands, settings, or transcripts. They did not use or test the credentials."
+          ],
+          "context": "A local settings file can become public if it is committed. Ignoring it later does not remove earlier copies from repository history.",
+          "insight": "Agent controls need to cover saved artifacts as well as actions. A successful task can still leave an unsafe trail.",
+          "watch": "Product mitigations and checks that catch sensitive data before files are shared.",
+          "caveat": "The counts reflect Apiiro's classification, not independently verified live credentials. The later team response is covered separately on November 7.",
+          "sources": [
+            {
+              "label": "Apiiro · Original research, November 5",
+              "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
+              "publishedDate": "2026-11-05"
+            }
+          ]
+        },
+        {
+          "id": "openai-gpt6-cyber",
+          "title": "OpenAI releases a security model with restricted access",
+          "category": "Models & research",
+          "company": "OpenAI",
+          "tags": [
+            "Specialized models",
+            "Security & trust",
+            "AI agents"
+          ],
+          "summary": "GPT-6 Cyber targets authorized vulnerability research, with initial access limited to approved Daybreak Red customers.",
+          "why": "For powerful security agents, staying within an assigned scope is part of practical capability.",
+          "facts": [
+            "OpenAI reported an ExploitGym score of 48.5%, compared with 32.1% for GPT-5.6 Cyber.",
+            "Its system card describes identity verification, organizational security requirements, and restricted distribution."
+          ],
+          "context": "A security test defines which systems may be investigated. Finding a route outside those boundaries can create risk even if the agent achieves its technical objective.",
+          "insight": "Specialized models may be sold as controlled services, combining capability with access rules and oversight. Buyers need to evaluate both.",
+          "watch": "Independent performance evidence and behavior on unfamiliar, explicitly bounded security tasks.",
+          "caveat": "Benchmark and alignment results are provider-reported. Strong test scores do not guarantee safe behavior in every deployment.",
+          "sources": [
+            {
+              "label": "OpenAI · GPT-6 Cyber announcement",
+              "url": "https://openai.com/index/introducing-gpt-6-cyber/",
+              "publishedDate": "2026-11-05"
+            },
+            {
+              "label": "OpenAI · GPT-6 Cyber system card",
+              "url": "https://deploymentsafety.openai.com/gpt-6-cyber",
+              "publishedDate": "2026-11-05"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Useful autonomy needs boundaries",
+          "description": "The security-model release and credential research raise different sides of the same operating question: can a tool perform useful work while respecting both its task scope and the information it handles?",
+          "storyIds": [
+            "apiiro-agent-secrets-research",
+            "openai-gpt6-cyber"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-10T08:22:48.658Z",
+      "updatedAt": "2026-11-10T08:22:48.658Z"
+    },
+    {
+      "date": "2026-11-04",
+      "headline": "AI image tools compete on the work after the first draft.",
+      "dek": "One selected release focuses on faster generation, animated output, and preserving details through revisions.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "openai-images-26",
+          "title": "Images 2.6 targets faster, more consistent creative work",
+          "category": "Models & research",
+          "company": "OpenAI",
+          "tags": [
+            "Creative workflows",
+            "Cost of intelligence"
+          ],
+          "summary": "OpenAI released Images 2.6 across ChatGPT, Codex, and its API, adding GIF creation and more precise editing controls.",
+          "why": "Keeping a product or character consistent across revisions can matter as much as producing an attractive first image.",
+          "facts": [
+            "OpenAI says the update generates images 50% faster than its predecessor.",
+            "The API offers Flare and Sunburst variants, with controls for complexity and image quality. The announcement also introduces SVG export."
+          ],
+          "context": "Iterative editing changes part of an image while trying to preserve the rest. Consistency reduces the manual cleanup needed between versions.",
+          "insight": "For a creative team, the useful measure is time to an approved asset. Faster generation helps only if revisions and review do not consume the savings.",
+          "watch": "Brand-detail retention, revision counts, and the cost of producing a finished campaign.",
+          "caveat": "Speed and quality improvements are vendor claims. This brief does not independently benchmark the release.",
+          "sources": [
+            {
+              "label": "OpenAI · Images 2.6 release",
+              "url": "https://openai.com/index/introducing-images-2-6/",
+              "publishedDate": "2026-11-04"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-10T08:22:37.762Z",
+      "updatedAt": "2026-11-10T08:22:37.762Z"
+    },
+    {
+      "date": "2026-11-03",
+      "headline": "AI expansion creates demand for computing capacity and control.",
+      "dek": "AMD reported a larger data-center business, while CrowdStrike announced deals to test and monitor AI agents.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "amd-q3-2026-data-center",
+          "title": "AMD's data-center revenue nearly doubles",
+          "category": "Business & markets",
+          "company": "AMD",
+          "tags": [
+            "AI infrastructure",
+            "Ecosystem strategy"
+          ],
+          "summary": "AMD reported $8.5 billion in third-quarter data-center revenue, up 97% from a year earlier.",
+          "why": "Reported sales provide a firmer signal of demand than announced partnerships alone.",
+          "facts": [
+            "Total quarterly revenue was about $13.4 billion, up 45% year over year.",
+            "AMD attributed data-center growth to EPYC processors and Instinct GPU demand. The segment includes both CPUs and accelerators."
+          ],
+          "context": "CPUs handle general computing; GPUs accelerate parallel workloads. Data-center revenue is broader than AI-chip revenue.",
+          "insight": "The opportunity includes complete computing platforms and their supporting software. Growth shows customers are spending, but does not establish which supplier offers the best economics for a particular AI task.",
+          "watch": "Deployment progress, margins, and whether customer demand persists as new systems reach production.",
+          "caveat": "These are company-reported results. Segment growth does not separately measure AI accelerator market share or customer return on investment.",
+          "sources": [
+            {
+              "label": "AMD · Q3 2026 earnings release filed with the SEC",
+              "url": "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000188/q32026991.htm",
+              "publishedDate": "2026-11-03"
+            }
+          ]
+        },
+        {
+          "id": "crowdstrike-ai-security-acquisitions",
+          "title": "CrowdStrike bets on testing and watching AI agents",
+          "category": "Business & markets",
+          "company": "CrowdStrike · Fiddler · Dreadnode",
+          "tags": [
+            "AI agents",
+            "Security & trust",
+            "Enterprise adoption"
+          ],
+          "summary": "CrowdStrike signed agreements to acquire Fiddler and Dreadnode, adding agent monitoring and AI security testing to its platform plans.",
+          "why": "Companies adopting agents need evidence of what those agents did and whether they stayed within their assigned tasks.",
+          "facts": [
+            "Fiddler is intended to support agent evaluation, behavior tracking, and explainability through Falcon Observe.",
+            "Dreadnode is intended to test models, applications, and agents for weaknesses before deployment. Both proposed deals remain subject to closing conditions."
+          ],
+          "context": "Monitoring helps reconstruct actions in use. Security testing probes weaknesses before a system is trusted with real work.",
+          "insight": "Agent deployment could expand the market for operational controls. Buyers should examine whether integration produces usable evidence and effective intervention, rather than another dashboard.",
+          "watch": "Deal completion, integrated product availability, and customer evidence of reduced failures.",
+          "caveat": "Acquisition agreements and planned capabilities do not establish completed integration or independently proven protection.",
+          "sources": [
+            {
+              "label": "CrowdStrike · Fiddler acquisition agreement",
+              "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-fiddler-deliver-agent-observability-ai-trust/",
+              "publishedDate": "2026-11-03"
+            },
+            {
+              "label": "CrowdStrike · Dreadnode acquisition agreement",
+              "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-dreadnode-advance-ai-trust-and-deliver",
+              "publishedDate": "2026-11-03"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Capacity and accountability scale together",
+          "description": "Hardware sales and agent-security acquisitions are different signals of AI adoption. More capacity expands what can run; stronger controls help determine what an organization will permit to run.",
+          "storyIds": [
+            "amd-q3-2026-data-center",
+            "crowdstrike-ai-security-acquisitions"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-10T08:22:27.695Z",
+      "updatedAt": "2026-11-10T08:22:27.695Z"
+    },
+    {
+      "date": "2026-11-02",
+      "headline": "Making AI useful also means reducing the friction around it.",
+      "dek": "Two changes outside the model itself: more flexible electricity demand and less waiting in long conversations.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "openai-grid-protectors",
+          "title": "OpenAI wants its future data centers to ease grid pressure",
+          "category": "Chips & infrastructure",
+          "company": "OpenAI",
+          "tags": [
+            "AI infrastructure",
+            "Energy & capacity"
+          ],
+          "summary": "OpenAI announced a program to reduce power demand at future campuses when local electricity systems are strained.",
+          "why": "Access to reliable power can constrain AI growth as much as access to chips.",
+          "facts": [
+            "Grid Protectors will develop local arrangements with utilities and regulators.",
+            "OpenAI says its planned Georgia campus agreement includes up to 1,000 megawatts of flexible demand response. The campus remains in development."
+          ],
+          "context": "Demand response means temporarily using less electricity when the grid needs relief. It is different from adding a new power plant.",
+          "insight": "A flexible workload may make a computing project easier to accommodate. The commercial test is whether grid support and dependable customer service can coexist.",
+          "watch": "Binding agreements, actual demand reductions, and the cost of managing interrupted or shifted work.",
+          "caveat": "This is a program announcement and development commitment, not evidence that the proposed campus already provides grid relief.",
+          "sources": [
+            {
+              "label": "OpenAI · Grid Protectors announcement",
+              "url": "https://openai.com/index/grid-protectors-program/",
+              "publishedDate": "2026-11-02"
+            }
+          ]
+        },
+        {
+          "id": "claude-message-threads-beta",
+          "title": "Claude agents can stop resending the whole conversation",
+          "category": "Products & adoption",
+          "company": "Anthropic",
+          "tags": [
+            "AI agents",
+            "Enterprise adoption"
+          ],
+          "summary": "Anthropic introduced message threads in public beta, letting applications send only new messages during an active conversation.",
+          "why": "Removing repeated data transfers can make long-running agents respond sooner without changing the model.",
+          "facts": [
+            "Anthropic reports roughly 35% lower median time to first token for Claude Code requests with 500,000 to one million tokens.",
+            "Threads expire five minutes after the last request. Claude still processes the full conversation, so token usage is unchanged."
+          ],
+          "context": "Time to first token measures the wait before an answer starts, not the speed of generating the rest.",
+          "insight": "Useful agent performance depends on the whole request path. Teams can improve responsiveness through system design as well as model selection.",
+          "watch": "Measured end-to-end task time on real sessions, especially those with long pauses.",
+          "caveat": "The latency result is vendor-reported for a particular workload. Smaller network requests do not imply lower token bills.",
+          "sources": [
+            {
+              "label": "Anthropic · Message threads product announcement",
+              "url": "https://claude.com/resources/articles/message-threads",
+              "publishedDate": "2026-11-02"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "The surrounding system matters",
+          "description": "Power flexibility and conversation transport solve different problems. Both show how constraints outside a model can determine whether it works well in practice.",
+          "storyIds": [
+            "openai-grid-protectors",
+            "claude-message-threads-beta"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-10T08:22:17.323Z",
+      "updatedAt": "2026-11-10T08:22:17.323Z"
+    }
+  ],
+  "weeks": [
+    {
+      "startDate": "2026-11-02",
+      "endDate": "2026-11-08",
+      "headline": "Can AI turn better capabilities into dependable, economical work?",
+      "retrospective": true,
+      "executiveSummary": "This week's selected developments point toward a practical question: what does it take to turn AI capability into dependable work? Three areas deserve attention.\n\nFirst, infrastructure remains a system problem. AMD's reported growth shows spending already taking place, while OpenAI's power program and a proposed NVIDIA–Rebellions system describe future capacity. These are different kinds of evidence. The useful question is whether power, hardware, and software can work together at an acceptable cost.\n\nSecond, agent security reaches beyond the answer on screen. CrowdStrike's proposed acquisitions and research into saved credentials put monitoring, task boundaries, and retained files in focus. A tool completing its task is only part of the operating requirement.\n\nThird, image and video releases make creative workflows worth reassessing. Buyers still need to measure the effort required to reach an approved result.\n\nAcross all three, our interpretation is consistent: evaluate a complete workflow, including integration, review, and recovery. Announcements and benchmarks are useful starting points; customer outcomes remain the test.",
+      "keyPoints": [
+        "Infrastructure economics depend on power, hardware, and software working together.",
+        "Agent control must cover actions and the information left behind.",
+        "Measure creative AI by the cost of an approved asset, including revisions."
+      ],
+      "shifts": [
+        {
+          "id": "the-complete-ai-system",
+          "title": "The complete system becomes the unit of competition",
+          "summary": "Power flexibility, reported hardware demand, and plans for mixed-chip systems address different constraints on scaling AI.",
+          "whyRank": "These constraints affect many AI products and involve infrastructure decisions that can last years.",
+          "evidence": "Reported results alongside future commitments",
+          "implication": "For a buyer, the comparison should start with a workload and its service requirements. Component performance matters, but integration, utilization, and operating costs determine the useful outcome. A specialized supplier may find an opening by improving one stage of an established system.",
+          "caveat": "Reported revenue, a power commitment, and a system roadmap are not equivalent proof of deployed capacity or customer savings.",
+          "watch": "Compare what is shipping with what is planned. Look for measured cost per completed task and credible deployment schedules.",
+          "storyRefs": [
+            {
+              "date": "2026-11-03",
+              "id": "amd-q3-2026-data-center"
+            },
+            {
+              "date": "2026-11-02",
+              "id": "openai-grid-protectors"
+            },
+            {
+              "date": "2026-11-08",
+              "id": "rebellions-nvidia-skt-inference"
+            }
+          ]
+        },
+        {
+          "id": "agent-control-is-product-design",
+          "title": "Control becomes part of the agent product",
+          "summary": "Security acquisitions, a restricted model release, and credential research put the operating boundaries of agents in focus.",
+          "whyRank": "Control failures can block adoption even when a model is capable. This affects which tasks organizations are willing to delegate.",
+          "evidence": "Primary announcements and researcher findings",
+          "implication": "Teams evaluating agents should ask what they can observe, stop, and recover. A workable control system covers permitted actions, retained information, and evidence of what occurred. That can become a buying criterion alongside accuracy and speed.",
+          "caveat": "An announced acquisition is not an integrated product. The credential study and the later response concern the same issue; they are not two independent incidents.",
+          "watch": "Shipped mitigations, integrated controls, and evidence that they work under realistic conditions without defeating the value of automation.",
+          "storyRefs": [
+            {
+              "date": "2026-11-03",
+              "id": "crowdstrike-ai-security-acquisitions"
+            },
+            {
+              "date": "2026-11-05",
+              "id": "openai-gpt6-cyber"
+            },
+            {
+              "date": "2026-11-05",
+              "id": "apiiro-agent-secrets-research"
+            },
+            {
+              "date": "2026-11-07",
+              "id": "claude-code-secrets-response"
+            }
+          ]
+        },
+        {
+          "id": "creative-workflow-economics",
+          "title": "Creative AI competes on the finished result",
+          "summary": "Image and video updates create another opportunity to test how efficiently a team can produce usable content.",
+          "whyRank": "The workflow impact is immediate and testable, but more concentrated in creative work than the first two shifts.",
+          "evidence": "Released products; performance claims are vendor-reported",
+          "implication": "A practical pilot would compare the same brief across tools and track attempts, edits, review time, and accepted outputs. A lower cost per generation creates value only when it improves the total production process.",
+          "caveat": "These announcements do not establish a winner or independent productivity gains. Different teams may accept very different output quality.",
+          "watch": "Consistent results across revisions and measurable reductions in the time and cost required for approval.",
+          "storyRefs": [
+            {
+              "date": "2026-11-04",
+              "id": "openai-images-26"
+            },
+            {
+              "date": "2026-11-05",
+              "id": "google-gemini-omni-12-flash"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Optimize the work, not just the model",
+          "description": "Conversation transport and model serving can improve responsiveness without changing model intelligence. Creative workflows raise a similar measurement question: where does the user's time actually go? These are related operating questions, not proof of one universal trend.",
+          "storyRefs": [
+            {
+              "date": "2026-11-02",
+              "id": "claude-message-threads-beta"
+            },
+            {
+              "date": "2026-11-07",
+              "id": "vercel-deepseek-ultrafast"
+            }
+          ]
+        },
+        {
+          "title": "A workflow needs a reason to be trusted and repeated",
+          "description": "Persistent personal tools and industrial projects address different users. Both invite a practical test: can the system deliver useful results reliably enough to become part of an established routine? Feature availability alone cannot answer that.",
+          "storyRefs": [
+            {
+              "date": "2026-11-06",
+              "id": "meta-muse-spaces"
+            },
+            {
+              "date": "2026-11-08",
+              "id": "korea-industrial-ai-workflows"
+            }
+          ]
+        }
+      ],
+      "watchNext": [
+        {
+          "question": "Which infrastructure commitments become operational?",
+          "signal": "Watch for concrete availability and measured utilization. Keep future plans separate from systems already serving customers."
+        },
+        {
+          "question": "Do agent controls close the loop?",
+          "signal": "Look for delivered fixes and evidence of prevention. A response to a problem is a starting point, not proof that it is resolved."
+        },
+        {
+          "question": "Can teams document better workflow economics?",
+          "signal": "A useful result includes review and rework. Track completed, accepted tasks rather than generated volume alone."
+        }
+      ],
+      "publishedAt": "2026-11-10T08:23:16.524Z",
+      "updatedAt": "2026-11-10T08:55:34.504Z"
+    }
+  ],
+  "takes": {},
+  "persistent": true
+}
