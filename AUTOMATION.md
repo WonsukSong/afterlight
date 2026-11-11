@@ -15,3 +15,9 @@ Public repositories may have scheduled workflows disabled after 60 days without 
 The workflow packages static site files only. Source code changes still require a new frontend build; daily news changes do not rebuild the application.
 
 The Papers collection publishes at most one verified research brief per Pacific selection day. Its linked task reads `/api/paper-guide` and publishes through `/api/papers`. The public feed and this GitHub workflow include papers. Canonical IDs and selection days must remain unique, and the mirror rejects a response that removes a previously published paper.
+
+## Editorial direction
+
+The primary reader is the owner, an experienced AI systems engineer developing business judgment. Daily briefs explain the prior bottleneck, changed mechanism and conditional evidence before connecting to customer value, economics, competition or execution. Weekly reviews synthesize decisions; Papers explain mechanisms in more depth and connect them to product feasibility. Public positioning does not include personal education plans.
+
+The linked tasks read the shared reader contract from the live guides: `/api/update-guide` (`afterlight-editorial-v3`), `/api/weekly-guide` (`afterlight-weekly-v3`) and `/api/paper-guide` (`afterlight-papers-v4`). Existing publication times and the hourly GitHub mirroring schedule are unchanged.
