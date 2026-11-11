@@ -1,7 +1,158 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T07:33:14.187Z",
+  "generatedAt": "2026-11-11T09:42:27.890Z",
   "editions": [
+    {
+      "date": "2026-11-10",
+      "headline": "AI reaches buyers through deeper reasoning, connected workflows, and new storefronts.",
+      "dek": "November 10, Pacific time: Carbon expands beyond restricted access, healthcare agents gain domain connections, ChatGPT opens a business channel, and IBM and Microsoft package deployment expertise.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "gemini-carbon-broader-access",
+          "title": "Carbon broadens access, with a temporary price that changes the evaluation",
+          "category": "Models & research",
+          "company": "Google",
+          "tags": [
+            "AI agents",
+            "Cost of intelligence"
+          ],
+          "summary": "Google expanded Gemini 4 Carbon beyond its earlier restricted release to paying developers and enterprises, with consumer rollout for Ultra subscribers. The launch also previews coordinated agent teams. Evaluate difficult tasks with the permanent price and full execution trace, rather than introductory token rates.",
+          "why": "Broader access makes a real pilot possible. Longer reasoning can improve completion while also increasing token consumption, elapsed time, and verification work.",
+          "facts": [
+            "Public Carbon costs $2/$10 per million input/output tokens initially; $4/$20 applies after November 30.",
+            "Google says Carbon uses more tokens than Argon and reports leading results on selected workflow benchmarks."
+          ],
+          "context": "The new event is access and product packaging; Afterlight covered Carbon’s initial restricted release on October 28. Google’s /swarm preview assigns coordination and demanding reasoning to Carbon while lighter models work in parallel, with separate workspaces and verification. This is orchestration around models, not evidence of a new attention kernel or cheaper token execution. In systems terms, parallel workers can shorten independent branches, but coordination, shared dependencies, and final checks remain on the critical path. Longer reasoning also means that equal token prices do not imply equal task costs. Benchmark rankings should therefore trigger a workload-specific test rather than substitute for one.",
+          "insight": "AI interpretation: pilot difficult migrations or investigations where failure is expensive and acceptance can be tested. Compare accepted changes per dollar at December pricing, including failed attempts, tool execution, and human review. Keep routine steps on the cheaper adequate model.",
+          "watch": "AI interpretation: measure end-to-end latency and review burden, not just benchmark score or tokens per second.",
+          "caveat": "Performance claims are Google-reported; general access and specialized cyber access remain distinct.",
+          "sources": [
+            {
+              "label": "Google · Broader availability and pricing footnote",
+              "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+              "publishedDate": "2026-11-10"
+            }
+          ]
+        },
+        {
+          "id": "google-healthcare-workflow-connectors",
+          "title": "Google packages healthcare agents around data access and operating boundaries",
+          "category": "Products & adoption",
+          "company": "Google Cloud",
+          "tags": [
+            "Enterprise adoption",
+            "AI agents",
+            "Security & trust"
+          ],
+          "summary": "Google launched Gemini for healthcare in preview, combining domain instructions, data connectors, and governance. Its direct Epic and Oracle Health integrations read records without writing back. That boundary matters when judging which administrative steps the product can complete and which still require staff.",
+          "why": "A capable model cannot remove workflow friction if records remain disconnected or nobody owns the final action and its exceptions.",
+          "facts": [
+            "Google describes role-based access, audit logging, and source citations.",
+            "The platform supports routing across models; some integrations remain in development or limited testing."
+          ],
+          "context": "Specialized skills encode task procedures; connectors provide the records and reference material those procedures need. The distinction from a general chatbot is access to operational context under existing permissions. Read-only EHR connections protect the record from direct modification, but retrieving and synthesizing information is not the same as completing a transaction. An implementation must explicitly identify where a human or another system accepts the output and performs the remaining action.",
+          "insight": "AI interpretation: start with one bounded preparation or review workflow. Measure staff time through final acceptance, including corrections and transfers between systems. Assign the process owner and exception queue before estimating capacity released; avoid treating read-only access as end-to-end automation.",
+          "watch": "AI interpretation: test record matching, missing data, evidence quality, and handoff effort on unfamiliar cases.",
+          "caveat": "This is a preview announcement, not independent evidence of clinical benefit or operating savings.",
+          "sources": [
+            {
+              "label": "Google Cloud · Product launch and integration scope",
+              "url": "https://www.googlecloudpresscorner.com/2026-11-10-Google-Cloud-Launches-Gemini-for-Healthcare",
+              "publishedDate": "2026-11-10"
+            }
+          ]
+        },
+        {
+          "id": "chatgpt-business-hub-agents",
+          "title": "ChatGPT gives businesses a managed presence at the point of discovery",
+          "category": "Business & markets",
+          "company": "OpenAI",
+          "tags": [
+            "AI agents",
+            "Enterprise adoption"
+          ],
+          "summary": "OpenAI introduced Businesses in ChatGPT in beta: verified business information, product feeds, aggregate engagement insights, and Business Agents for eligible US ecommerce and online service companies. The change creates a customer interaction channel inside AI discovery, with business conversations separated from ChatGPT’s independent answers.",
+          "why": "A merchant can influence the accuracy of its own information and answer follow-up questions closer to discovery, but exposure is not evidence of incremental sales.",
+          "facts": [
+            "Business Hub reports aggregate mentions, website clicks, and discovery topics; it does not share individual chats.",
+            "Business Agents can serve as labeled advertising destinations."
+          ],
+          "context": "The mechanism combines an information supply path with a customer handoff. A verified business maintains current details; a user encountering the business can choose a separate agent conversation about its offerings. This is a distribution product, not a new model architecture. Keeping the business conversation distinct helps users identify whose information they are receiving. The announcement does not establish improved organic ranking or conversion.",
+          "insight": "AI interpretation: a merchant should first correct catalog and availability data, then test whether agent-assisted discovery produces incremental qualified visits or purchases. Compare acquisition and maintenance costs with existing channels. Avoid committing to a channel based on mention counts alone.",
+          "watch": "AI interpretation: track attribution quality, catalog freshness, and dependence on platform-controlled discovery.",
+          "caveat": "Agent eligibility is narrower than Business Hub availability. No general sales uplift is established.",
+          "sources": [
+            {
+              "label": "OpenAI · Business Hub and Business Agents beta",
+              "url": "https://openai.com/index/introducing-businesses-chatgpt/",
+              "publishedDate": "2026-11-10"
+            },
+            {
+              "label": "The Verge · Independent launch coverage",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub",
+              "publishedDate": "2026-11-10"
+            }
+          ]
+        },
+        {
+          "id": "ibm-microsoft-imagine-enterprise",
+          "title": "IBM and Microsoft make deployment ownership part of the agent offer",
+          "category": "Products & adoption",
+          "company": "IBM · Microsoft",
+          "tags": [
+            "Enterprise adoption",
+            "AI agents"
+          ],
+          "summary": "IBM and Microsoft announced Imagine Enterprise, combining industry assets, Microsoft’s technology stack, and implementation support. Customers can engage IBM to deploy and operate the platform or pursue other management arrangements. The buying question is how much integration and ongoing responsibility the package actually absorbs.",
+          "why": "Enterprise adoption often stalls between a working demonstration and an accountable production service. Delivery capability can determine which platform wins the contract.",
+          "facts": [
+            "IBM cites more than 6,000 agents and assets, not 6,000 independently validated production workflows.",
+            "Initial industry frameworks cover financial services, insurance, and retail; engineering support is available for qualifying engagements."
+          ],
+          "context": "The offer combines reusable workflow components with data, identity, governance, and security infrastructure. Engineers adapt those components to customer systems and processes. Reuse could reduce setup work, but local permissions, data definitions, and exceptions still determine implementation effort. This is a platform-and-services proposition rather than a benchmark advance. The announcement describes SEI’s exploration, not a quantified production return from the new platform.",
+          "insight": "AI interpretation: compare a managed implementation with internal assembly using a defined acceptance test and operating contract. Specify who handles incidents, model changes, and process exceptions. Assess whether customizations remain portable and whether recurring service fees are justified by responsibility actually transferred.",
+          "watch": "AI interpretation: ask for deployment effort, ongoing support scope, and evidence that assets transfer across customers.",
+          "caveat": "Asset counts and customer participation do not establish realized savings or implementation repeatability.",
+          "sources": [
+            {
+              "label": "IBM and Microsoft · Joint announcement",
+              "url": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/",
+              "publishedDate": "2026-11-10"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Capability and completion have different boundaries",
+          "description": "AI interpretation: Carbon increases the reasoning available for difficult work; healthcare integration defines what information and actions are reachable. Evaluate the entire path to an accepted outcome, including handoffs that a stronger model cannot remove.",
+          "storyIds": [
+            "gemini-carbon-broader-access",
+            "google-healthcare-workflow-connectors"
+          ]
+        },
+        {
+          "title": "Integration ownership can decide the enterprise purchase",
+          "description": "AI interpretation: Google packages domain connections; IBM and Microsoft add implementation and operating options. Compare the residual work left with the customer, rather than treating either product catalog as proof of deployment readiness.",
+          "storyIds": [
+            "google-healthcare-workflow-connectors",
+            "ibm-microsoft-imagine-enterprise"
+          ]
+        },
+        {
+          "title": "Distribution can capture value beyond model performance",
+          "description": "AI interpretation: ChatGPT offers access to customer discovery, while IBM supplies an enterprise delivery channel. These are different routes to market; a product decision should consider who owns the customer relationship and the cost of changing providers.",
+          "storyIds": [
+            "chatgpt-business-hub-agents",
+            "ibm-microsoft-imagine-enterprise"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-11T08:35:29.350Z",
+      "updatedAt": "2026-11-11T08:35:29.350Z"
+    },
     {
       "date": "2026-11-09",
       "headline": "AI products split by workload, while deployment demands stronger evidence.",
