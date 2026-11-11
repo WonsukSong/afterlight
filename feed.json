@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T01:33:53.863035Z",
+  "generatedAt": "2026-11-11T04:54:53.133Z",
   "editions": [
     {
       "date": "2026-11-09",
@@ -721,6 +721,924 @@
       ],
       "publishedAt": "2026-11-10T08:22:17.323Z",
       "updatedAt": "2026-11-10T08:22:17.323Z"
+    },
+    {
+      "date": "2026-11-01",
+      "headline": "A quiet Sunday in our verified coverage.",
+      "dek": "This retrospective edition adds no new story. We did not select an additional development with a sufficiently clear November 1 date and supporting evidence. That does not mean no AI news occurred; earlier announcements remain on their original dates.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [],
+      "connections": [],
+      "publishedAt": "2026-11-11T02:31:59.570Z",
+      "updatedAt": "2026-11-11T02:31:59.570Z"
+    },
+    {
+      "date": "2026-10-31",
+      "headline": "A security report shows AI being used to analyze stolen data.",
+      "dek": "One selected development: Cisco Talos documents a malware workflow that applies language models after the initial theft.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "cisco-volta-ai-victim-profiling",
+          "title": "Cisco Talos finds AI used to prioritize stolen information",
+          "category": "Policy & society",
+          "company": "Cisco Talos",
+          "tags": [
+            "Cybersecurity",
+            "AI misuse",
+            "AI governance"
+          ],
+          "summary": "Cisco Talos reported that VOLTA malware uses an optional language-model stage to analyze stolen information and rank potential victims' assets. AI performs follow-on analysis after data theft.",
+          "why": "AI misuse can reduce an attacker's analytical work without inventing a new way to break into systems.",
+          "facts": [
+            "The October 31 report describes a self-deleting information stealer.",
+            "Talos identifies the AI stage as optional, rather than necessary for the underlying theft."
+          ],
+          "context": "The report examines a malware sample and its workflow, not the prevalence of all AI-enabled attacks.",
+          "insight": "Defensive evaluation should include what attackers can infer from a breach, as well as what they initially steal.",
+          "watch": "Look for evidence of broader deployment and effective detection of this analytical stage.",
+          "caveat": "The report does not establish the size of the victim population or overall criminal productivity gains.",
+          "sources": [
+            {
+              "label": "Cisco Talos technical report",
+              "url": "https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
+              "publishedDate": "2026-10-31"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-11T02:31:47.662Z",
+      "updatedAt": "2026-11-11T02:31:47.662Z"
+    },
+    {
+      "date": "2026-10-30",
+      "headline": "AI expands into scientific instruments while publishers seek simpler controls.",
+      "dek": "A retrospective edition covering an observatory deployment and a proposed shared signal for AI training preferences.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "openai-shared-training-preferences",
+          "title": "OpenAI backs a shared way to express AI training preferences",
+          "category": "Policy & society",
+          "company": "OpenAI",
+          "tags": [
+            "AI governance",
+            "Training data",
+            "Open web"
+          ],
+          "summary": "OpenAI committed to honoring a common robots.txt signal for AI training preferences. Implementation was planned for the coming months; existing crawler controls would remain.",
+          "why": "A shared signal could reduce the work publishers spend maintaining separate rules for different AI providers.",
+          "facts": [
+            "The October 30 announcement concerns foundational generative AI training.",
+            "Participation is voluntary, and OpenAI had not yet implemented the signal."
+          ],
+          "context": "Robots.txt is a website file that communicates preferences to automated crawlers.",
+          "insight": "Common settings may simplify administration, but their practical value depends on providers honoring them consistently.",
+          "watch": "Look for implementation dates and clear explanations of which uses the signal covers.",
+          "caveat": "This is a commitment, not evidence of an already operational cross-provider control.",
+          "sources": [
+            {
+              "label": "OpenAI announcement",
+              "url": "https://openai.com/index/helping-websites-express-ai-training-preferences/",
+              "publishedDate": "2026-10-30"
+            }
+          ]
+        },
+        {
+          "id": "nvidia-seti-agentic-observatory",
+          "title": "AI agents move into live telescope operations",
+          "category": "Products & adoption",
+          "company": "NVIDIA · SETI Institute · Breakthrough Listen",
+          "tags": [
+            "AI agents",
+            "AI for science",
+            "Edge AI"
+          ],
+          "summary": "NVIDIA described agents at the Allen Telescope Array that connect natural-language requests to telescope control and live signal processing, using its Holoscan platform.",
+          "why": "The deployment links AI to a physical instrument and continuous data, beyond answering questions about stored documents.",
+          "facts": [
+            "NVIDIA says inference runs on premises beside the instrument.",
+            "It reports real-time AI detection of a pulsar in the Crab Nebula."
+          ],
+          "context": "Radio observatories must process large sensor streams while observations are taking place.",
+          "insight": "Scientific agents may be most useful when they connect analysis directly to validated instrument workflows.",
+          "watch": "Look for independent measurements of reliability, researcher oversight and time saved.",
+          "caveat": "These are vendor-reported capabilities. A pulsar detection is not evidence of extraterrestrial intelligence.",
+          "sources": [
+            {
+              "label": "NVIDIA deployment report",
+              "url": "https://blogs.nvidia.com/blog/ai-joins-the-search-for-extraterrestrial-signals/",
+              "publishedDate": "2026-10-30"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-11T02:31:35.198Z",
+      "updatedAt": "2026-11-11T02:31:35.198Z"
+    },
+    {
+      "date": "2026-10-29",
+      "headline": "Model updates change both deployment choices and everyday behavior.",
+      "dek": "Mistral's released weights expand hosting options, while OpenAI revises how Luna responds.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "2026-10-29-mistral-large4-weights",
+          "title": "Mistral Large 4 becomes available as downloadable weights",
+          "category": "Models & research",
+          "company": "Mistral AI · Hugging Face",
+          "tags": [
+            "Ecosystem strategy",
+            "Security & trust",
+            "AI infrastructure"
+          ],
+          "summary": "Mistral Large 4's weights became available on Hugging Face. The model accepts text and images and produces text, giving organizations another option for running and adapting AI themselves.",
+          "why": "Access to weights gives users more deployment control, while leaving them responsible for operating the system.",
+          "facts": [
+            "Hugging Face lists official FP8 and NVFP4 variants.",
+            "Its release article documents support for Transformers, vLLM, and llama.cpp."
+          ],
+          "context": "The model uses a mixture of experts: only part of its parameter pool is active for each token.",
+          "insight": "Self-hosting decisions should compare control requirements with infrastructure and maintenance costs.",
+          "watch": "Watch independent evaluations and practical serving requirements on target hardware.",
+          "caveat": "Open weights do not mean unrestricted licensing: the license includes limits for model-as-a-service offerings.",
+          "sources": [
+            {
+              "label": "Hugging Face launch and deployment guide",
+              "url": "https://huggingface.co/blog/mistral-large4",
+              "publishedDate": "2026-10-29"
+            }
+          ]
+        },
+        {
+          "id": "2026-10-29-luna-response-update",
+          "title": "OpenAI updates Luna for shorter, less agreeable answers",
+          "category": "Products & adoption",
+          "company": "OpenAI",
+          "tags": [
+            "Personal AI",
+            "Security & trust"
+          ],
+          "summary": "OpenAI updated GPT-6 Luna and published a system-card addendum. The company says the revision gives more concise responses and reduces excessively agreeable language.",
+          "why": "Everyday answer quality includes whether a model challenges mistakes instead of simply agreeing.",
+          "facts": [
+            "The addendum identifies the new version as GPT-6 Luna (October 29).",
+            "OpenAI says it uses the same safeguards stack as the October 7 version."
+          ],
+          "context": "A system card describes a model's evaluations, risks, and safeguards.",
+          "insight": "Behavior changes deserve regression checks alongside capability improvements.",
+          "watch": "Watch whether shorter answers retain necessary detail and calibrated uncertainty.",
+          "caveat": "These are provider-reported changes. Reduced agreeableness does not by itself establish factual accuracy.",
+          "sources": [
+            {
+              "label": "OpenAI October 29 system-card addendum",
+              "url": "https://deploymentsafety.openai.com/gpt-6-luna-october-28-2026-addendum/introduction",
+              "publishedDate": "2026-10-29"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Evaluate the release that will actually run",
+          "description": "Downloadable weights change deployment responsibility; a hosted model update can change response behavior. Both call for testing the specific version in its intended workflow.",
+          "storyIds": [
+            "2026-10-29-mistral-large4-weights",
+            "2026-10-29-luna-response-update"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-11T02:31:23.081Z",
+      "updatedAt": "2026-11-11T02:31:23.081Z"
+    },
+    {
+      "date": "2026-10-28",
+      "headline": "Stronger models meet more deliberate controls for deployment.",
+      "dek": "Google limits initial Carbon access, while Microsoft packages the execution system around an AI agent.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "2026-10-28-gemini-carbon-limited-release",
+          "title": "Google introduces Carbon with access starting in cyber defense",
+          "category": "Models & research",
+          "company": "Google",
+          "tags": [
+            "Specialized models",
+            "Security & trust",
+            "AI agents"
+          ],
+          "summary": "Google announced Gemini 4 Carbon, emphasizing cybersecurity and extended multi-step tasks. Initial access goes to selected cyber defenders, followed by additional trusted partners through its Fairwind Program.",
+          "why": "Access conditions can shape adoption as much as a model's advertised capabilities.",
+          "facts": [
+            "Google reports improvements in coding and cybersecurity evaluations.",
+            "The company says it is collecting feedback and refining safeguards before broader access."
+          ],
+          "context": "The announcement follows Gemini 4 Argon, introduced earlier in October.",
+          "insight": "Teams evaluating a model should separate benchmark performance from eligibility, safeguards, and actual workflow results.",
+          "watch": "Watch for broader availability and independently measured performance on real tasks.",
+          "caveat": "This was a limited rollout announcement, not general availability. The performance statements here are Google's claims.",
+          "sources": [
+            {
+              "label": "Google Carbon launch announcement",
+              "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+              "publishedDate": "2026-10-28"
+            }
+          ]
+        },
+        {
+          "id": "2026-10-28-foundry-copilot-harness",
+          "title": "Microsoft offers a managed execution system for AI agents",
+          "category": "Products & adoption",
+          "company": "Microsoft",
+          "tags": [
+            "AI agents",
+            "Enterprise adoption",
+            "Ecosystem strategy"
+          ],
+          "summary": "Microsoft introduced the Copilot harness in Foundry Agent Service as a public preview. It manages the repeated model-and-tool steps needed to carry out a task, plus a sandbox for execution.",
+          "why": "Developers need reliable execution and permissions around a model to turn answers into completed work.",
+          "facts": [
+            "Developers supply instructions, skills, tools, and a supported model.",
+            "Microsoft separately announced general availability of long-running resilience for hosted agents."
+          ],
+          "context": "The harness is the software that coordinates an agent's steps and tools.",
+          "insight": "Managed execution may save engineering effort, but teams still need to test failure recovery and approval boundaries.",
+          "watch": "Watch reliability and operating costs on workflows that span many steps.",
+          "caveat": "The harness remained in preview; its release status differs from the separately announced resilience capability.",
+          "sources": [
+            {
+              "label": "Microsoft Foundry release announcement",
+              "url": "https://devblogs.microsoft.com/foundry/microsoft-copilot-harness-in-foundry/",
+              "publishedDate": "2026-10-28"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Two parts of responsible deployment",
+          "description": "Google's rollout controls who receives a model. Microsoft's execution system governs how an agent uses tools. Both affect whether capability can become dependable work.",
+          "storyIds": [
+            "2026-10-28-gemini-carbon-limited-release",
+            "2026-10-28-foundry-copilot-harness"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-11T02:31:10.563Z",
+      "updatedAt": "2026-11-11T02:31:10.563Z"
+    },
+    {
+      "date": "2026-10-27",
+      "headline": "AI reaches into interactive worlds and enterprise workflows.",
+      "dek": "Google previews a world model, while Oracle and OpenAI outline closer business-software integration.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "2026-10-27-oracle-openai-workflows",
+          "title": "Oracle plans to bring business applications into ChatGPT",
+          "category": "Products & adoption",
+          "company": "Oracle · OpenAI",
+          "tags": [
+            "Enterprise adoption",
+            "AI agents",
+            "Ecosystem strategy"
+          ],
+          "summary": "Oracle and OpenAI expanded their partnership. Oracle is developing AI Workspace to connect its applications and data with ChatGPT, alongside new tools for security and application development.",
+          "why": "The value of an assistant depends partly on whether it can reach the systems where business work happens.",
+          "facts": [
+            "The planned Workspace would support business workflows governed by organizational permissions and approvals.",
+            "The announcement also covers Security Mesh and App Composer, both powered by OpenAI technology."
+          ],
+          "context": "The partnership extends an existing commercial relationship rather than replacing Oracle's software.",
+          "insight": "Integration could reduce handoffs between applications, if authorization and data quality remain dependable.",
+          "watch": "Watch for usable releases and evidence of completed workflows, including review effort.",
+          "caveat": "Workspace is described as under development; the announcement does not establish broad availability or customer outcomes.",
+          "sources": [
+            {
+              "label": "OpenAI partnership announcement",
+              "url": "https://openai.com/index/oracle-apps-in-chatgpt/",
+              "publishedDate": "2026-10-27"
+            }
+          ]
+        },
+        {
+          "id": "2026-10-27-genie4-preview",
+          "title": "Google previews interactive worlds with generated sound",
+          "category": "Models & research",
+          "company": "Google DeepMind",
+          "tags": [
+            "Physical AI",
+            "Creative workflows",
+            "Specialized models"
+          ],
+          "summary": "Google DeepMind introduced Genie 4, a model that generates interactive environments with sound and dialogue. The initial research preview is limited to trusted testers.",
+          "why": "Interactive simulation could offer a faster way to explore scenarios before building or testing them physically.",
+          "facts": [
+            "Users can steer a running scene with text prompts.",
+            "Google describes work combining Genie with Gemini models to guide multi-step events."
+          ],
+          "context": "A world model generates how an environment changes as users interact with it.",
+          "insight": "Useful simulation needs measurable consistency, not just convincing images.",
+          "watch": "Watch whether longer sessions preserve objects, spatial relationships, and physical behavior.",
+          "caveat": "Google identifies drift, imperfect physics, and long-term consistency as unresolved limitations. This is not a validated substitute for engineering simulation.",
+          "sources": [
+            {
+              "label": "Google DeepMind Genie 4 announcement",
+              "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
+              "publishedDate": "2026-10-27"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Capability needs a working environment",
+          "description": "Business integrations and simulated worlds both move AI beyond isolated answers. Their usefulness depends on the reliability of the environment in which the model acts.",
+          "storyIds": [
+            "2026-10-27-oracle-openai-workflows",
+            "2026-10-27-genie4-preview"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-11T02:30:57.335Z",
+      "updatedAt": "2026-11-11T02:30:57.335Z"
+    },
+    {
+      "date": "2026-10-26",
+      "headline": "AI's next phase needs cheaper work, more computing, and more capital.",
+      "dek": "A retrospective edition covering announcements dated October 26, with vendor claims separated from completed outcomes.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "openai-terra-computer-use",
+          "title": "Terra targets the cost of everyday computer work",
+          "category": "Models & research",
+          "company": "OpenAI",
+          "tags": [
+            "AI agents",
+            "Computer use",
+            "Model economics"
+          ],
+          "summary": "OpenAI released GPT-6.1 Terra for visual tasks, computer use, and writing, with API pricing below GPT-6.1 Sol.",
+          "why": "A cheaper model could make repeated office tasks more economical if it completes them reliably.",
+          "facts": [
+            "Launch API rates were $1 per million input tokens and $5 per million output tokens.",
+            "It became available in ChatGPT Work, Codex, and the API."
+          ],
+          "context": "Computer-use models interact with software interfaces, extending automation beyond text generation.",
+          "insight": "Evaluate cost per successfully completed workflow, including retries and human review.",
+          "watch": "Whether savings survive real documents, unfamiliar interfaces, and exceptions.",
+          "caveat": "OpenAI's benchmark improvements are vendor-reported; they do not establish results for every business task.",
+          "sources": [
+            {
+              "label": "OpenAI — Introducing GPT-6.1 Terra",
+              "url": "https://openai.com/index/introducing-gpt-6-1-terra/",
+              "publishedDate": "2026-10-26"
+            },
+            {
+              "label": "OpenAI — dated model release notes",
+              "url": "https://help.openai.com/en/articles/9624314-model-release-notes",
+              "publishedDate": "2026-10-26"
+            }
+          ]
+        },
+        {
+          "id": "anthropic-public-ipo-filing",
+          "title": "Anthropic files for a public offering",
+          "category": "Business & markets",
+          "company": "Anthropic",
+          "tags": [
+            "AI business",
+            "Capital",
+            "Governance"
+          ],
+          "summary": "Anthropic filed an S-1 registration statement for a proposed IPO, seeking a Nasdaq listing under ANT. The offering's size and price range remained undecided.",
+          "why": "A public filing exposes an AI company's financing and governance to closer examination.",
+          "facts": [
+            "The filing covers a proposed offering of Class A common stock.",
+            "The registration was not yet effective when announced."
+          ],
+          "context": "An S-1 is a disclosure document for a proposed public offering, not evidence that shares have begun trading.",
+          "insight": "Commercial progress and financing requirements should be assessed together.",
+          "watch": "Subsequent filings, final terms, and whether the offering proceeds.",
+          "caveat": "This was a filing milestone, not a completed IPO or a confirmed valuation.",
+          "sources": [
+            {
+              "label": "Anthropic — S-1 announcement",
+              "url": "https://www.anthropic.com/news/s1-sec",
+              "publishedDate": "2026-10-26"
+            },
+            {
+              "label": "SEC — Anthropic registration statement",
+              "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+              "publishedDate": "2026-10-26"
+            }
+          ]
+        },
+        {
+          "id": "nvidia-meta-muse-infrastructure",
+          "title": "Meta and NVIDIA plan more infrastructure for AI agents",
+          "category": "Chips & infrastructure",
+          "company": "NVIDIA · Meta",
+          "tags": [
+            "AI infrastructure",
+            "AI agents",
+            "Inference"
+          ],
+          "summary": "NVIDIA and Meta announced broader collaboration on Muse models, including planned expansion of Vera Rubin and Vera CPU deployments.",
+          "why": "Serving agents requires coordinating models, chips, networking, and operating costs.",
+          "facts": [
+            "The companies plan training and inference optimizations.",
+            "Meta also plans Spectrum-X networking and BlueField-4 deployment."
+          ],
+          "context": "Inference is the computing used when a trained model responds or takes action.",
+          "insight": "System efficiency may matter as much as a chip's standalone performance.",
+          "watch": "Delivered capacity and measured operating costs after deployment.",
+          "caveat": "These are announced plans. This edition uses the newsroom's October 26 date; NVIDIA's investor copy is dated October 27.",
+          "sources": [
+            {
+              "label": "NVIDIA Newsroom — Meta collaboration",
+              "url": "https://nvidianews.nvidia.com/news/nvidia-and-meta-to-expand-collaboration-on-muse-and-muse-family-of-models-amid-robust-growth",
+              "publishedDate": "2026-10-26"
+            },
+            {
+              "label": "NVIDIA investor release — dated October 27",
+              "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-and-Meta-to-Expand-Collaboration-on-Muse-and-Muse-Family-of-Models-Amid-Robust-Growth/default.aspx",
+              "publishedDate": "2026-10-27"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Two sides of AI economics",
+          "description": "Terra addresses the cost of individual tasks; Meta's infrastructure plans address capacity. Neither alone proves that an end-to-end service is economical.",
+          "storyIds": [
+            "openai-terra-computer-use",
+            "nvidia-meta-muse-infrastructure"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-11T02:30:44.688Z",
+      "updatedAt": "2026-11-11T02:30:44.688Z"
+    },
+    {
+      "date": "2026-10-25",
+      "headline": "Smaller agents start with a stronger teacher.",
+      "dek": "Nanbeige presents a 33-billion-parameter model for coding and professional tasks, with smaller distilled models planned next.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "nanbeige-33b-agent-teacher",
+          "title": "Nanbeige introduces a teacher model for smaller agents",
+          "category": "Models & research",
+          "company": "Nanbeige LLM Lab",
+          "tags": [
+            "Specialized models",
+            "AI agents",
+            "Open models"
+          ],
+          "summary": "Nanbeige presented its 4.3-33B model for coding and professional tasks. The team positions it as a teacher for future smaller agents, including a planned 3B model.",
+          "why": "Knowledge transferred from a larger model could make smaller agents more useful.",
+          "facts": [
+            "The model is available under the Apache 2.0 license.",
+            "Its official model card was updated on October 25; repository uploads began October 24."
+          ],
+          "context": "Distillation trains a smaller model using guidance from a larger one.",
+          "insight": "The strategy's value depends on how much useful capability survives the size reduction.",
+          "watch": "Independent task evaluations and the eventual smaller-model releases.",
+          "caveat": "Reported benchmark results are the developer's own; planned distilled models are not established outcomes.",
+          "sources": [
+            {
+              "label": "Nanbeige official model card, updated October 25",
+              "url": "https://huggingface.co/Nanbeige/Nanbeige4.3-33B",
+              "publishedDate": "2026-10-25"
+            },
+            {
+              "label": "Nanbeige repository publication history",
+              "url": "https://huggingface.co/Nanbeige/Nanbeige4.3-33B/commits/main",
+              "publishedDate": "2026-10-25"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-11T03:54:54.623Z",
+      "updatedAt": "2026-11-11T03:54:54.623Z"
+    },
+    {
+      "date": "2026-10-24",
+      "headline": "Britain commits public funding to an AI Biosecurity Lab",
+      "dek": "This retrospective edition covers a new institution intended to apply frontier AI to disease detection and medical countermeasures.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "uk-ai-biosecurity-lab-announcement",
+          "title": "The UK announces an AI Biosecurity Lab",
+          "category": "Policy & society",
+          "company": "UK Cabinet Office",
+          "tags": [
+            "Biosecurity",
+            "Public funding",
+            "AI science"
+          ],
+          "summary": "The UK announced an independent nonprofit AI Biosecurity Lab, backed by £100 million in public funding and up to £200 million in company commitments.",
+          "why": "It creates an institution to turn frontier AI into practical biological defenses.",
+          "facts": [
+            "OpenAI and Anthropic commitments comprise credits, model access and technical support.",
+            "Initial priorities include earlier threat detection and faster development of medical countermeasures."
+          ],
+          "context": "The lab forms part of a broader national biosecurity initiative.",
+          "insight": "Dedicated capacity could help bridge model capabilities and public-health readiness.",
+          "watch": "Staffing, research milestones and demonstrated improvements in outbreak response.",
+          "caveat": "Company commitments are not £200 million in cash; operational results remain unproven.",
+          "sources": [
+            {
+              "label": "UK Cabinet Office — introducing the AI Biosecurity Lab",
+              "url": "https://www.gov.uk/government/news/introducing-the-ai-biosecurity-lab",
+              "publishedDate": "2026-10-24"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-11T03:54:42.597Z",
+      "updatedAt": "2026-11-11T03:54:42.597Z"
+    },
+    {
+      "date": "2026-10-23",
+      "headline": "Model containment and local agents come into focus",
+      "dek": "This retrospective edition pairs OpenAI's training-security disclosure with NVIDIA's release of a compact conversational model.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "openai-frontier-training-containment-report",
+          "title": "OpenAI details stronger containment for frontier training",
+          "category": "Models & research",
+          "company": "OpenAI",
+          "tags": [
+            "AI safety",
+            "Training",
+            "Security"
+          ],
+          "summary": "OpenAI published changes to its internal training environments, including a no-live-internet policy and stronger isolation tested by its own frontier models.",
+          "why": "More capable models raise the stakes for enforcing boundaries around research infrastructure.",
+          "facts": [
+            "A September 20 DNS misconfiguration incident prompted a training pause.",
+            "Reinforcement-learning training and internal inference resumed October 1 with additional controls."
+          ],
+          "context": "October 23 is the disclosure date, not the incident or restart date.",
+          "insight": "Containment may become a larger operational requirement as model capabilities improve.",
+          "watch": "Further evidence that controls withstand increasingly capable adversarial agents.",
+          "caveat": "This company account concerns internal research environments, not customer browsing access.",
+          "sources": [
+            {
+              "label": "OpenAI — securing frontier model training",
+              "url": "https://openai.com/index/securing-our-frontier-model-training-environment/",
+              "publishedDate": "2026-10-23"
+            }
+          ]
+        },
+        {
+          "id": "nvidia-nemotron-35-bolt-e4b-release",
+          "title": "NVIDIA releases a compact model for local conversational agents",
+          "category": "Models & research",
+          "company": "NVIDIA",
+          "tags": [
+            "Small models",
+            "Local AI",
+            "Agents"
+          ],
+          "summary": "NVIDIA released Nemotron 3.5 Bolt E4B 4GB, an open small language model for conversational agents on GeForce RTX, Jetson and Spark systems.",
+          "why": "Lower memory demands could put useful assistants on more local devices.",
+          "facts": [
+            "The model builds on Gemma 4 E4B with NVIDIA post-training.",
+            "It supports tool use, configurable reasoning and a 64,000-token context."
+          ],
+          "context": "Target applications include voice assistants, interactive characters and robotics interfaces.",
+          "insight": "Application responsiveness may matter more than broad leaderboard rankings for these agents.",
+          "watch": "Tool-use reliability and latency in real device applications.",
+          "caveat": "Approximately 4GB is NVIDIA's target-workload claim; actual memory requirements vary.",
+          "sources": [
+            {
+              "label": "NVIDIA Research — Nemotron 3.5 Bolt E4B release",
+              "url": "https://research.nvidia.com/labs/nemotron/Nemotron-3.5-Bolt-E4B-4GB/",
+              "publishedDate": "2026-10-23"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-11T03:54:31.765Z",
+      "updatedAt": "2026-11-11T03:54:31.765Z"
+    },
+    {
+      "date": "2026-10-22",
+      "headline": "Agents gain faster decisions and a common skills home",
+      "dek": "This retrospective edition covers OpenAI's Decisions API launch and Anthropic's transfer of Agent Skills to the Agentic AI Foundation.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "openai-decisions-api-general-availability",
+          "title": "OpenAI makes small AI decisions a dedicated API",
+          "category": "Products & adoption",
+          "company": "OpenAI",
+          "tags": [
+            "APIs",
+            "Agents",
+            "Developer tools"
+          ],
+          "summary": "OpenAI made its Decisions API generally available, using GPT-6 Luna to answer bounded questions for routing, classification and other application decisions.",
+          "why": "Faster decisions could reduce delays repeated throughout an agent's workflow.",
+          "facts": [
+            "Developers specify allowed answers; outputs include probabilities, choices or scores.",
+            "The release adds native GPT-Live integration and supports 400 questions per request."
+          ],
+          "context": "The service had already been available in public beta.",
+          "insight": "Specialized decision calls may make some applications cheaper and more responsive.",
+          "watch": "Independent measurements of accuracy, latency and total workflow cost.",
+          "caveat": "OpenAI's speed comparisons do not establish results for every workload.",
+          "sources": [
+            {
+              "label": "OpenAI — Decisions API general availability",
+              "url": "https://openai.com/index/decisions-api/",
+              "publishedDate": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "id": "anthropic-agent-skills-aaif-donation",
+          "title": "Agent Skills moves into foundation governance",
+          "category": "Products & adoption",
+          "company": "Anthropic / Agentic AI Foundation",
+          "tags": [
+            "Agents",
+            "Open standards",
+            "Governance"
+          ],
+          "summary": "Anthropic donated the Agent Skills standard to the Agentic AI Foundation, giving the shared workflow format a home under the Linux Foundation.",
+          "why": "A common format can make specialized instructions easier to reuse across agent products.",
+          "facts": [
+            "The donation includes the name, logo, GitHub organization and domain.",
+            "Using or contributing to the standard does not require foundation membership."
+          ],
+          "context": "Skills package task instructions with optional scripts and reference material.",
+          "insight": "Neutral governance could reduce dependence on one vendor's implementation.",
+          "watch": "Proposed versioned releases, specification changes and security guidance.",
+          "caveat": "A shared format alone cannot guarantee a skill's reliability or safety.",
+          "sources": [
+            {
+              "label": "Anthropic — donating Agent Skills to AAIF",
+              "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+              "publishedDate": "2026-10-22"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-11T03:54:20.598Z",
+      "updatedAt": "2026-11-11T03:54:20.598Z"
+    },
+    {
+      "date": "2026-10-21",
+      "headline": "Cloud competition expands through model choice and computing capacity.",
+      "dek": "Google Cloud adds an OpenAI partnership and outlines the next stage of its NVIDIA infrastructure rollout.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "2026-10-21-openai-google-cloud",
+          "title": "OpenAI plans distribution through Google Cloud",
+          "category": "Business & markets",
+          "company": "OpenAI · Google Cloud",
+          "tags": [
+            "Ecosystem strategy",
+            "Enterprise adoption",
+            "AI agents"
+          ],
+          "summary": "OpenAI and Google Cloud announced a partnership to bring OpenAI models and Codex workflows into Model Garden. Customers would access them within Google Cloud's infrastructure and governance environment.",
+          "why": "Existing procurement and data controls can influence which models enterprises adopt.",
+          "facts": [
+            "Purchases are planned through Google Cloud Marketplace.",
+            "Customers would be able to apply eligible Google Cloud spending commitments."
+          ],
+          "context": "The announcement broadens distribution through a company that also develops competing AI models.",
+          "insight": "A cloud platform can compete by offering useful model choices, including those from rivals.",
+          "watch": "Watch launch timing, regional coverage, and enterprise purchasing terms.",
+          "caveat": "The announcement describes forthcoming availability; it does not establish that all integrations were live that day.",
+          "sources": [
+            {
+              "label": "OpenAI Google Cloud partnership announcement",
+              "url": "https://openai.com/index/openai-models-google-cloud/",
+              "publishedDate": "2026-10-21"
+            }
+          ]
+        },
+        {
+          "id": "2026-10-21-google-a5x-rubin-rollout",
+          "title": "Google Cloud schedules wider access to Vera Rubin systems",
+          "category": "Chips & infrastructure",
+          "company": "Google Cloud · NVIDIA",
+          "tags": [
+            "AI infrastructure",
+            "Energy & capacity"
+          ],
+          "summary": "NVIDIA said Google Cloud's A5X instances, based on Vera Rubin NVL72 systems, would become generally available the following month. European expansion was also planned.",
+          "why": "Large AI workloads need coordinated computing, networking, and cooling capacity.",
+          "facts": [
+            "A5X combines Rubin systems with Google networking and liquid cooling.",
+            "NVIDIA named Ineffable Intelligence as the first customer to access A5X."
+          ],
+          "context": "The platform targets training, inference, and learning through repeated interaction.",
+          "insight": "Access to an integrated system may matter more than a processor's isolated specification.",
+          "watch": "Watch delivered capacity, regional access, and customer workload results.",
+          "caveat": "Despite the announcement's general-availability headline, its body schedules broader access for November. Expansion plans are not installed capacity.",
+          "sources": [
+            {
+              "label": "NVIDIA A5X rollout announcement",
+              "url": "https://blogs.nvidia.com/blog/google-cloud-vera-rubin-infrastructure/",
+              "publishedDate": "2026-10-21"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Distribution and capacity work together",
+          "description": "Broader model choice can attract enterprise workloads, while infrastructure determines whether those workloads can run at the required scale. Announced access still needs to become delivered service.",
+          "storyIds": [
+            "2026-10-21-openai-google-cloud",
+            "2026-10-21-google-a5x-rubin-rollout"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-11T03:54:08.563Z",
+      "updatedAt": "2026-11-11T03:54:08.563Z"
+    },
+    {
+      "date": "2026-10-20",
+      "headline": "AI progress depends on usable infrastructure and real experiments.",
+      "dek": "TorchTPU widens hardware options, while Anthropic reports laboratory testing of AI-designed proteins.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "2026-10-20-torchtpu-open-source",
+          "title": "TorchTPU brings native PyTorch workflows to Google chips",
+          "category": "Chips & infrastructure",
+          "company": "Google Cloud · Meta",
+          "tags": [
+            "AI infrastructure",
+            "Ecosystem strategy"
+          ],
+          "summary": "Google released TorchTPU as open source. Developed with Meta's PyTorch team, it brings native PyTorch execution to Google's TPUs, aiming to make existing training and serving workflows easier to move.",
+          "why": "Hardware choice becomes more practical when developers can retain familiar software tools.",
+          "facts": [
+            "TorchTPU supports eager execution for debugging and torch.compile for optimization.",
+            "Google lists integrations with tools including vLLM, SGLang, and Hugging Face."
+          ],
+          "context": "TPUs are Google's processors designed for machine-learning workloads.",
+          "insight": "Software compatibility can reduce switching costs, but performance still depends on the workload.",
+          "watch": "Compare migration effort and end-to-end economics for representative models.",
+          "caveat": "Availability does not establish that every workload transfers without adjustment or performs better on TPUs.",
+          "sources": [
+            {
+              "label": "Google Cloud TorchTPU release",
+              "url": "https://cloud.google.com/blog/topics/ai-infrastructure/torchtpu-is-now-open-source-run-native-pytorch-on-tpus",
+              "publishedDate": "2026-10-20"
+            }
+          ]
+        },
+        {
+          "id": "2026-10-20-claude-protein-binding-study",
+          "title": "Claude-designed proteins pass an early laboratory test",
+          "category": "Models & research",
+          "company": "Anthropic",
+          "tags": [
+            "Specialized models",
+            "AI agents"
+          ],
+          "summary": "Anthropic reported that an internal Claude research model designed proteins targeting scorpion toxins. External laboratories tested 211 designs, and 17 met the study's binding criteria.",
+          "why": "Laboratory evidence is a stronger milestone than computational predictions alone, while still far from a usable treatment.",
+          "facts": [
+            "Adaptyv Bio and Twist Bioscience performed the binding tests.",
+            "Anthropic released the designs and experimental data."
+          ],
+          "context": "Binding means attaching to a target; it does not prove that a toxin is neutralized.",
+          "insight": "AI can accelerate candidate generation while leaving experimental validation as a critical constraint.",
+          "watch": "Watch for functional validation and reproducible follow-up studies.",
+          "caveat": "The study did not demonstrate venom neutralization or an effective antivenom. No clinical benefit was established.",
+          "sources": [
+            {
+              "label": "Anthropic research report",
+              "url": "https://www.anthropic.com/research/claude-scorpion-toxin-binder-design",
+              "publishedDate": "2026-10-20"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Progress moves through different bottlenecks",
+          "description": "Easier access to compute supports experimentation. Turning scientific candidates into useful outcomes still requires independent physical testing and domain expertise.",
+          "storyIds": [
+            "2026-10-20-torchtpu-open-source",
+            "2026-10-20-claude-protein-binding-study"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-11T03:53:54.798Z",
+      "updatedAt": "2026-11-11T03:53:54.798Z"
+    },
+    {
+      "date": "2026-10-19",
+      "headline": "Faster AI makes execution speed and control equally important.",
+      "dek": "Inception launches Mercury 3, while Microsoft focuses on supervising agents already inside an organization.",
+      "preview": false,
+      "retrospective": true,
+      "stories": [
+        {
+          "id": "2026-10-19-mercury3-diffusion",
+          "title": "Inception launches a faster diffusion language model",
+          "category": "Models & research",
+          "company": "Inception",
+          "tags": [
+            "Cost of intelligence",
+            "AI agents",
+            "Specialized models"
+          ],
+          "summary": "Inception released Mercury 3, a diffusion language model. The company reports generation above 1,000 tokens per second and a one-million-token context window, targeting applications where response delays matter.",
+          "why": "Repeated model calls can make even small delays significant in an agent's complete workflow.",
+          "facts": [
+            "Mercury 3 launched through Inception's API and several distribution partners.",
+            "Inception reports quality competitive with speed-focused models in its selected benchmarks."
+          ],
+          "context": "Diffusion is an alternative approach to conventional sequential text generation.",
+          "insight": "Faster generation matters most when it reduces the time to a correct result.",
+          "watch": "Compare total task latency, accuracy, and cost on representative workloads.",
+          "caveat": "The speed and quality figures are vendor claims; serving conditions and task requirements affect results.",
+          "sources": [
+            {
+              "label": "Inception Mercury 3 announcement",
+              "url": "https://www.inceptionlabs.ai/blog/introducing-mercury-3",
+              "publishedDate": "2026-10-19"
+            }
+          ]
+        },
+        {
+          "id": "2026-10-19-microsoft-agentic-insider",
+          "title": "Microsoft applies insider-risk controls to AI agents",
+          "category": "Products & adoption",
+          "company": "Microsoft",
+          "tags": [
+            "Security & trust",
+            "AI agents",
+            "Enterprise adoption"
+          ],
+          "summary": "Microsoft described extending Project Perception's security approach to agents operating inside enterprises. It emphasizes continuous observation, risk assessment, and changing permissions as agents act.",
+          "why": "An authorized agent can still make harmful decisions without an outside attacker compromising it.",
+          "facts": [
+            "The approach combines signals from identity, data, networks, endpoints, and runtimes.",
+            "Microsoft describes supervising agents through policy enforcement and monitoring agents."
+          ],
+          "context": "Project Perception was initially announced in July; this update focuses on internal agents.",
+          "insight": "Organizations need controls around an agent's actions as well as evaluations of its answers.",
+          "watch": "Watch how supervision handles false alarms and legitimate work that needs approval.",
+          "caveat": "This is Microsoft's proposed operating approach, not independent evidence that all agent risks can be contained.",
+          "sources": [
+            {
+              "label": "Microsoft security announcement",
+              "url": "https://blogs.microsoft.com/blog/2026/10/19/securing-the-agentic-insider/",
+              "publishedDate": "2026-10-19"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Faster execution needs timely controls",
+          "description": "A faster model can shorten an agent's work cycle. Permission checks and supervision must fit that cycle without turning speed into unchecked action.",
+          "storyIds": [
+            "2026-10-19-mercury3-diffusion",
+            "2026-10-19-microsoft-agentic-insider"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-11T03:53:42.208Z",
+      "updatedAt": "2026-11-11T03:53:42.208Z"
     }
   ],
   "weeks": [
@@ -855,6 +1773,264 @@
       ],
       "publishedAt": "2026-11-10T08:23:16.524Z",
       "updatedAt": "2026-11-10T08:55:34.504Z"
+    },
+    {
+      "startDate": "2026-10-26",
+      "endDate": "2026-11-01",
+      "headline": "Who can turn stronger AI into work that is affordable and controlled?",
+      "retrospective": true,
+      "executiveSummary": "This week's announcements moved the discussion from model ability toward the conditions required to put it to work. Oracle outlined deeper business-software integration, while Microsoft offered managed agent execution in preview. The practical question is whether these systems can finish useful tasks with dependable permissions, recovery, and human review.\n\nDeployment choices also diverged. Carbon began with selected users, Genie remained a research preview, and Mistral offered downloadable weights. Luna's behavior update showed that evaluation must include how a model responds, not just benchmark scores. These releases create different responsibilities for buyers; none makes operational judgment optional.\n\nThe economic picture had two sides. Terra targeted cheaper computer work, while Meta and NVIDIA planned infrastructure expansion and Anthropic filed for an IPO. Lower task prices do not remove the need to fund and operate large systems.\n\nFor decision-makers, the useful comparison is a complete workflow: successful outcomes, total cost, access conditions, and accountability. This retrospective covers seven calendar days; Sunday has no additional selected story. Announced plans and provider claims remain distinct from independently demonstrated customer results.",
+      "keyPoints": [
+        "Judge agents by completed workflows, including permissions and recovery.",
+        "Choose deployment control deliberately; access and operating responsibilities differ.",
+        "Separate lower task prices from the capital required to build and run AI systems."
+      ],
+      "shifts": [
+        {
+          "id": "agents-enter-operating-workflows",
+          "title": "The agent's operating environment becomes part of the product",
+          "summary": "Business integration and execution software become central to agent usefulness.",
+          "whyRank": "This ranks first because it affects whether AI can reach everyday business processes across many organizations.",
+          "evidence": "Partnership plans, a public preview, and a vendor-reported scientific deployment.",
+          "implication": "Assess integration effort, permissions, failure recovery, and review time before scaling a pilot.",
+          "caveat": "Workspace was still in development. Foundry's harness was a preview, with a separately released resilience feature.",
+          "watch": "Repeated successful tasks under realistic exceptions and approval requirements.",
+          "storyRefs": [
+            {
+              "date": "2026-10-27",
+              "id": "2026-10-27-oracle-openai-workflows"
+            },
+            {
+              "date": "2026-10-28",
+              "id": "2026-10-28-foundry-copilot-harness"
+            },
+            {
+              "date": "2026-10-30",
+              "id": "nvidia-seti-agentic-observatory"
+            }
+          ]
+        },
+        {
+          "id": "deployment-control-becomes-a-choice",
+          "title": "Model selection also means choosing who controls deployment",
+          "summary": "Restricted access, research previews, and downloadable weights offer different routes to adoption.",
+          "whyRank": "Access and responsibility can determine which organizations can use a capability and under what conditions.",
+          "evidence": "Dated releases and rollout announcements; performance remains workload-dependent.",
+          "implication": "Specify control, auditability, licensing, and maintenance needs before comparing capability scores.",
+          "caveat": "Downloadable weights are not an unrestricted license. A realistic simulation is not evidence of accurate physics.",
+          "watch": "Independent evaluations, broader access, and the cost of operating each option.",
+          "storyRefs": [
+            {
+              "date": "2026-10-28",
+              "id": "2026-10-28-gemini-carbon-limited-release"
+            },
+            {
+              "date": "2026-10-29",
+              "id": "2026-10-29-mistral-large4-weights"
+            },
+            {
+              "date": "2026-10-27",
+              "id": "2026-10-27-genie4-preview"
+            },
+            {
+              "date": "2026-10-29",
+              "id": "2026-10-29-luna-response-update"
+            }
+          ]
+        },
+        {
+          "id": "task-economics-and-capital",
+          "title": "Cheaper tasks coexist with large financing needs",
+          "summary": "A lower-priced model, infrastructure plans, and a public-offering filing expose different layers of AI economics.",
+          "whyRank": "These layers affect business viability, although plans and filings alone establish no return on investment.",
+          "evidence": "Launch pricing, planned deployment, and an SEC filing.",
+          "implication": "Track cost per successful task alongside capacity commitments and financing needs.",
+          "caveat": "The IPO was not completed; planned capacity and vendor benchmarks are not realized customer results.",
+          "watch": "Delivered infrastructure, final offering terms, and observed costs including retries.",
+          "storyRefs": [
+            {
+              "date": "2026-10-26",
+              "id": "openai-terra-computer-use"
+            },
+            {
+              "date": "2026-10-26",
+              "id": "anthropic-public-ipo-filing"
+            },
+            {
+              "date": "2026-10-26",
+              "id": "nvidia-meta-muse-infrastructure"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "More control also brings more operating responsibility",
+          "description": "Managed execution and self-hosting distribute responsibilities differently. Compare what the provider handles with what the deploying team must maintain and verify.",
+          "storyRefs": [
+            {
+              "date": "2026-10-28",
+              "id": "2026-10-28-foundry-copilot-harness"
+            },
+            {
+              "date": "2026-10-29",
+              "id": "2026-10-29-mistral-large4-weights"
+            }
+          ]
+        },
+        {
+          "title": "Permission and misuse are different control problems",
+          "description": "Publisher preferences concern authorized data use; the Talos report concerns analysis after theft. A common training signal does not address every way AI can be misused. Controls need to match the stage of the workflow.",
+          "storyRefs": [
+            {
+              "date": "2026-10-30",
+              "id": "openai-shared-training-preferences"
+            },
+            {
+              "date": "2026-10-31",
+              "id": "cisco-volta-ai-victim-profiling"
+            }
+          ]
+        }
+      ],
+      "watchNext": [
+        {
+          "question": "Do pilots reduce total work?",
+          "signal": "Measure completed tasks, exception handling, and human review together."
+        },
+        {
+          "question": "Do access conditions fit the intended use?",
+          "signal": "Check actual availability, license terms, and approval requirements for the exact release."
+        },
+        {
+          "question": "Do lower model prices improve service economics?",
+          "signal": "Compare total operating cost with successful outcomes, including infrastructure and retries."
+        }
+      ],
+      "publishedAt": "2026-11-11T02:32:11.716Z",
+      "updatedAt": "2026-11-11T02:32:11.716Z"
+    },
+    {
+      "startDate": "2026-10-19",
+      "endDate": "2026-10-25",
+      "headline": "AI gains more routes to deployment—and more reasons to prove it works.",
+      "retrospective": true,
+      "executiveSummary": "This week's announcements point to a broader contest over how AI reaches useful work. Google opened TorchTPU, OpenAI outlined distribution through Google Cloud, and Agent Skills moved to foundation governance. Together, these developments could give teams more freedom to combine hardware, models and workflows. That is a strategic opportunity, not evidence that switching providers is already effortless.\n\nControls received equal attention. Microsoft's discussion of internal agents and OpenAI's training-containment disclosure show why permissions, isolation and supervision belong in operating plans. These are different environments, but both require boundaries that remain effective as models improve.\n\nThe model releases also favored specific jobs: Mercury emphasized speed, Decisions targeted bounded choices, Bolt focused on local conversations, and Nanbeige described a teacher for smaller agents. The practical comparison is task success within a time and cost budget. Finally, Anthropic's protein-binding experiment and Britain's planned biosecurity lab highlight the distance between promising capabilities and validated outcomes. Our reading: deployment options are expanding faster than the evidence needed to choose among them.",
+      "keyPoints": [
+        "More choices become valuable when workloads can actually move between them.",
+        "Agent adoption needs enforceable permissions, monitoring and recovery plans.",
+        "Judge specialized AI by completed tasks and validated outcomes."
+      ],
+      "shifts": [
+        {
+          "id": "deployment-options-expand",
+          "title": "More of the AI stack can be mixed and matched",
+          "summary": "TorchTPU, the OpenAI–Google Cloud partnership and foundation governance for Agent Skills address different barriers to choosing an AI stack.",
+          "whyRank": "Ranked first for potential reach across infrastructure purchasing, software development and enterprise adoption.",
+          "evidence": "An open-source release, a standards donation and forthcoming cloud access; Google also outlined November A5X availability.",
+          "implication": "Teams may gain negotiating flexibility by separating model choice from cloud and hardware decisions.",
+          "caveat": "Compatibility, rollout plans and usable capacity are different things. Migration benefits still require workload testing.",
+          "watch": "Delivered integrations, regional capacity and the effort needed to move an existing application.",
+          "storyRefs": [
+            {
+              "date": "2026-10-20",
+              "id": "2026-10-20-torchtpu-open-source"
+            },
+            {
+              "date": "2026-10-21",
+              "id": "2026-10-21-openai-google-cloud"
+            },
+            {
+              "date": "2026-10-21",
+              "id": "2026-10-21-google-a5x-rubin-rollout"
+            },
+            {
+              "date": "2026-10-22",
+              "id": "anthropic-agent-skills-aaif-donation"
+            }
+          ]
+        },
+        {
+          "id": "agent-boundaries-matter",
+          "title": "Agent control becomes an operating requirement",
+          "summary": "Microsoft emphasized governing agents inside enterprises. OpenAI described stronger containment around internal frontier research.",
+          "whyRank": "Ranked second because failures can interrupt operations and constrain what organizations are willing to automate.",
+          "evidence": "A proposed enterprise security approach and a disclosed research-infrastructure incident with subsequent controls.",
+          "implication": "Budget for permissions, supervision and incident recovery alongside model access.",
+          "caveat": "These company accounts concern different settings and do not independently prove comprehensive protection.",
+          "watch": "Evidence that controls contain failures without making legitimate work impractical.",
+          "storyRefs": [
+            {
+              "date": "2026-10-19",
+              "id": "2026-10-19-microsoft-agentic-insider"
+            },
+            {
+              "date": "2026-10-23",
+              "id": "openai-frontier-training-containment-report"
+            }
+          ]
+        },
+        {
+          "id": "specific-jobs-shape-models",
+          "title": "Specific jobs shape model and API design",
+          "summary": "Mercury, Decisions, Bolt and Nanbeige pursue different combinations of speed, bounded outputs, local execution and future distillation.",
+          "whyRank": "Ranked third: application economics could improve, but comparable real-work evidence remains limited.",
+          "evidence": "Released products and developer evaluations, alongside plans for smaller models.",
+          "implication": "Compare the whole workflow, including retries and hardware costs, against a clear success criterion.",
+          "caveat": "Vendor measurements use different settings and should not be treated as a shared leaderboard.",
+          "watch": "Reproducible task completion, latency and cost measurements under realistic constraints.",
+          "storyRefs": [
+            {
+              "date": "2026-10-19",
+              "id": "2026-10-19-mercury3-diffusion"
+            },
+            {
+              "date": "2026-10-22",
+              "id": "openai-decisions-api-general-availability"
+            },
+            {
+              "date": "2026-10-23",
+              "id": "nvidia-nemotron-35-bolt-e4b-release"
+            },
+            {
+              "date": "2026-10-25",
+              "id": "nanbeige-33b-agent-teacher"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Scientific promise needs a path to validation",
+          "description": "Anthropic reported laboratory binding results, while the UK committed resources to an AI Biosecurity Lab. Our inference: experiments and institutions are complementary, but neither a binder nor a funding announcement establishes a medical outcome.",
+          "storyRefs": [
+            {
+              "date": "2026-10-20",
+              "id": "2026-10-20-claude-protein-binding-study"
+            },
+            {
+              "date": "2026-10-24",
+              "id": "uk-ai-biosecurity-lab-announcement"
+            }
+          ]
+        }
+      ],
+      "watchNext": [
+        {
+          "question": "Does broader choice become usable access?",
+          "signal": "Check launch dates, regional coverage and measured migration effort."
+        },
+        {
+          "question": "Do specialized models improve complete workflows?",
+          "signal": "Look for repeatable gains in correct task completion at a fixed budget."
+        },
+        {
+          "question": "Does scientific progress survive further testing?",
+          "signal": "Look for functional validation and published research milestones."
+        }
+      ],
+      "publishedAt": "2026-11-11T03:55:05.998Z",
+      "updatedAt": "2026-11-11T03:55:05.998Z"
     }
   ],
   "takes": {},
