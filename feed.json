@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T05:17:18.785Z",
+  "generatedAt": "2026-11-11T05:20:00.681Z",
   "editions": [
     {
       "date": "2026-11-09",
@@ -2083,7 +2083,9 @@
           "label": "Authors' simulation artifact",
           "url": "https://github.com/ryeii/When-Is-HBF-Cost-Effective"
         }
-      ]
+      ],
+      "publishedAt": "2026-11-11T05:18:59.840Z",
+      "updatedAt": "2026-11-11T05:18:59.840Z"
     }
   ]
 }
