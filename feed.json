@@ -1,7 +1,119 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T09:42:27.890Z",
+  "generatedAt": "2026-11-12T09:49:25.186Z",
   "editions": [
+    {
+      "date": "2026-11-11",
+      "headline": "AI execution splits into faster decisions, persistent work, and stronger host systems.",
+      "dek": "November 11, Pacific time: Google removes text generation from bounded choices, Databricks announces background enterprise work, and Supermicro ships a new AMD server generation. Each changes a different constraint on useful AI execution.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "google-gemini-decisions-api",
+          "title": "Gemini scores bounded choices without an autoregressive answer",
+          "category": "Models & research",
+          "company": "Google",
+          "tags": [
+            "Cost of intelligence",
+            "AI agents"
+          ],
+          "summary": "Google launched Gemini Decision 1 and the Decisions API for selecting or scoring predefined options across multimodal input. It replaces token-by-token answer generation with a scoring pass. The opportunity is cheaper, faster routing and checks; the boundary is whether the useful answer fits the supplied choices.",
+          "why": "A routing layer must cost less than the work it saves. Removing answer generation changes that tradeoff, but a wrong route still creates downstream costs.",
+          "facts": [
+            "Google supports up to 1,000 independent questions over shared input, with a 256K-token input limit.",
+            "Pricing is $0.10 per million input tokens, with no output-token charge.",
+            "Google reports 150–250 ms end-to-end latency; its detailed latency discussion covers contexts up to 16K tokens and 1–100 questions."
+          ],
+          "context": "A generative call can spend decoding steps spelling out a label that software then parses. Here, candidate answers are supplied in advance and scored in one forward pass, returning probabilities. This changes the output computation, not the need to process the input. It also creates a functional boundary: independent checks can share context, whereas a question that depends on a previous answer may require another call. Do not extrapolate the reported latency to the maximum context and question count. For a router, the relevant comparison is the full route-plus-execution path against directly calling the current model, measured on the same tasks.",
+          "insight": "AI interpretation: Pilot this on tool selection or model routing with labeled historical requests. Set an abstention threshold using observed error rates, not confidence values alone. Count the scoring call, misroutes, retries and escalation in cost per accepted task. A cheap decision layer is valuable only if it preserves enough downstream quality.",
+          "watch": "AI interpretation: Check calibration on your own inputs, p95 latency at production context sizes, and the share of cases that must fall back to generation.",
+          "caveat": "Performance and calibration are Google-reported. Closed choices do not guarantee a correct decision or make the API a substitute for open-ended reasoning.",
+          "sources": [
+            {
+              "label": "Google · Launch, pricing and benchmark conditions",
+              "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+              "publishedDate": "2026-11-11"
+            }
+          ]
+        },
+        {
+          "id": "databricks-always-on-genie",
+          "title": "Databricks moves Genie toward persistent work, with new features still awaiting preview",
+          "category": "Products & adoption",
+          "company": "Databricks",
+          "tags": [
+            "Enterprise adoption",
+            "AI agents",
+            "Security & trust"
+          ],
+          "summary": "Databricks announced an always-on Genie that continues work in the background and brings decisions to an inbox. Its proposed advantage is combining enterprise context with governed actions. The new always-on mode and search are coming to preview and beta programs, rather than being generally available today.",
+          "why": "The adoption question shifts from whether an assistant can answer to whether a team can delegate work, monitor exceptions and retain clear responsibility for actions.",
+          "facts": [
+            "Genie and Genie Ontology are generally available; always-on Genie, Genie Search and Ontology Manager are coming soon to preview and beta programs.",
+            "Databricks describes action controls through Unity Catalog permissions and Unity Gateway approval rules and budgets."
+          ],
+          "context": "The bottleneck is often fragmented business meaning: the official metric, its owner, and the approval path may live in different systems. Genie Ontology represents that context, while the announced agent coordinates background work and requests human input. Search adds access across more than 100 enterprise sources. This is a proposed combination of context, execution and control, rather than evidence of a new base-model capability. Existing permissions can constrain access, but permissions alone cannot establish that an action is commercially sensible. A useful evaluation must therefore separate retrieval correctness, task completion, approval handling and recovery after an interrupted or mistaken action.",
+          "insight": "AI interpretation: For an existing Databricks customer, start with a bounded monitoring workflow whose owner and escalation rule are already explicit. Compare missed events, false alerts and time spent resolving exceptions against the current process. Putting business definitions and workflow knowledge in one platform may reduce integration effort while increasing the cost of moving that knowledge later.",
+          "watch": "AI interpretation: Verify actual preview access, connector permission behavior, cancellation and recovery, background-compute charges, and who handles an agent's unresolved work.",
+          "caveat": "The announcement mixes existing products with forthcoming features. Customer testimonials do not establish the reliability or economics of the new always-on mode.",
+          "sources": [
+            {
+              "label": "Databricks · Announcement and availability distinctions",
+              "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-launches-new-always-genie-autonomous-ai-complex",
+              "publishedDate": "2026-11-11"
+            }
+          ]
+        },
+        {
+          "id": "supermicro-h15-amd-epyc-shipping",
+          "title": "Supermicro ships H15 servers; host-side gains need workload-level proof",
+          "category": "Chips & infrastructure",
+          "company": "Supermicro · AMD",
+          "tags": [
+            "AI infrastructure",
+            "Cost of intelligence"
+          ],
+          "summary": "Supermicro says its H15 servers with AMD EPYC 9006 CPUs are now shipping. More host memory and PCIe bandwidth can help when data movement or CPU work constrains an AI service. The announcement's host-node throughput claim does not establish a universal improvement in GPU inference.",
+          "why": "A host upgrade creates value when it removes a measured bottleneck. Buying higher specifications without profiling can leave the expensive accelerator's limiting path unchanged.",
+          "facts": [
+            "Supermicro reports up to 33% more cores, twice the PCIe bandwidth and 1.6 TB/s of memory bandwidth per socket.",
+            "It claims 1.8× higher tokens per second for frontier-model host nodes versus previous AMD CPU generations, without detailing the workload configuration in the release."
+          ],
+          "context": "Host DRAM bandwidth, PCIe bandwidth and accelerator HBM bandwidth serve different paths. More host bandwidth may help CPU-resident processing or staging; faster PCIe may help transfers if the endpoint and transfer pattern can use it. Neither automatically accelerates decode when weights and the KV cache stay on an accelerator and its own memory system is limiting. More CPU cores likewise help only when parallel host work is on the critical path. The new event is server availability. The release's broad throughput comparison lacks the model, precision, batch size and accelerator configuration needed to transfer that number to a particular serving stack.",
+          "insight": "AI interpretation: Before refreshing host nodes, profile CPU queues, transfers and accelerator idle gaps at your target concurrency. Compare accepted requests per second within the latency target, rack power and full system price. An upgrade that removes host stalls may be attractive; a bandwidth headline alone is not a reason to replace a balanced system.",
+          "watch": "AI interpretation: Request a reproducible baseline, memory configuration, PCIe topology, software versions and lead times for the exact server being purchased.",
+          "caveat": "Specifications and throughput figures are vendor-reported. CPU benchmark records and host-node claims are not end-to-end customer savings.",
+          "sources": [
+            {
+              "label": "Supermicro · Shipping announcement and performance claims",
+              "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Now-Shipping-Next-Generation-Servers-Powered-by-6th-Gen-AMD-EPYC-9006-Series-CPUs-for-Cloud-HPC-and-Agentic-AI-Workloads/default.aspx",
+              "publishedDate": "2026-11-11"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Fast choices and persistent work require different acceptance tests",
+          "description": "AI interpretation: Gemini changes the cost of a bounded decision; Genie proposes managing work across time and systems. Evaluate the former through decision errors and downstream costs, and the latter through completion, exceptions and operating ownership. Neither is validated by a single model benchmark.",
+          "storyIds": [
+            "google-gemini-decisions-api",
+            "databricks-always-on-genie"
+          ]
+        },
+        {
+          "title": "Measure the path the user actually waits for",
+          "description": "AI interpretation: Removing answer decoding and upgrading host resources act on different parts of execution. The practical question is how much of the full task each part occupies. Compare latency and cost for an accepted result before turning either component claim into a buying decision.",
+          "storyIds": [
+            "google-gemini-decisions-api",
+            "supermicro-h15-amd-epyc-shipping"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-12T08:35:13.960Z",
+      "updatedAt": "2026-11-12T08:35:13.960Z"
+    },
     {
       "date": "2026-11-10",
       "headline": "AI reaches buyers through deeper reasoning, connected workflows, and new storefronts.",
@@ -2207,6 +2319,53 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-11",
+      "paperId": "arxiv:2611.13442",
+      "title": "ForeSpark: Joint Draft and Verification Budget Scheduling for Parallel Speculative Decoding",
+      "headline": "ForeSpark cuts draft work before verification",
+      "authors": "Jaeyong Song, Daniel Wang, Pratyush Patel, Jonny Kong, Preyas Shah, Shobhit Kanaujia",
+      "publicationDate": "2026-11-10",
+      "venue": "arXiv · cs.DC · v1",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "ForeSpark decides how many tokens each request should draft before the GPU runs the drafter, then assigns verification across the batch.",
+      "problem": "A parallel drafter proposes several future tokens in one pass. The target model checks those proposals and accepts a prefix. DSpark can cut verification work by checking only promising prefixes, but it still generates the full drafts. Under load, discarded proposals take GPU time away from requests already sharing the batch.",
+      "method": [
+        {
+          "title": "Estimate the payoff before drafting",
+          "description": "A small predictor reads the target model’s latest context features and token embedding. It estimates, for each candidate draft length, the chance that each prefix survives verification. Draft length can change earlier proposals because draft positions attend to one another."
+        },
+        {
+          "title": "Budget both passes together",
+          "description": "The scheduler ranks marginal expected token gains across requests and uses profiled GPU timings to choose draft lengths and a batch-wide verification budget. It looks for the most expected accepted tokens per unit of step time. Packing variable-length drafts removes the unused positions from the drafter’s input."
+        },
+        {
+          "title": "Spend verification on the drafts that materialize",
+          "description": "After drafting, a second predictor scores the actual prefixes. The target verifies the best-ranked prefixes within budget using standard speculative sampling, which preserves its output distribution."
+        }
+      ],
+      "results": [
+        {
+          "finding": "20% higher sustainable request rate than the strongest baseline",
+          "setup": "Author-measured vLLM replay of multi-turn ShareGPT traffic, Qwen3-14B in BF16 on eight H100s, versus ordinary autoregressive decoding. Capacity requires 90% of requests to meet both first-token and per-output-token latency targets."
+        }
+      ],
+      "limitations": "The benchmark was not independently reproduced. Global ranking can leave some requests without a draft on a given step.",
+      "implications": "AI interpretation — For an interactive serving team deciding whether to add replicas, first replay peak customer traffic with joint scheduling and measure the GPU-hours per request that meets both latency targets. Break out those results by request type. An aggregate capacity gain is worth less if a high-priority customer workflow still needs reserved capacity because its requests rarely get useful drafts.",
+      "sources": [
+        {
+          "label": "Original preprint · arXiv",
+          "url": "https://arxiv.org/abs/2611.13442"
+        },
+        {
+          "label": "Full paper · methods and evaluation",
+          "url": "https://arxiv.org/html/2611.13442v1"
+        }
+      ],
+      "publishedAt": "2026-11-12T08:56:17.474Z",
+      "updatedAt": "2026-11-12T08:56:17.474Z"
+    },
     {
       "date": "2026-11-10",
       "paperId": "arxiv:2611.11036",
