@@ -1,7 +1,161 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-12T09:49:25.186Z",
+  "generatedAt": "2026-11-13T16:21:44.099Z",
   "editions": [
+    {
+      "date": "2026-11-12",
+      "headline": "AI infrastructure faces a test of leadership, delivery and usable capacity.",
+      "dek": "November 12, Pacific time: NVIDIA changes leadership, Cerebras reports progress in split inference, Nebius delays capacity, and TerraNova targets the cost of measuring carbon removal.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "nvidia-kress-interim-ceo",
+          "title": "NVIDIA appoints Kress interim CEO after Huang resigns",
+          "category": "Business & markets",
+          "company": "NVIDIA",
+          "tags": [
+            "AI infrastructure",
+            "Corporate governance"
+          ],
+          "summary": "Jensen Huang resigned immediately as NVIDIA president, CEO and director. CFO Colette Kress becomes interim CEO while retaining her finance role. For customers planning infrastructure purchases, the immediate question is who owns delivery commitments and technical escalation during the leadership transition.",
+          "why": "Large accelerator purchases depend on coordinated hardware, software and supplier execution. A leadership handover makes clear decision authority especially valuable to customers with fixed launch dates.",
+          "facts": [
+            "The board will consider internal and external candidates for a permanent CEO.",
+            "Harvey C. Jones becomes board chair. NVIDIA says its roadmap and customer commitments should continue without interruption."
+          ],
+          "context": "This follows the board review previously covered by Afterlight and establishes a new operating leadership structure. Kress holds both CEO and CFO responsibilities during the search. The board's continuity statement is a commitment whose execution customers can track through their own delivery milestones.",
+          "insight": "For an accelerator buyer, request named owners for allocation, software support and deployment exceptions. Tie expansion decisions to accepted systems and support readiness. Competitors still need to demonstrate workload performance and migration economics to win those orders.",
+          "watch": "Permanent CEO selection, responsibility for technical roadmap decisions, and customer delivery milestones.",
+          "caveat": "The announcement provides no evidence of a product delay caused by the transition.",
+          "sources": [
+            {
+              "label": "NVIDIA · Official leadership announcement",
+              "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition/",
+              "publishedDate": "2026-11-12"
+            }
+          ]
+        },
+        {
+          "id": "cerebras-q3-split-inference",
+          "title": "Cerebras reports production split inference as cloud revenue grows",
+          "category": "Chips & infrastructure",
+          "company": "Cerebras · AMD",
+          "tags": [
+            "AI infrastructure",
+            "Inference economics",
+            "Cost of intelligence"
+          ],
+          "summary": "Cerebras says heterogeneous disaggregated inference is now operating at production scale. Its quarterly results also show expanding cloud revenue. The technical proposition assigns prompt processing and token generation to different compute engines, making the performance of the combined service the purchasing question.",
+          "why": "Specializing prefill and decode can improve resource use, but the customer pays for the complete request, including transfer, queueing and the capacity needed at both stages.",
+          "facts": [
+            "Third-quarter GAAP revenue was $210.8 million, including $141.9 million in cloud and other services, up 265% year over year.",
+            "GAAP gross margin was 20%, compared with 41% on the company's adjusted Core measure."
+          ],
+          "context": "The AMD partnership announced in July placed Helios on prompt and context processing, with the Cerebras wafer-scale engine handling decode. November's update advances the status to a production-scale offering. Independent provisioning of the stages lets an operator match resources to the prompt/output mix. The engineering test is whether specialization pays for transferring request state and keeping both stages busy as traffic changes. Cerebras reports an up-to-fivefold capacity benefit, but the earnings release gives insufficient workload and comparison detail to apply that number to a customer deployment. Its Core financial figures also exclude items including customer-warrant amortization, stock compensation and data-center pass-through activity, so they require reconciliation with GAAP.",
+          "insight": "An inference provider should compare the split service against its current fleet on completed requests per dollar at the same quality and tail-latency targets. Include networking and spare capacity. This also gives a chip team a concrete route to market through a specialized serving stage, provided the integration economics work.",
+          "watch": "Supported models, transfer overhead, utilization across prompt/output mixes, and measured customer costs.",
+          "caveat": "Production status and performance are company-reported. Revenue growth alone does not establish which architecture produces the best customer economics.",
+          "sources": [
+            {
+              "label": "Cerebras · November results and deployment update",
+              "url": "https://investors.cerebras.ai/news-releases/news-release-details/cerebras-systems-delivers-record-revenue-third-quarter-2026",
+              "publishedDate": "2026-11-12"
+            },
+            {
+              "label": "AMD and Cerebras · July architecture background",
+              "url": "https://investors.cerebras.ai/news-releases/news-release-details/amd-and-cerebras-announce-industry-leading-ultra-low-latency-and",
+              "publishedDate": "2026-07-23"
+            }
+          ]
+        },
+        {
+          "id": "nebius-capacity-delivery-delay",
+          "title": "Nebius lowers its revenue ceiling as capacity moves into 2027",
+          "category": "Business & markets",
+          "company": "Nebius",
+          "tags": [
+            "AI infrastructure",
+            "Data centers",
+            "Enterprise adoption"
+          ],
+          "summary": "Nebius narrowed its 2026 revenue outlook after third-party data-center deliveries slipped into 2027. Its shareholder letter identifies a power transition behind the remaining New Jersey delays. The case connects facility execution directly to the date contracted compute can begin earning revenue.",
+          "why": "A customer contract creates demand, while a usable cluster requires power, installation and acceptance. The timing between those milestones determines launch readiness and revenue conversion.",
+          "facts": [
+            "Reuters reports a new 2026 revenue range of $3.0–3.2 billion, with the upper bound reduced from $3.4 billion.",
+            "Nebius now schedules the remaining New Jersey capacity contracted with Microsoft for the second quarter of 2027."
+          ],
+          "context": "Nebius says DataOne began retiring temporary generation in late Q3 ahead of a permanent-power transition, resetting the remaining New Jersey delivery schedule. Bloom fuel-cell generation is already online and being expanded, according to the letter. The company also expects owned sites to supply most new capacity from 2027, giving it more control over construction and power sequencing. These details identify a physical commissioning dependency between an order and a working service. Moving that dependency inside the company changes who manages it, while construction and energization still require execution.",
+          "insight": "For a cloud buyer, ask which power and commissioning milestones underpin the promised start date, who bears a delay, and whether alternate capacity is usable by the application. For an operator, model delayed revenue alongside continuing construction and financing needs before treating signed demand as capacity already earning money.",
+          "watch": "Commissioned capacity by site, customer acceptance dates, and progress against the revised delivery timetable.",
+          "caveat": "The revised dates are management forecasts. The identified New Jersey cause should not be generalized to every delayed site.",
+          "sources": [
+            {
+              "label": "Nebius · Q3 shareholder letter",
+              "url": "https://assets.nebius.com/assets/95ccf2d3-ce98-4398-af50-33813f94d167/Nebius-SHL-2026-Q3.pdf?cache-buster=2026-11-12T15%3A08%3A23.008Z",
+              "publishedDate": "2026-11-12"
+            },
+            {
+              "label": "Reuters · Revenue revision and capacity delays",
+              "url": "https://www.reuters.com/technology/nebius-beats-quarterly-revenue-estimates-strong-ai-demand-2026-11-12/",
+              "publishedDate": "2026-11-12"
+            }
+          ]
+        },
+        {
+          "id": "terranova-carbon-measurement",
+          "title": "TerraNova tests whether predictions can reduce carbon-removal sampling",
+          "category": "Models & research",
+          "company": "Microsoft · Terradot",
+          "tags": [
+            "AI for science",
+            "Enterprise adoption"
+          ],
+          "summary": "Microsoft and Terradot introduced TerraNova, which combines weather-model representations with soil and rock data to estimate carbon removal. Simulations suggest fewer physical samples could achieve a given accuracy. The commercial test is whether independent verification accepts the resulting evidence on new sites.",
+          "why": "Measurement is part of the product in carbon removal. Reducing sampling effort is valuable only if buyers can still trust the quantity they purchase.",
+          "facts": [
+            "The public research description reports evaluation using 5,192 enhanced-rock-weathering measurements from 264 fields in the United States and Brazil.",
+            "Across seven largest sites, it reports 75% fewer samples at a target error of 0.75 tonnes CO2-equivalent per hectare per year; the reduction falls to 63% at a tighter 0.5 target."
+          ],
+          "context": "Enhanced rock weathering spreads crushed minerals on fields, where chemical reactions consume CO2. Rates depend on soil, rock and weather, making repeated field and laboratory measurements expensive. TerraNova adapts representations from Microsoft's Aurora weather model and combines them with soil and amendment information. Predictions are then combined with physical observations to estimate site results. The claimed benefit is less sampling at a specified error tolerance. The different reductions at two tolerances show why a single headline percentage is insufficient for a verification decision. Microsoft's article describes the savings as simulations using field data.",
+          "insight": "A carbon-removal operator should test the model on held-out sites with the verifier's required uncertainty threshold, then compare total sampling, analysis and audit costs. A model that ranks promising fields may have value earlier than one approved to substantiate saleable removal credits.",
+          "watch": "Full methods, independent validation, performance outside the training regions, and verifier acceptance.",
+          "caveat": "The Zenodo record is a working paper with files embargoed until December 12. These claims come from the public description and company report; full methods and independent reproduction remain unverified.",
+          "sources": [
+            {
+              "label": "Microsoft · TerraNova announcement",
+              "url": "https://news.microsoft.com/source/features/ai/how-a-new-ai-model-could-help-crushed-rock-fight-climate-change/",
+              "publishedDate": "2026-11-12"
+            },
+            {
+              "label": "Authors · Public research description and embargo status",
+              "url": "https://zenodo.org/records/24156305",
+              "publishedDate": "2026-11-12"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Useful capacity has both a technical and a delivery condition",
+          "description": "AI interpretation — Cerebras makes the utilization of specialized compute the test; Nebius makes commissioning dates the test. An infrastructure plan needs both enough completed requests per unit of capacity and a credible date when that capacity becomes available.",
+          "storyIds": [
+            "cerebras-q3-split-inference",
+            "nebius-capacity-delivery-delay"
+          ]
+        },
+        {
+          "title": "Ask who owns the dependency that can stop a launch",
+          "description": "AI interpretation — NVIDIA's leadership handover puts decision ownership in focus. Nebius identifies a power transition that shifted delivery. Buyers can make both actionable by naming the accountable team and the acceptance milestone for each commitment.",
+          "storyIds": [
+            "nvidia-kress-interim-ceo",
+            "nebius-capacity-delivery-delay"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-13T08:40:21.228Z",
+      "updatedAt": "2026-11-13T08:40:21.228Z"
+    },
     {
       "date": "2026-11-11",
       "headline": "AI execution splits into faster decisions, persistent work, and stronger host systems.",
@@ -2319,6 +2473,53 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-12",
+      "paperId": "arxiv:2611.13188",
+      "title": "One-Sided Expert-Parallel All-to-All for Mixture-of-Experts Inference over NVLink",
+      "headline": "MoE decode can spend more time coordinating than transferring",
+      "authors": "Bo Li, Chulian Zhang, Or Biri, Anthony Chang, Anton Korzh, Noam Duvdevani, XingFei Xi, Daniel Stokes, Zhenhuan Chen, Ludwig Schneider, Artem Y. Polyakov, Julien Demouth, Chandler Zhou · NVIDIA",
+      "publicationDate": "2026-11-09",
+      "venue": "arXiv · cs.DC · v1",
+      "status": "Preprint",
+      "category": "AI systems",
+      "summary": "NVLinkOneSided cuts the fixed cost of routing tokens between experts on different GPUs. Its advantage is clearest when each decode step carries few tokens.",
+      "problem": "Expert parallelism distributes experts across GPUs. Each layer sends token activations to the selected experts and returns their outputs. At small batches, coordination and receive-side regrouping can take longer than transferring the payload.",
+      "method": [
+        {
+          "title": "Write once per destination GPU",
+          "description": "The sender writes into its own reserved region of each peer’s buffer. It skips a preliminary routing exchange and sends one activation even when multiple experts on that peer need it."
+        },
+        {
+          "title": "Gather inputs by index",
+          "description": "The receiver builds per-expert slot lists. Grouped matrix multiplies gather activations using those indices, avoiding a separate copy into expert order."
+        },
+        {
+          "title": "Match completion signaling to batch size",
+          "description": "Fence compacts slots and signals completion per peer. Sentinel polls reserved bit patterns in each landing slot to detect arrival. This shortens the synchronization path for small batches, while copying and resetting slots costs more as batches grow."
+        }
+      ],
+      "results": [
+        {
+          "finding": "17.4 μs versus 47.9 μs for dispatch plus combine",
+          "setup": "Author measurements against DeepEP on eight B300 GPUs, DeepSeek-V4.1-Flash layer shape, one token per GPU, MXFP8 dispatch and BF16 combine."
+        }
+      ],
+      "limitations": "The method requires one NVLink domain and reserves more buffer space as the expert group grows. Fused MegaMoE led at larger batches on eight B300s. Evidence comes from layer and communication benchmarks without independent reproduction.",
+      "implications": "AI interpretation — For a team serving interactive MoE traffic, benchmark this path before paying for more bandwidth. Replay real routing and batch sizes, then measure p99 time per output token and completed requests per GPU-hour at the same latency target. If the workload already spends most of the step on expert compute, faster collectives may barely move customer latency. A chip team should benchmark small-message completion and peer-buffer access alongside bulk link throughput before deciding which part of the interconnect to optimize.",
+      "sources": [
+        {
+          "label": "Original preprint · arXiv",
+          "url": "https://arxiv.org/abs/2611.13188"
+        },
+        {
+          "label": "Full paper · methods and benchmarks",
+          "url": "https://arxiv.org/html/2611.13188v1"
+        }
+      ],
+      "publishedAt": "2026-11-13T08:53:00.623Z",
+      "updatedAt": "2026-11-13T08:53:00.623Z"
+    },
     {
       "date": "2026-11-11",
       "paperId": "arxiv:2611.13442",
