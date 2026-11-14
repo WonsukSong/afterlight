@@ -1,7 +1,126 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-13T16:21:44.099Z",
+  "generatedAt": "2026-11-14T10:28:35.980Z",
   "editions": [
+    {
+      "date": "2026-11-13",
+      "headline": "Agents gain ways to pay and operate infrastructure; evidence must catch up.",
+      "dek": "November 13, Pacific time: ChatGPT Wallet adds approved payments, Microsoft expands Azure management tools, and Anthropic explains how to make safety evaluations useful for deployment decisions.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "openai-chatgpt-wallet",
+          "title": "ChatGPT Wallet connects agent shopping to user-approved payments",
+          "category": "Products & adoption",
+          "company": "OpenAI · American Express · Mastercard · Visa",
+          "tags": [
+            "AI agents",
+            "Enterprise adoption",
+            "Security & trust"
+          ],
+          "summary": "OpenAI launched ChatGPT Wallet through dots, initially for eligible US ChatGPT Pro subscribers. Each purchase requires user approval and a security check. Payment tokens let the agent complete checkout without receiving the customer's actual card details, linking shopping assistance to an authorized transaction.",
+          "why": "For merchants, the useful outcome is a completed, authorized order. Better product discovery creates little value if checkout or fraud screening blocks the purchase.",
+          "facts": [
+            "Initial access is for adults with eligible US-issued cards.",
+            "Merchants retain responsibility for pricing, fulfillment, returns and customer service."
+          ],
+          "context": "The user reviews the items, total and card before authorizing payment. The network then supplies a substitute payment credential for checkout. This separates the agent's ability to execute a purchase from access to the underlying card details. Compatibility remains a bottleneck: websites can block agent access, and risk systems can reject legitimate transactions. OpenAI's merchant guidance addresses both. Fully delegated purchasing under preset limits is a future plan, not the launch behavior.",
+          "insight": "A merchant pilot should trace attempted purchases through access, approval, payment and fulfillment. Fix the stage losing legitimate orders before investing in broader agent integration. Include support and returns work when judging the channel's contribution; conversion alone does not establish profitable customer acquisition.",
+          "watch": "Authorized purchase completion, false declines, repeat purchases, and support workload compared with existing checkout channels.",
+          "caveat": "The launch provides no measured merchant conversion lift or independent reliability results.",
+          "sources": [
+            {
+              "label": "OpenAI · Wallet launch and merchant requirements",
+              "url": "https://openai.com/index/introducing-chatgpt-wallet/",
+              "publishedDate": "2026-11-13"
+            }
+          ]
+        },
+        {
+          "id": "azure-arm-mcp-operations-expansion",
+          "title": "Azure gives agents a fuller path from resource discovery to verified changes",
+          "category": "Products & adoption",
+          "company": "Microsoft",
+          "tags": [
+            "AI agents",
+            "AI infrastructure",
+            "Enterprise adoption"
+          ],
+          "summary": "Microsoft announced an expansion of its Azure Resource Manager MCP server: richer resource changes, actions, deployment workflows and direct state reads. The important shift is a more complete operations loop, letting an agent inspect infrastructure, propose a change, execute it and retrieve the resulting state.",
+          "why": "Infrastructure automation earns its value when an operator can verify the outcome and handle exceptions without spending more effort than the original manual task required.",
+          "facts": [
+            "Tools support resource creation and updates, actions such as restarts, deployment previews, status tracking and cancellation.",
+            "Azure permissions still govern calls; the MCP interface does not bypass authorization."
+          ],
+          "context": "MCP is a protocol through which AI clients discover and invoke structured tools. Here those tools call Azure Resource Manager, Azure's control plane. Microsoft's expansion adds operational depth to the initial query-oriented foundation. Schema discovery supplies the expected request structure; template previews expose proposed changes; direct resource reads retrieve current state after an action. Together these support a checkable workflow, although a successful tool call is not sufficient evidence that the user's goal was met. Azure's documentation says the signed-in user's permissions constrain execution and warns that natural-language instructions do not guarantee correct tool selection. The security boundary is enforced by API permissions and policy, not prompt wording.",
+          "insight": "A platform team could pilot a bounded maintenance workflow with explicit acceptance checks and an assigned recovery owner. Compare operator review and exception-handling time with the existing runbook. Broader access should follow demonstrated task completion, rather than being granted merely because an assistant can invoke the tools.",
+          "watch": "Correct final resource state, permission failures, operator intervention and recovery effort across repeated runs.",
+          "caveat": "This is Microsoft's November 13 announcement of an expansion; documentation predates it. No independent operating-cost or reliability improvement is demonstrated.",
+          "sources": [
+            {
+              "label": "Microsoft · November 13 expansion announcement",
+              "url": "https://techcommunity.microsoft.com/blog/azuregovernanceandmanagementblog/what%E2%80%99s-new-in-the-azure-resource-manager-mcp-server-at-ignite-2026/4571824",
+              "publishedDate": "2026-11-13"
+            },
+            {
+              "label": "Microsoft Learn · Authorization and workflow background",
+              "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-resource-manager-mcp-overview",
+              "publishedDate": "2026-11-07"
+            }
+          ]
+        },
+        {
+          "id": "anthropic-safety-evaluation-methods",
+          "title": "Anthropic makes the evaluation design part of the deployment decision",
+          "category": "Models & research",
+          "company": "Anthropic",
+          "tags": [
+            "Security & trust",
+            "AI agents",
+            "Enterprise adoption"
+          ],
+          "summary": "Anthropic published guidance for building safety evaluations that reflect real deployment conditions. It emphasizes realistic conversations, reliable grading and analysis plans written before results are seen. The practical question is whether a reported score measures behavior that matters in the intended customer workflow.",
+          "why": "A buying or release decision needs evidence about the deployed workflow. A reassuring benchmark can miss the failure mode that creates customer harm or operational work.",
+          "facts": [
+            "Anthropic recommends testing both harmful compliance and unnecessary refusal of legitimate requests.",
+            "Its multi-turn evaluations can fail an entire conversation for one inappropriate turn."
+          ],
+          "context": "Single-message tests can miss failures that emerge as a conversation develops. Anthropic describes expert-defined scenarios in which a simulated user reacts to the tested model, followed by grading against domain-specific criteria. Preregistration means deciding metrics, comparisons and improvement thresholds before examining results, reducing opportunities to select a flattering analysis afterward. Tool access and system prompts can alter behavior. Repeated trials help distinguish improvement from sampling noise.",
+          "insight": "For an enterprise pilot, agree on unacceptable outcomes, legitimate tasks that must remain usable, and release thresholds before comparing providers. Assign ownership of the test scenarios and incident feedback. This turns evaluation from a procurement slide into a maintained acceptance process tied to the actual application.",
+          "watch": "Whether provider comparisons use equivalent tools and settings, whether human reviewers agree with the grader, and whether production incidents become new test cases.",
+          "caveat": "This is vendor-authored methodological guidance, not a new model release or independent certification of safety.",
+          "sources": [
+            {
+              "label": "Anthropic · Building strong safety evaluations",
+              "url": "https://www.anthropic.com/research/building-strong-safety-evaluations",
+              "publishedDate": "2026-11-13"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Authorization is part of the product",
+          "description": "AI interpretation: Wallet and Azure expose different kinds of consequential action. In both, evaluate who can authorize a step, how completion is verified, and who handles a failure. Those choices determine how much work a customer can responsibly delegate.",
+          "storyIds": [
+            "openai-chatgpt-wallet",
+            "azure-arm-mcp-operations-expansion"
+          ]
+        },
+        {
+          "title": "Test the workflow that will actually ship",
+          "description": "AI interpretation: Anthropic's evaluation guidance supplies a useful test for agent deployment plans: measure the full interaction under the intended permissions and tooling. For commerce and infrastructure operations, an accepted result and its exception workload are more useful business evidence than tool-call success alone.",
+          "storyIds": [
+            "anthropic-safety-evaluation-methods",
+            "openai-chatgpt-wallet",
+            "azure-arm-mcp-operations-expansion"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-14T08:31:46.077Z",
+      "updatedAt": "2026-11-14T08:31:46.077Z"
+    },
     {
       "date": "2026-11-12",
       "headline": "AI infrastructure faces a test of leadership, delivery and usable capacity.",
@@ -2473,6 +2592,58 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-13",
+      "retrospective": false,
+      "paperId": "arxiv:2611.16426",
+      "title": "SoScale: Second-Order Scale Search for FP4 Quantization",
+      "headline": "Choosing FP4 scales by the errors a layer actually sees",
+      "authors": "Pengxiang Zhao, Xing Li, Hui-Ling Zhen, Weizhe Lin, Xianzhi Yu, Zhenhua Dong · Huawei Technologies",
+      "publicationDate": "2026-11-12",
+      "venue": "arXiv · cs.LG · v1",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "SoScale uses layer output error to select FP4 weight scales during calibration.",
+      "problem": "A block scale determines which real values the fixed FP4 payload can represent. Scaling to the largest magnitude gives outliers room but spreads the grid across a wider range, leaving smaller weights with coarser steps. ScaleSearch tries nearby representable scales and picks the one with the smallest squared rounding error across weights. That improves the fit to the weight block. In a linear projection, though, the same rounding error can have different effects depending on which input channel carries it and which other channels are active.",
+      "method": [
+        {
+          "title": "Score each legal scale by its effect on the projection",
+          "description": "For each block, SoScale rounds weights under nearby hardware-valid scale codes and scores the resulting error vector with a submatrix of XᵀX, where X contains calibration inputs. This matrix is proportional to the Hessian, the curvature of the layer's squared output-error objective. Its diagonal captures channel energy and its off-diagonal entries capture how channels vary together. For example, errors of opposite sign can cancel when their inputs move together. A weight-only squared error score would count both errors separately."
+        },
+        {
+          "title": "Let later blocks absorb earlier rounding errors",
+          "description": "GPTQ uses inverse-Hessian information to adjust unquantized weights after rounding. SoScale applies this at the FP4 block boundary. It commits a block, uses a factor of the damped inverse Hessian to distribute its residual into the remaining working weights, then searches the next scale on those adjusted values. This accounts for interactions across blocks without searching every combination of scale codes jointly. The weight search happens during calibration. Inference uses the resulting weights and scales in the original FP4 format."
+        }
+      ],
+      "results": [
+        {
+          "finding": "Mean benchmark score rose from 74.16% to 74.79% versus ScaleSearch.",
+          "setup": "Authors’ Table 2, Qwen3-14B, MXFP4 W4A4 with per-token activation scaling, seven tasks, no Hadamard preprocessing for either method."
+        }
+      ],
+      "limitations": "Author-reported benchmark accuracy, without independent reproduction. The evaluation does not establish end-to-end latency, throughput or cost on native FP4 hardware.",
+      "implications": "AI interpretation. For an NPU team whose existing FP4 kernel passes latency targets but misses a customer's quality threshold, an offline scale search is worth testing before changing the arithmetic format. Compare matched checkpoints with the same activation path and kernel, then measure the share of real tasks accepted without a higher-precision retry. Include calibration and requalification effort for each checkpoint refresh. The decision depends on whether quality gains survive the actual input mix and make the FP4 path cheaper per accepted task.",
+      "sources": [
+        {
+          "label": "SoScale · arXiv submission and version history",
+          "url": "https://arxiv.org/abs/2611.16426"
+        },
+        {
+          "label": "SoScale · Full paper, algorithm and tables",
+          "url": "https://arxiv.org/html/2611.16426v1"
+        },
+        {
+          "label": "Gupta et al. · ScaleSearch baseline",
+          "url": "https://arxiv.org/abs/2605.12464"
+        },
+        {
+          "label": "Frantar et al. · GPTQ error compensation",
+          "url": "https://arxiv.org/abs/2210.17323"
+        }
+      ],
+      "publishedAt": "2026-11-14T08:50:14.578Z",
+      "updatedAt": "2026-11-14T08:50:14.578Z"
+    },
     {
       "date": "2026-11-12",
       "paperId": "arxiv:2611.13188",
