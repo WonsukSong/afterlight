@@ -1,7 +1,18 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-14T10:28:35.980Z",
+  "generatedAt": "2026-11-15T09:23:45.700Z",
   "editions": [
+    {
+      "date": "2026-11-14",
+      "headline": "A quiet Saturday for verified new AI developments.",
+      "dek": "November 14, Pacific time: our source review found no new development meeting this briefing’s relevance and verification threshold. Several widely circulated product stories traced to earlier announcements. This edition records a quiet day with no selected stories.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [],
+      "connections": [],
+      "publishedAt": "2026-11-15T08:28:15.483Z",
+      "updatedAt": "2026-11-15T08:28:15.483Z"
+    },
     {
       "date": "2026-11-13",
       "headline": "Agents gain ways to pay and operate infrastructure; evidence must catch up.",
@@ -2592,6 +2603,62 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-14",
+      "retrospective": false,
+      "paperId": "arxiv:2611.16905",
+      "title": "Factored One-sided Adam-Moment for Practical and Scalable SOAP",
+      "headline": "FOAM cuts the cost of SOAP by rotating gradients along one axis",
+      "authors": "Jaemyung Yu, Byeongho Heo, Sangdoo Yun, Dongyoon Han · NAVER AI Lab",
+      "publicationDate": "2026-11-12",
+      "venue": "NeurIPS 2026 · arXiv v1",
+      "status": "Peer-reviewed",
+      "category": "Training & inference optimization",
+      "summary": "FOAM is a training optimizer that keeps SOAP’s input-side gradient rotation and compresses its running variance estimate.",
+      "problem": "AdamW scales each gradient coordinate using its own history. SOAP first rotates gradients into a basis derived from input and output gradient correlations, then applies Adam-style scaling there. This is preconditioning: changing the directions and sizes of updates to account for how the loss responds to movement. SOAP stores a square factor and a basis for each axis, periodically recomputes both bases, and retains a full matrix of squared-gradient averages. For a training team, fewer steps only pay off if these extra operations and buffers leave a net gain in time or usable memory.",
+      "method": [
+        {
+          "title": "Keep the input rotation",
+          "description": "For a weight matrix with m outputs and n inputs, FOAM keeps the n-by-n input factor and removes the m-by-m output factor and its eigendecomposition. The authors motivate the choice with evidence that the output-side curvature is often close to diagonal. If it is diagonal, output channels can have different scales without mixing their directions."
+        },
+        {
+          "title": "Reconstruct the squared-gradient averages from two vectors",
+          "description": "FOAM tracks running row and column means of squared gradients after rotation. Their outer product, normalized to match the input factor’s trace, estimates the second moment with m+n stored numbers instead of mn. Under the paper’s separable covariance assumption, the rotated variance factors into one term per output and one per input direction. The first-moment buffer stays dense."
+        }
+      ],
+      "results": [
+        {
+          "finding": "10.53 hours for FOAM versus 22.66 hours for SOAP to reach AdamW’s final validation loss of 2.847.",
+          "setup": "Authors’ GPT-2-scale 760M FineWeb run on eight H100s, BF16 mixed precision, tuned optimizers and 0.5M tokens per batch. At the full step budget, validation loss was 2.796 for FOAM and 2.791 for SOAP."
+        }
+      ],
+      "limitations": "The main comparisons reach 760M parameters. Wide input layers still carry a quadratic factor, and strong correlations across output channels can weaken the approximation. These are author measurements without independent reproduction. The authors’ repository says implementation release is pending.",
+      "implications": "AI interpretation. If a training team uses SOAP for convergence but is running out of accelerator memory or losing time to basis refreshes, FOAM is a candidate for the next controlled run. Compare GPU-hours to the team’s own validation target and measure peak allocated memory under its actual sharding scheme. If the gain comes from lower optimizer state, check whether it frees enough headroom for a larger batch or fewer shards. The paper’s fixed-loss time comparison does not price either change.",
+      "sources": [
+        {
+          "label": "FOAM · Full paper and Table 2",
+          "url": "https://arxiv.org/html/2611.16905v1"
+        },
+        {
+          "label": "arXiv · Submission record",
+          "url": "https://arxiv.org/abs/2611.16905"
+        },
+        {
+          "label": "NeurIPS · Conference listing",
+          "url": "https://nips.cc/Downloads/2026"
+        },
+        {
+          "label": "NAVER AI Lab · Implementation release status",
+          "url": "https://github.com/naver-ai/foam"
+        },
+        {
+          "label": "SOAP · Original optimizer paper",
+          "url": "https://arxiv.org/abs/2409.11321"
+        }
+      ],
+      "publishedAt": "2026-11-15T08:49:58.330Z",
+      "updatedAt": "2026-11-15T08:49:58.330Z"
+    },
     {
       "date": "2026-11-13",
       "retrospective": false,
