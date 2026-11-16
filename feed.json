@@ -1,7 +1,122 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-15T09:23:45.700Z",
+  "generatedAt": "2026-11-16T20:27:49.599Z",
   "editions": [
+    {
+      "date": "2026-11-15",
+      "headline": "AI deployment advances through hardware integration, health research and supply-chain cooperation.",
+      "dek": "November 15, Pacific time: Intel and SambaNova demonstrate split inference in an air-cooled facility; Apple opens a health AI study; ten governments sign an AI supply-chain declaration. Each changes a path to adoption, with practical outcomes still to be established.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "intel-sambanova-air-cooled-inference-demo",
+          "title": "Intel and SambaNova demonstrate a split serving path for existing data centers",
+          "category": "Chips & infrastructure",
+          "company": "Intel · SambaNova",
+          "tags": [
+            "Inference",
+            "AI infrastructure",
+            "Energy & capacity"
+          ],
+          "summary": "SambaNova demonstrated GLM-5.3 with Intel GPUs handling prefill and SN50 processors handling decode in an air-cooled facility. The advance is an integrated serving path across two accelerator architectures. The announcement does not establish a comparative performance or cost advantage.",
+          "why": "For a provider constrained by cooling upgrades, deployment fit can change the hardware shortlist. The economic test still includes utilization, networking and operating two pools.",
+          "facts": [
+            "The setup uses four Intel D-Series GPUs and SambaRack SN50; the larger Intel reference rack is separate."
+          ],
+          "context": "Separating prefill and decode introduces a state handoff. Here, vLLM serves both paths; NIXL, a data-transfer library, moves KV state over RDMA-enabled Ethernet. NVIDIA Dynamo routes requests toward cached context. SambaNova says SN50 retains prompt prefixes in DDR, avoiding repeated prefill for returning requests and reducing transfers. Its dataflow processors chain operations across chips to reduce intermediate memory traffic. Separate pools can scale independently. The benefit depends on workload and cache reuse: an integration demonstration does not quantify those gains.",
+          "insight": "Evaluate this where an existing air-cooled facility is a binding constraint. Replay the customer's prompt lengths, output lengths and concurrency against the current serving system. Include KV-transfer delays, cache misses and idle capacity in cost per accepted task. A second accelerator supplier is useful only if the deployment benefit exceeds the added scheduling, debugging and support burden.",
+          "watch": "End-to-end latency distributions, throughput at the same quality and latency target, cold-cache behavior, and a clear support owner for failures across the two hardware pools.",
+          "caveat": "Vendor demonstration, not an independent comparison. Earlier H200/SN50 results do not validate this Intel pairing.",
+          "sources": [
+            {
+              "label": "SambaNova · November 15 demonstration and serving design",
+              "url": "https://sambanova.ai/blog/the-air-cooled-token-factory-intel-gpu-d-series-sambarack-sn50",
+              "publishedDate": "2026-11-15"
+            }
+          ]
+        },
+        {
+          "id": "apple-openevidence-health-ai-study",
+          "title": "Apple tests whether health AI helps people understand and act",
+          "category": "Products & adoption",
+          "company": "Apple · OpenEvidence",
+          "tags": [
+            "Personal AI",
+            "Security & trust",
+            "Specialized models"
+          ],
+          "summary": "Apple launched a US research study with OpenEvidence to examine how people use conversational health AI. Its app combines answers linked to medical literature with optional personal health data. The study targets comprehension, trust and everyday actions; it has not yet demonstrated improved health outcomes.",
+          "why": "A health assistant creates workflow value only when users understand its limits and take appropriate next steps. Fluent answers alone cannot establish that value.",
+          "facts": [
+            "Enrollment allows up to 200,000 eligible US adults aged 21 or older with a supported Apple Intelligence-enabled iPhone."
+          ],
+          "context": "Apple identifies incomplete or unclear LLM answers as a reason to study actual use. OpenEvidence supplies responses with clinical citations. Participants may share HealthKit measurements to test whether personal context improves relevance and understanding. Visit preparation is another research target. Apple says study data will not train models, and health-data sharing is optional. These choices define the research experience; they do not show that users interpret answers correctly or clinicians receive better information.",
+          "insight": "For a consumer health product, start with a bounded workflow such as visit preparation and measure whether it reduces confusion without increasing clinician correction work. Apple's access to personal context could support differentiation, but the value must survive consent choices and incomplete records. Assign responsibility for evaluating misunderstandings and escalation before broadening the assistant's role.",
+          "watch": "Comprehension measures, inappropriate reassurance or escalation, clinician review burden, and whether findings generalize beyond volunteers using supported iPhones.",
+          "caveat": "This is a study launch, not evidence of clinical benefit. The app is not intended to diagnose or treat conditions.",
+          "sources": [
+            {
+              "label": "Apple · Study design, eligibility and limitations",
+              "url": "https://www.apple.com/newsroom/2026/11/apple-launches-research-study-to-explore-the-use-of-ai-for-health/",
+              "publishedDate": "2026-11-15"
+            }
+          ]
+        },
+        {
+          "id": "pax-silica-san-francisco-declaration",
+          "title": "Ten governments define a shared scope for AI supply-chain protection",
+          "category": "Policy & society",
+          "company": "Pax Silica participants",
+          "tags": [
+            "AI governance",
+            "AI infrastructure",
+            "Ecosystem strategy"
+          ],
+          "summary": "The United States and nine partners signed the San Francisco Declaration, setting a shared understanding of technologies and infrastructure important to AI supply chains. They also committed to working groups. The new step is a framework for coordination, with implementation measures still to follow.",
+          "why": "An AI supplier's route to market depends on trusted partners and infrastructure as well as chip capability. Coordinated policy could reshape those commercial relationships.",
+          "facts": [
+            "Signatories include South Korea, Japan, India, Australia, Israel, Singapore, Qatar, the UAE, the UK and the United States."
+          ],
+          "context": "The declaration covers software, materials, production inputs and knowledge, alongside energy, communications and logistics infrastructure. It treats disruption or hostile control across this supply chain as a shared concern. Five proposed working groups address policy, adoption, supply-chain cooperation, security hubs and resilience. The document uses 'super intelligence,' while noting that some participants mean artificial intelligence. Its concrete change is a common scope and coordination process, rather than a published list of new export restrictions.",
+          "insight": "For an accelerator or infrastructure business, map which suppliers, hosting partners and customer deployments depend on participating countries. Use that map to identify potential partnership opportunities and exposure to future procurement or investment conditions. Keep policy engagement separate from revenue forecasts: a declaration does not establish funded demand, guaranteed access or an executable customer order.",
+          "watch": "Working-group mandates, funded projects, procurement eligibility and specific national implementation measures. Those details will determine whether the framework changes partner selection or delivery plans.",
+          "caveat": "The declaration establishes shared intent. It does not itself provide a new product-level compliance rule or a quantified investment commitment.",
+          "sources": [
+            {
+              "label": "US State Department · Original declaration",
+              "url": "https://www.state.gov/releases/office-of-the-spokesman/2026/11/the-san-francisco-declaration-on-the-secure-foundations-of-enduring-prosperity/",
+              "publishedDate": "2026-11-15"
+            },
+            {
+              "label": "US State Department via Public Technologies · Full declaration reviewed",
+              "url": "https://pubt.io/view/689C324FBE010ADD3F80FCD46EE21338142A04D9",
+              "publishedDate": "2026-11-15"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Adoption needs evidence at the operating boundary",
+          "description": "AI interpretation: A working hardware handoff and a well-designed health study address different adoption barriers, but neither proves a customer outcome. For the serving system, test the whole request under realistic load; for the health app, test comprehension and downstream work. The acceptance measure belongs to the workflow, not just the component.",
+          "storyIds": [
+            "intel-sambanova-air-cooled-inference-demo",
+            "apple-openevidence-health-ai-study"
+          ]
+        },
+        {
+          "title": "Deployment options depend on physical and commercial access",
+          "description": "AI interpretation: Hardware that fits an existing facility can broaden deployment choices. A supply-chain partnership framework may later affect which suppliers and sites qualify. Infrastructure planning should therefore track both facility compatibility and concrete policy implementation, without assuming that the declaration already changes procurement rules.",
+          "storyIds": [
+            "intel-sambanova-air-cooled-inference-demo",
+            "pax-silica-san-francisco-declaration"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-16T10:03:16.186Z",
+      "updatedAt": "2026-11-16T10:03:16.186Z"
+    },
     {
       "date": "2026-11-14",
       "headline": "A quiet Saturday for verified new AI developments.",
