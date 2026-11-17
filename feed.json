@@ -1,7 +1,164 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-16T20:27:49.599Z",
+  "generatedAt": "2026-11-17T13:24:21.055Z",
   "editions": [
+    {
+      "date": "2026-11-16",
+      "headline": "AI capacity depends on routing, communication and who can access it.",
+      "dek": "November 16, Pacific time: Hugging Face changes its inference router, Rubin posts new training results, Lambda deploys co-packaged optics, and US export controls reach overseas compute access. The decisions concern usable performance, operating responsibility and eligible customers.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "hugging-face-openrouter-integration",
+          "title": "Hugging Face moves language-model routing to OpenRouter",
+          "category": "Products & adoption",
+          "company": "Hugging Face · OpenRouter",
+          "tags": [
+            "Inference",
+            "Open models",
+            "Ecosystem strategy"
+          ],
+          "summary": "Hugging Face switched language-model requests in Inference Providers to OpenRouter. Routing now considers live price, speed and reliability, with retries across providers. The change reduces application-level failover work, while moving language-model billing to Hugging Face and ending support for custom provider keys.",
+          "why": "Choosing an open model also means choosing its serving path. Retry behavior, cache retention and billing arrangements affect the cost of a successful customer interaction.",
+          "facts": [
+            "Users can still select a provider explicitly or disable providers in account and organization settings."
+          ],
+          "context": "Previously, a selected provider's failure was returned to the application. The new router can retry another provider within the call and shift traffic away from degraded services. Cache-aware routing keeps conversations with the provider holding their prompt cache, balancing failover against repeated prefill. A stable session identifier makes that affinity explicit. Hugging Face says provider prices carry no added markup. OpenRouter reports fewer capacity errors in its own routing measurements, but those measurements precede this integration and do not establish every Hugging Face workload's outcome.",
+          "insight": "For an agent product, compare completed tasks, tail latency and total billed tokens before and after migration. Check provider eligibility and billing dependencies first, especially where an application currently uses its own provider credentials. Central routing can reduce integration work while giving the intermediary more control over provider selection and customer spend.",
+          "watch": "Retry visibility, cache-hit rates, provider-specific output differences and whether organization-level exclusions cover every intended data-handling requirement.",
+          "caveat": "The change covers language models. Image, video and audio generation retain their existing routing.",
+          "sources": [
+            {
+              "label": "Hugging Face · Integration and breaking change",
+              "url": "https://huggingface.co/blog/openrouter",
+              "publishedDate": "2026-11-16"
+            }
+          ]
+        },
+        {
+          "id": "rubin-mlperf-training-v61",
+          "title": "Rubin's training result makes communication efficiency part of the comparison",
+          "category": "Chips & infrastructure",
+          "company": "NVIDIA",
+          "tags": [
+            "Training",
+            "AI infrastructure",
+            "Cost of intelligence"
+          ],
+          "summary": "NVIDIA reported new MLPerf Training v6.1 results for Vera Rubin NVL72. On the DeepSeek-V3 benchmark, it nearly halved time to the benchmark target versus GB300 at the same GPU count. The comparison supports evaluating the complete training system, including fabric and software.",
+          "why": "A faster accelerator produces business value when the full training job finishes sooner at acceptable cost. Communication-heavy workloads can expose advantages that peak compute obscures.",
+          "facts": [
+            "NVIDIA reports 4.14 minutes for Rubin versus 8.03 minutes for GB300 on the DeepSeek-V3 benchmark, each using 1,024 GPUs."
+          ],
+          "context": "DeepSeek-V3 uses mixture-of-experts routing, which sends tokens to selected expert networks. Distributing experts across GPUs creates bursts of all-to-all traffic. NVIDIA attributes its scaling behavior to NVLink within racks and network interfaces, adaptive routing and congestion control between racks, together with optimized software. Those mechanisms seek to keep communication from delaying computation. MLPerf measures time to a specified quality target, so the minutes shown describe the benchmark procedure rather than a full production pretraining campaign. The result compares platform generations with their software stacks and does not isolate the contribution of the fabric from compute or kernels.",
+          "insight": "For a training-capacity purchase, reproduce the relevant model's communication pattern and measure cost to the same accepted checkpoint. Then include queueing, checkpoint recovery and data preparation in experiment turnaround. A faster benchmark matters less when those stages dominate, or when the new system's rental premium exceeds the useful time saved.",
+          "watch": "Performance on the team's expert placement and batch sizes, cluster availability, system power and comparable pricing at the required scale.",
+          "caveat": "Figures are from NVIDIA's report of submitted MLPerf results. Its separate newer-software reruns are unverified, and its provisional Rubin inference result awaits MLCommons verification.",
+          "sources": [
+            {
+              "label": "NVIDIA · Training setup and submitted versus unverified results",
+              "url": "https://developer.nvidia.com/blog/nvidia-vera-rubin-nvl72-achieves-up-to-2x-blackwell-ultra-performance-in-mlperf-training-v6-1/",
+              "publishedDate": "2026-11-16"
+            },
+            {
+              "label": "MLCommons · November 16 Training v6.1 release",
+              "url": "https://results.mlcommons.org/",
+              "publishedDate": "2026-11-16"
+            },
+            {
+              "label": "NVIDIA · Separate inference verification caveat",
+              "url": "https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/",
+              "publishedDate": "2026-11-16"
+            }
+          ]
+        },
+        {
+          "id": "lambda-copackaged-optics-deployment",
+          "title": "Lambda brings co-packaged optics into a large GPU deployment",
+          "category": "Chips & infrastructure",
+          "company": "Lambda · NVIDIA",
+          "tags": [
+            "AI infrastructure",
+            "Energy & capacity",
+            "Training"
+          ],
+          "summary": "NVIDIA says Lambda is using its co-packaged optics switches to connect GB300 racks comprising more than 10,000 GPUs. Reported tests show lower network latency with unchanged throughput versus conventional pluggable optics. The deployment shifts attention toward network power, interruptions and serviceability at cluster scale.",
+          "why": "A network interruption can waste work across many accelerators. Buyers need to connect component efficiency and reliability to completed jobs and the effort required to restore service.",
+          "facts": [
+            "Reported network latency fell about 4% at rack scale and up to about 10% at pod scale in company tests."
+          ],
+          "context": "Conventional switches use pluggable optical transceivers. Co-packaged optics places optical engines on the switch package, changing where electrical signals become light. NVIDIA says the design uses fewer lasers and improves optical power efficiency and reliability. The reported throughput stays constant across the tested configurations, so the measured latency reduction and the broader power and reliability claims should be evaluated separately. A shorter network operation only reduces job duration to the extent that communication lies on that job's critical path. The announcement provides no measured reduction in full training-job cost.",
+          "insight": "Evaluate this with a fleet-level acceptance test covering interrupted GPU-hours, network power and repair time. Component integration may change how faults are diagnosed and serviced. Ask who owns recovery and what spare equipment is needed, because a reliability benefit creates value only when the operating model can sustain it.",
+          "watch": "Long-duration production interruption data, workload-level completion times and replacement procedures for optical failures.",
+          "caveat": "The deployment and measurements are reported by NVIDIA with Lambda participation. Independent production validation is not supplied in the announcement.",
+          "sources": [
+            {
+              "label": "NVIDIA · Lambda deployment and measurement conditions",
+              "url": "https://blogs.nvidia.com/blog/lambda-photonics/",
+              "publishedDate": "2026-11-16"
+            }
+          ]
+        },
+        {
+          "id": "bis-remote-compute-access-rule",
+          "title": "US chip controls extend to customers using overseas compute",
+          "category": "Policy & society",
+          "company": "US Bureau of Industry and Security",
+          "tags": [
+            "AI regulation",
+            "AI infrastructure",
+            "Ecosystem strategy"
+          ],
+          "summary": "BIS released an interim final rule targeting remote access to advanced compute through overseas data centers. It links licensing to specified customers and end uses, and adds destination controls. Providers must assess who ultimately benefits from capacity as well as where the hardware is installed.",
+          "why": "For accelerator suppliers and cloud operators, customer eligibility can determine usable demand. Contracting and onboarding become part of the capacity expansion decision.",
+          "facts": [
+            "The public-inspection document schedules Federal Register publication for November 19 and ties effectiveness to publication."
+          ],
+          "context": "The mechanism uses export, reexport and in-country transfer controls on covered hardware. A data center's later change to a restricted end use can also require authorization. The rule aggregates linked data centers when assessing covered compute access and examines customer ownership or ultimate-parent location in Macau or Country Group D:5, a US export-control country group that includes China. Separate destination requirements cover Indonesia, Malaysia, Singapore, Thailand and Brazil, with a conditional exception for qualifying US-headquartered businesses. This makes the customer relationship and subsequent use relevant throughout the equipment's operation.",
+          "insight": "Before counting a prospective cluster's demand, have the commercial and compliance owners map end customers, intermediaries and intended uses against the published scope. Tie that review to sales commitments and capacity allocation. A distributor or hosting partner's location alone may be insufficient to establish whether the planned service can proceed.",
+          "watch": "The final published text, implementation guidance, applicable thresholds and exceptions, and licensing treatment of existing customer arrangements.",
+          "caveat": "The live BIS announcement is dated November 16, while its downloadable press release says November 15. The rule's publication-dependent effective date controls the timing described here.",
+          "sources": [
+            {
+              "label": "BIS · Live November 16 announcement",
+              "url": "https://www.bis.gov/press-release/bis-issues-rule-addressing-remote-access-american-super-intelligence-technology",
+              "publishedDate": "2026-11-16"
+            },
+            {
+              "label": "Federal Register · Public-inspection rule released for review, publication scheduled November 19",
+              "url": "https://public-inspection.federalregister.gov/2026-23529.pdf",
+              "publishedDate": "2026-11-16"
+            },
+            {
+              "label": "Reuters · November 16 reporting on the new controls",
+              "url": "https://www.reuters.com/legal/litigation/us-issues-rule-protect-advanced-ai-chips-being-accessed-remotely-2026-11-16/",
+              "publishedDate": "2026-11-16"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Reliability changes the amount of useful compute",
+          "description": "AI interpretation: Hugging Face addresses failed requests through provider routing, while Lambda addresses the physical network supporting GPU jobs. In both cases, the business metric should include failed attempts and recovery work. A component speedup alone leaves those costs unresolved.",
+          "storyIds": [
+            "hugging-face-openrouter-integration",
+            "lambda-copackaged-optics-deployment"
+          ]
+        },
+        {
+          "title": "Capacity planning needs both performance and eligible demand",
+          "description": "AI interpretation: Rubin's results help estimate how quickly a workload can run. The BIS rule changes the conditions under which some customers may access capacity. Infrastructure planning needs both inputs before converting installed GPUs into a revenue or utilization forecast.",
+          "storyIds": [
+            "rubin-mlperf-training-v61",
+            "bis-remote-compute-access-rule"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-17T08:37:08.143Z",
+      "updatedAt": "2026-11-17T08:37:08.143Z"
+    },
     {
       "date": "2026-11-15",
       "headline": "AI deployment advances through hardware integration, health research and supply-chain cooperation.",
@@ -2718,6 +2875,101 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-16",
+      "retrospective": false,
+      "paperId": "arxiv:2611.18482",
+      "title": "MMFlash: Faster Speculative Decoding for Vision-Language Models",
+      "headline": "Train the drafter on the image-dependent tokens that cut verification short",
+      "authors": "Sicheng Feng, Zigeng Chen, Song Wang, Gongfan Fang, Xinchao Wang",
+      "publicationDate": "2026-11-13",
+      "venue": "arXiv · cs.CV · v1",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "MMFlash trains a speculative drafter to better predict text that depends on visual evidence. It also reduces the context the drafter attends to on long video prompts.",
+      "problem": "DFlash fills a block of masked token positions in one pass using features from the target model. The target checks the proposals in parallel and accepts a contiguous prefix. One early miss can discard otherwise usable work. DFlash weights training errors by position. In the authors’ diagnostic, tokens most dependent on the image were accepted less often, even after training the baseline on multimodal data.",
+      "method": [
+        {
+          "title": "Measure what the image changes",
+          "description": "Offline, hold the text prefix fixed and run the target with and without the image. Compare its next-token probabilities using KL divergence, a measure of how much one probability distribution differs from another. Give the strongest training signal to changes on which the image-conditioned target is confident."
+        },
+        {
+          "title": "Spend training effort where it can extend the accepted prefix",
+          "description": "The loss favors positions likely to survive verification, estimated from drafter confidence across the prefix. A visual bonus is larger when the drafter gives the target token low probability and fades as that prediction improves. For example, learning the digit read from a chart can preserve the rest of the draft if that digit would otherwise be the first rejection."
+        },
+        {
+          "title": "Thin the draft context for long video",
+          "description": "The drafter reads target features and skips most distant visual positions, retaining regularly spaced visual tokens, all text, a recent window and a few initial tokens. The paper uses this sparse pattern during training and serving. The target still verifies the proposed text."
+        }
+      ],
+      "results": [
+        {
+          "finding": "About 3× average decode speed versus ordinary autoregressive decoding and 10–11% over DFlash.",
+          "setup": "Seven image benchmarks, Qwen3.5-4B and 9B, greedy decoding, concurrency one, SGLang on one H200. Author measurements."
+        }
+      ],
+      "limitations": "The paper measures decode speed. Gains over ordinary decoding generally shrink with concurrency, and long video remains harder to draft than images. Independent reproduction was not verified.",
+      "implications": "AI interpretation — For an interactive document assistant, pilot the paired draft and target checkpoints where users wait for a long answer after uploading an image. Measure end-to-end latency and GPU cost per accepted answer at the traffic mix you actually serve. If image encoding or prefill dominates the wait, or the drafter consumes memory needed for batching, the decode gain may do little for users or fleet cost. Include the cost of qualifying a new drafter when the target model changes.",
+      "figures": [
+        {
+          "title": "Visual scoring happens before serving",
+          "alt": "Two rows show offline comparison of target predictions feeding drafter training, and online draft proposals feeding target verification.",
+          "caption": "Simplified explanation. Read each row from left to right. The upper row computes and uses the visual signal before requests arrive. The lower row shows the serving loop.",
+          "sourceLabel": "Feng et al. · Figure 2 and Sections 3–4",
+          "sourceUrl": "https://arxiv.org/html/2611.18482v1",
+          "kind": "diagram",
+          "lanes": [
+            {
+              "label": "Offline training",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Compare target predictions",
+                  "detail": "With and without the image"
+                },
+                {
+                  "label": "Train drafter",
+                  "detail": "Weight difficult visual tokens",
+                  "tone": "accent"
+                }
+              ]
+            },
+            {
+              "label": "Online decode",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Propose a block"
+                },
+                {
+                  "label": "Target verifies",
+                  "tone": "accent"
+                },
+                {
+                  "label": "Accept the prefix"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "arXiv · Original preprint and version history",
+          "url": "https://arxiv.org/abs/2611.18482"
+        },
+        {
+          "label": "Full text · Methods, Table 1 and serving evaluation",
+          "url": "https://arxiv.org/html/2611.18482v1"
+        },
+        {
+          "label": "Authors’ project · Draft and target checkpoints",
+          "url": "https://fscdc.github.io/MMFlash/"
+        }
+      ],
+      "publishedAt": "2026-11-17T08:51:48.343Z",
+      "updatedAt": "2026-11-17T08:51:48.343Z"
+    },
     {
       "date": "2026-11-14",
       "retrospective": false,
