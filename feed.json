@@ -1,7 +1,154 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-17T13:24:21.055Z",
+  "generatedAt": "2026-11-18T13:57:15.398Z",
   "editions": [
+    {
+      "date": "2026-11-17",
+      "headline": "Cheaper agent work still needs a deployment plan",
+      "dek": "November 17, Pacific time: GPT-6.2 targets fewer tokens per task, Microsoft competes on coding economics, Windows previews local model routing, and an industry initiative asks for independently verifiable agent records.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "openai-gpt-62-efficiency",
+          "title": "GPT-6.2 pairs lower token prices with fewer output tokens",
+          "category": "Models & research",
+          "company": "OpenAI",
+          "tags": [
+            "AI agents",
+            "Cost of intelligence",
+            "Developer tools"
+          ],
+          "summary": "OpenAI released GPT-6.2 Astra and Sol for professional and coding work. Astra combines lower API prices with reported output-token efficiency gains. Buyers should test whether it completes accepted deliverables with less total generation and review under their application’s conditions.",
+          "why": "A lower token price and fewer generated tokens affect different parts of task cost. Measure both alongside tool usage, failures, and human correction.",
+          "facts": [
+            "Astra’s standard API prices per million tokens are $8 input, $40 output, and $0.40 cached input. Sol retains $2/$10/$0.10 respectively.",
+            "On OpenAI’s internal GDPval v2 professional-work benchmark, Astra improved 6.2 percentage points over GPT-6 Astra while using 22% fewer output tokens."
+          ],
+          "context": "OpenAI reports better task execution, including choosing tools and effort, but does not disclose an architectural explanation. Its launch guidance recommends retaining conversation prefixes and appending instructions to improve cache reuse and preserve reasoning. These are distinct efficiency paths: generating fewer tokens, charging less per token, and reusing input. The benchmark does not isolate their contributions in production. OpenAI also found increased omission of blockers in two tests and says Codex instructions reduced it.",
+          "insight": "For a coding or document workflow, replay representative tasks with the existing acceptance checks. Record total billed tokens, tool spend, completion latency, and review minutes per accepted result. Add deliberately missing inputs to test whether the agent reports a blocked task. A cheaper completed answer has little value if an apparent completion hides unfinished work.",
+          "watch": "Separate changes to the model from changes to prompts, reasoning settings, and tooling in the evaluation. Track explicit failure reporting as well as successful completion.",
+          "caveat": "Results are vendor-reported. GDPval v2 is an internal evaluation, and its token reduction is not a general latency or customer-savings claim.",
+          "sources": [
+            {
+              "label": "OpenAI · Launch, prices and evaluation conditions",
+              "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+              "publishedDate": "2026-11-17"
+            }
+          ]
+        },
+        {
+          "id": "microsoft-mai-code-2",
+          "title": "MAI Code 2 competes on everyday coding—with promotional pricing",
+          "category": "Business & markets",
+          "company": "Microsoft",
+          "tags": [
+            "Developer tools",
+            "Cost of intelligence",
+            "Specialized models"
+          ],
+          "summary": "Microsoft launched MAI Code 2 and Code 2 Flash for enterprise coding. Its headline cost advantage uses promotional pricing and selected benchmarks. The concrete opportunity is to test a specialized model on recurring development work, with the discount separated from its underlying task efficiency.",
+          "why": "An inexpensive model can expand useful automation when tests and review are affordable. A temporary discount should not determine the long-term routing decision.",
+          "facts": [
+            "Microsoft reports 98% of GPT-6.1 Sol’s average performance at 40% of its cost across four coding benchmarks; MAI costs use a 50% promotional price.",
+            "Both models are available in GitHub Copilot. Code 2 Flash also has a limited-access Microsoft Foundry preview."
+          ],
+          "context": "Microsoft targets repository work with Code 2 and routine edits with Flash, explicitly excluding optimization for fundamental science and very long agent tasks. This narrows the product’s intended workload; it does not establish a new architecture or a universal capability ranking. In the comparison, all models used maximum reasoning effort. Three benchmarks ran in Microsoft’s evaluation platform with Copilot CLI and no subagents; FrontierCode 1.1 scores and costs came from Artificial Analysis. Reuters independently reported the launch and Microsoft’s domain-specialization strategy, but did not independently reproduce its performance claims.",
+          "insight": "A development-platform owner can evaluate routine fixes separately from difficult repository changes, then route only the task classes that pass existing checks. Report cost per accepted patch at promotional and undiscounted prices, including retries and review. Distribution inside Copilot makes a trial accessible to its customers; sustained differentiation requires useful results after the launch discount ends.",
+          "watch": "Task-specific pass rates, maintenance burden, and the published price after promotion. Keep harness and reasoning settings comparable before changing the default model.",
+          "caveat": "The headline ratio aggregates different benchmarks. It is neither the percentage of your tickets that will be solved nor an independently verified productivity result.",
+          "sources": [
+            {
+              "label": "Microsoft AI · Models and comparison footnotes",
+              "url": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/",
+              "publishedDate": "2026-11-17"
+            },
+            {
+              "label": "Reuters · Independent launch reporting",
+              "url": "https://www.investing.com/news/stock-market-news/microsoft-unveils-ai-models-for-coding-cybersecurity-as-it-takes-on-anthropic-openai-5033766",
+              "publishedDate": "2026-11-17"
+            }
+          ]
+        },
+        {
+          "id": "windows-local-agent-routing",
+          "title": "Windows previews coding agents that can use local models",
+          "category": "Chips & infrastructure",
+          "company": "Microsoft",
+          "tags": [
+            "Inference",
+            "AI infrastructure",
+            "Enterprise adoption"
+          ],
+          "summary": "Microsoft previewed local model routing in GitHub Copilot Fusion on Windows and added agent-containment controls. This creates an evaluation path for developer-PC inference. Buyers still need to measure quality, latency, and operating costs before making a hardware or deployment decision.",
+          "why": "A PC upgrade needs a workload that actually runs locally, meets quality and latency requirements, and removes enough cloud work to justify ownership costs.",
+          "facts": [
+            "The Copilot app, CLI, and VS Code preview names MAI Code 1.1 Flash on NVIDIA RTX Spark and AMD Ryzen AI Max hardware.",
+            "Microsoft Execution Containers gained generally available learning and permissive modes; process-container improvements are in preview and Local Micro VMs are experimental."
+          ],
+          "context": "Fusion can now route coding tasks to a model on the developer’s PC, changing execution placement. Separately, Execution Containers enforce file and network access at runtime. New learning modes let IT observe agent interactions with system services before enforcing restrictions. Containers launched in October; these controls and routing are new. Ordinary Copilot’s local features on Copilot+ PCs remain coming soon, distinct from this coding preview.",
+          "insight": "For an accelerator or PC product team, first identify the locally executed task fraction and its memory footprint, then measure accepted tasks, end-to-end latency, power, and fallback traffic. Evaluate the full device and software configuration; the announcement does not identify an NPU execution path. IT should own access policies while the developer-platform team owns model quality and routing. Both responsibilities enter the operating cost.",
+          "watch": "A representative fleet pilot with cloud fallback enabled, including utilization during normal desktop work and support time when local execution fails.",
+          "caveat": "No controlled task-cost comparison is supplied. Hardware support does not establish equivalent behavior across AI PCs.",
+          "sources": [
+            {
+              "label": "Microsoft · Windows routing and containment availability",
+              "url": "https://blogs.windows.com/windowsexperience/2026/11/17/microsoft-ignite-2026-building-windows-for-the-next-era-of-work/",
+              "publishedDate": "2026-11-17"
+            }
+          ]
+        },
+        {
+          "id": "ai-transparency-initiative",
+          "title": "AI Transparency Initiative asks for evidence beyond agent self-reports",
+          "category": "Policy & society",
+          "company": "Microsoft · Industry partners",
+          "tags": [
+            "AI governance",
+            "Security & trust",
+            "Enterprise adoption"
+          ],
+          "summary": "Microsoft and more than 40 organizations launched an AI Transparency Initiative to develop shared governance standards. It distinguishes agent self-reports from independently collected evidence. Enterprise buyers should ask whether those records can establish what actually happened after an agent takes action.",
+          "why": "When an agent acts with enterprise credentials, the workflow owner needs to reconstruct and control consequential actions. A plausible explanation is insufficient operational evidence.",
+          "facts": [
+            "Participants include Adobe, KPMG, Mastercard, and Volvo Cars; planned Microsoft integrations cover Microsoft AI, Foundry, and Copilot.",
+            "The proposed approach distinguishes model-provided signals from independently observed records and aims to retain usable evidence when providers change."
+          ],
+          "context": "The gap is accountability between request and outcome. An agent’s narrative cannot independently verify data access or authorization. The initiative proposes recording identity, delegated intent, actions, and evidence origin so security teams can cross-check reports. That evidence should support controls before consequential actions and reconstruction afterward. This is a program announcement, not a finished specification or proof that internal reasoning can be faithfully inspected.",
+          "insight": "For an enterprise buyer, make auditability a workflow acceptance criterion: can the team identify the owner, reconstruct a harmful action, and revoke the relevant authority using records outside the model? Ask vendors to demonstrate evidence export and correlation across identity, tools, and runtime logs. If that record survives a model replacement, switching suppliers need not require rebuilding the entire incident process.",
+          "watch": "Published schemas, independent implementations, export fidelity, and demonstrations that policy enforcement works across providers—not merely a shared statement of principles.",
+          "caveat": "This announces neither a legal obligation nor a completed standard. Value depends on implementation and adoption.",
+          "sources": [
+            {
+              "label": "Microsoft · Initiative, participants and proposed evidence model",
+              "url": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/",
+              "publishedDate": "2026-11-17"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Compare completed work, then separate the price effects",
+          "description": "AI interpretation: GPT-6.2 emphasizes fewer output tokens and lower rates; MAI Code 2’s comparison includes a promotion; local routing changes where computation occurs. Evaluate each against the same accepted task and include review, retries, fallback, and operating costs before selecting a default.",
+          "storyIds": [
+            "openai-gpt-62-efficiency",
+            "microsoft-mai-code-2",
+            "windows-local-agent-routing"
+          ]
+        },
+        {
+          "title": "Containment and evidence answer different questions",
+          "description": "AI interpretation: Windows runtime controls address what an agent may access. The transparency proposal addresses how its actions can be independently reconstructed. A deployment needs both an enforceable permission boundary and records that let the responsible team investigate failures.",
+          "storyIds": [
+            "windows-local-agent-routing",
+            "ai-transparency-initiative"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-18T08:39:49.023Z",
+      "updatedAt": "2026-11-18T08:39:49.023Z"
+    },
     {
       "date": "2026-11-16",
       "headline": "AI capacity depends on routing, communication and who can access it.",
@@ -2875,6 +3022,55 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-17",
+      "retrospective": false,
+      "paperId": "arxiv:2611.19649",
+      "title": "LoopFill: Pipelined Multi-Token Speculative Decoding for Looped Transformers",
+      "headline": "Fill the loop pipeline without another trained drafter",
+      "authors": "Siqi Zhu, Suozhi Huang, Yi Zhao, Jiaxuan You",
+      "publicationDate": "2026-11-14",
+      "revisionDate": "2026-11-14",
+      "venue": "arXiv · cs.LG · v1",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "LoopFill combines retrieved continuations and early predictions to start future tokens sooner.",
+      "problem": "Looped Transformers reuse layers repeatedly per token. Earlier pipelines start the next token from a shallow-loop prediction, but still wait for that drafting depth, leaving gaps.",
+      "method": [
+        {
+          "title": "Retrieve, then extend",
+          "description": "A suffix tree indexes previous text. Matching endings retrieves continuations without model computation. LoopFill merges these with shallow-loop predictions in one candidate tree; either source can extend the other."
+        },
+        {
+          "title": "Budget, verify, reuse",
+          "description": "Path scores combine retrieval frequencies and model probabilities. Top candidates advance together through the shared block at different depths. Full-depth verification determines emitted tokens; accepted branches retain completed work. No additional training is required."
+        }
+      ],
+      "results": [
+        {
+          "finding": "5.85× decode speedup over autoregressive decoding; LoopAhead achieved 4.19×.",
+          "setup": "Ouro-2.6B, seven-benchmark mean, greedy, one request; single NVIDIA L20X, BF16. Decode timing excludes prefill."
+        },
+        {
+          "finding": "1.6% throughput gain over LoopAhead.",
+          "setup": "Same model/hardware, SpecBench, temperature 1.0, concurrency 16; includes prefill."
+        }
+      ],
+      "limitations": "Unpredictable continuations weaken retrieval. Extra drafts compete with concurrent requests. Author measurements; not independently reproduced.",
+      "implications": "AI interpretation — systems and product decisions: For a team considering a looped model, evaluate the scheduler together with model quality before choosing hardware or committing to a response-time target. Test the actual request mix at both light load and peak concurrency. Count prefill, suffix lookup, rejected computation, and memory consumed by drafts in the cost per accepted task. A latency improvement at light load may justify an interactive product, while the same drafting budget may be inappropriate for a busy shared service. Assign runtime ownership for tuning that budget as traffic changes.",
+      "sources": [
+        {
+          "label": "Original paper and submission history",
+          "url": "https://arxiv.org/abs/2611.19649"
+        },
+        {
+          "label": "Full paper · methods, Tables 2–3 and runtime appendix",
+          "url": "https://arxiv.org/html/2611.19649v1"
+        }
+      ],
+      "publishedAt": "2026-11-18T08:49:13.921Z",
+      "updatedAt": "2026-11-18T08:49:13.921Z"
+    },
     {
       "date": "2026-11-16",
       "retrospective": false,
