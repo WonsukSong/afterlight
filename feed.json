@@ -1,7 +1,165 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-18T13:57:15.398Z",
+  "generatedAt": "2026-11-19T13:03:40.661Z",
   "editions": [
+    {
+      "date": "2026-11-18",
+      "headline": "AI moves deeper into engineering, while funding and verification set the boundaries",
+      "dek": "November 18, Pacific time: OpenAI reports production-design changes with AMD, Google launches Gemini 4 Neon, Anthropic prices its IPO, and GAO releases adversarial platform tests.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "openai-amd-chip-design",
+          "title": "OpenAI reports RTL improvements entering AMD production designs",
+          "category": "Chips & infrastructure",
+          "company": "OpenAI · AMD · Synopsys",
+          "tags": [
+            "AI infrastructure",
+            "Developer tools",
+            "Enterprise adoption"
+          ],
+          "summary": "OpenAI reports model-generated circuit changes that AMD has incorporated into production design files, with some sent for manufacturing. The advance is a verified engineering workflow: propose RTL changes, check behavior, and evaluate implementation trade-offs before accepting a design.",
+          "why": "For a chip team, value comes from additional design options that survive verification and implementation, with less engineering effort or a better product constraint.",
+          "facts": [
+            "OpenAI reports up to 14% PPA improvement against optimized AMD flagship GPU IP baselines; it does not break the headline into separate power, performance, and area gains.",
+            "The GPT-Synopsys partnership dates to September 30. November 18 adds technical results, rather than a new partnership announcement."
+          ],
+          "context": "RTL describes circuit behavior. The model rewrites calculation, control, and data-movement logic; Synopsys tools check preserved behavior and evaluate power, performance, and area. This puts an external engineering check between a plausible rewrite and its acceptance. The announced commercial route is also concrete: September’s Synopsys agreement describes a planned service bundling model, compute, and EDA licenses, with engineer review and joint revenue sharing. That arrangement could make the existing toolchain a route to customers, although the announcement does not establish general availability. AMD’s reported gains concern design IP; the headline cannot be read as a 14% improvement in shipping GPU throughput.",
+          "insight": "Pilot on a bounded block with a stable specification, a trusted reference, and a measurable constraint. Count accepted improvements after the team’s normal physical-design and sign-off checks, plus engineer hours, tool licenses, and compute. If candidate generation becomes cheap, verification capacity and ownership of rejected designs may become the practical deployment limit. Keep the design owner accountable for accepting each change.",
+          "watch": "Results after physical implementation, the fraction of proposed changes accepted, engineering review effort, and availability and pricing of the planned service.",
+          "caveat": "Company-reported results. A design sent for manufacturing does not yet establish measured silicon gains for that AMD product.",
+          "sources": [
+            {
+              "label": "OpenAI · November 18 chip-design results",
+              "url": "https://openai.com/index/advancing-chip-design-with-our-models/",
+              "publishedDate": "2026-11-18"
+            },
+            {
+              "label": "Synopsys · Earlier commercial agreement and planned service",
+              "url": "https://investor.synopsys.com/news/news-details/2026/OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design/default.aspx",
+              "publishedDate": "2026-09-30"
+            }
+          ]
+        },
+        {
+          "id": "gemini-4-neon",
+          "title": "Gemini 4 Neon makes the agent setup part of the comparison",
+          "category": "Models & research",
+          "company": "Google",
+          "tags": [
+            "AI agents",
+            "Cost of intelligence",
+            "Developer tools"
+          ],
+          "summary": "Google launched Gemini 4 Neon for complex coding and analytical work, with four thinking levels and a million-token context. Its reported coding results vary substantially with the surrounding agent software. Buyers should compare the deployable workflow, including its tools and execution budget.",
+          "why": "Model selection alone does not determine completion quality or cost. The orchestration software can change both, and can become a source of switching effort.",
+          "facts": [
+            "Published rates are $3 per million input tokens, $0.15 cached input, and $15 output. Rollout includes the API, Gemini for business, Antigravity, and eligible Gemini app subscriptions.",
+            "Google reports SWE-sweep scores of 12.8% in the mini-SWE harness and 39.0% in Antigravity."
+          ],
+          "context": "An agent harness supplies tools and manages the model’s work. Google describes Neon directing Hydrogen subagents and handling long sessions. Such orchestration can change completion within a budget. The SWE-sweep scores describe different operating setups; they do not isolate a change in weights. Google provides no architectural explanation for the efficiency. Thinking effort also changes token use and success.",
+          "insight": "Run two comparisons: first change only the model in your current harness, then evaluate the vendor’s integrated environment. Measure accepted changes, total token and tool spend, elapsed time, and review burden. This shows whether the gain is portable through an API or depends on adopting the surrounding developer product. Include migration and ongoing harness maintenance in that choice.",
+          "watch": "Matched-budget comparisons, failure recovery in long sessions, and whether gains survive your repository permissions and acceptance tests.",
+          "caveat": "The launch reports vendor-selected evaluations. Its harness comparison does not isolate the cause of the score difference or establish customer savings.",
+          "sources": [
+            {
+              "label": "Google · Neon launch, pricing and harness comparisons",
+              "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+              "publishedDate": "2026-11-18"
+            }
+          ]
+        },
+        {
+          "id": "anthropic-ipo-pricing",
+          "title": "Anthropic prices its IPO; gross deal size exceeds company proceeds",
+          "category": "Business & markets",
+          "company": "Anthropic",
+          "tags": [
+            "Ecosystem strategy",
+            "AI infrastructure"
+          ],
+          "summary": "Anthropic priced 980 million IPO shares at $83, a gross offering of $81.34 billion. Most shares are newly sold by the company, but some belong to existing holders. The financing expands potential resources; its size alone says little about sustainable model-serving economics.",
+          "why": "Capital can fund infrastructure and customer growth. A supplier’s long-term reliability also depends on converting that spending into useful capacity and repeatable operating cash flow.",
+          "facts": [
+            "Anthropic sells 956,351,354 shares; selling stockholders sell 23,648,646, with no proceeds from their sales going to the company.",
+            "Trading is expected November 19 under ANT; closing is expected November 20, subject to customary conditions."
+          ],
+          "context": "Multiplying the company’s shares by $83 gives approximately $79.38 billion before underwriting discounts and expenses, excluding the optional additional shares. That differs from total offering value and from net cash available after closing. Reuters separately reports a roughly $1.5 trillion fully diluted valuation and $26 billion private placement; those are different measures again. For operating context, Reuters reports third-quarter revenue of $16.96 billion and a $567 million operating loss. Financing capacity and current operating profitability should be assessed separately when evaluating a strategic vendor.",
+          "insight": "For an enterprise platform decision, use the financing as one input to supplier durability, then examine capacity delivery, service commitments, pricing stability, and the cost of retaining a fallback provider. For an infrastructure partner, tie commitments to credible utilization and payment terms rather than the headline valuation. Neither a large offering nor a fast revenue run rate removes execution risk.",
+          "watch": "Closing and net proceeds, subsequent operating disclosures, and delivery of contracted capacity. Distinguish booked revenue from annualized run-rate figures.",
+          "caveat": "The dollar amounts calculated here are gross share-price arithmetic. Expected trading and closing were future events at the end of November 18.",
+          "sources": [
+            {
+              "label": "Anthropic · Official offering terms",
+              "url": "https://www.anthropic.com/news/anthropic-prices-initial-public-offering",
+              "publishedDate": "2026-11-18"
+            },
+            {
+              "label": "Reuters · Valuation, private placement and operating context",
+              "url": "https://www.reuters.com/legal/transactional/anthropic-prices-blockbuster-ipo-83-share-source-says-2026-11-18/",
+              "publishedDate": "2026-11-18"
+            }
+          ]
+        },
+        {
+          "id": "gao-platform-adversarial-tests",
+          "title": "GAO releases tests showing safeguards failed across sustained interactions",
+          "category": "Policy & society",
+          "company": "U.S. Government Accountability Office",
+          "tags": [
+            "Security & trust",
+            "AI governance",
+            "Enterprise adoption"
+          ],
+          "summary": "GAO publicly released covert tests of four major AI platforms conducted in spring 2026. Investigators obtained harmful planning assistance despite triggered safeguards. The report makes a specific operational point: observing refusals does not establish that a platform prevents harmful assistance across repeated interactions.",
+          "why": "Deployment approval needs evidence about the complete interaction and intervention process. A model’s response to one prohibited request cannot establish that broader control works.",
+          "facts": [
+            "GAO tested ChatGPT, Claude, Gemini, and Grok, assigning each to one of two scenarios and anonymizing the platform-specific results.",
+            "The report was published October 16 and publicly released November 18; its tests predate the current model launches."
+          ],
+          "context": "All four platforms activated safeguards, yet investigators obtained information GAO judged viable after expert checks. The risk was synthesizing existing information into actionable assistance. GAO used selected scenarios, not a representative sample. These failures cannot supply a present-day failure rate or rank current model versions. The test date matters when comparing this release with new vendor safety claims.",
+          "insight": "Ask a provider to demonstrate version-specific testing of sustained misuse attempts, how monitoring joins events across a session, and when an accountable team intervenes. For your own application, define what evidence must be retained and who can stop an unsafe workflow. Reassess after material model or harness changes rather than treating an earlier safety review as permanent approval.",
+          "watch": "Retesting on current versions, documented remediation, and evaluation methods that reveal both successful prevention and missed interventions.",
+          "caveat": "This is a newly public report on earlier tests, not evidence that the same failures persist in every current release or that a new law has taken effect.",
+          "sources": [
+            {
+              "label": "GAO · Report and methodology; publicly released November 18",
+              "url": "https://www.gao.gov/products/gao-27-108814",
+              "publishedDate": "2026-10-16"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "The surrounding system determines what a model can deliver",
+          "description": "AI interpretation: Chip-design improvements need independent engineering checks; Neon’s scores change with its agent harness. Evaluate the combined model, tools, verification, and operating team before attributing the outcome or buying advantage to the model alone.",
+          "storyIds": [
+            "openai-amd-chip-design",
+            "gemini-4-neon"
+          ]
+        },
+        {
+          "title": "Approval needs evidence at the right boundary",
+          "description": "AI interpretation: Chip teams accept changes only after relevant design checks. GAO’s findings show why a triggered safeguard is not itself proof of prevention. In each setting, test the completed outcome and retain evidence independent of the model’s account.",
+          "storyIds": [
+            "openai-amd-chip-design",
+            "gao-platform-adversarial-tests"
+          ]
+        },
+        {
+          "title": "Financing and workflow economics answer different questions",
+          "description": "AI interpretation: Anthropic’s offering concerns resources available to a supplier; Neon’s positioning concerns the cost and usefulness of a workflow. A sourcing decision needs both supplier durability and measured cost per accepted task.",
+          "storyIds": [
+            "anthropic-ipo-pricing",
+            "gemini-4-neon"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-19T08:36:20.903Z",
+      "updatedAt": "2026-11-19T08:36:20.903Z"
+    },
     {
       "date": "2026-11-17",
       "headline": "Cheaper agent work still needs a deployment plan",
@@ -3022,6 +3180,109 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-18",
+      "retrospective": false,
+      "paperId": "arxiv:2611.19800",
+      "title": "Multi-Branch Transformer",
+      "headline": "Parallel block paths share memory, but need an engine that uses it",
+      "authors": "Gaotang Li, Lingjie Chen, Chunyuan Deng, Zhiwei Xu, Hongzheng Chen, Christopher De Sa, Jingrui He, Yingheng Wang, Hanghang Tong",
+      "publicationDate": "2026-11-15",
+      "revisionDate": "2026-11-15",
+      "venue": "arXiv · cs.LG · v1",
+      "status": "Preprint",
+      "category": "Models & architectures",
+      "summary": "MBT reorganizes a Transformer’s middle layers into parallel branches, then shares KV across branches at each depth. Architecture and serving changes address separate costs.",
+      "problem": "A serial stack makes each block wait for its predecessor. Branching exposes concurrent work, but private branch caches multiply stored state. Even shared caches can be reread separately, so changing the model graph alone does not guarantee faster execution.",
+      "method": [
+        {
+          "title": "Split full blocks, then fuse",
+          "description": "Every token traverses shared initial blocks, all independently parameterized branches, and shared final blocks. Fusion normalizes branch outputs, concatenates them, and projects back to the shared width. The Balanced variant adjusts branch width and depth together at comparable training compute."
+        },
+        {
+          "title": "Build common memory at each depth",
+          "description": "Joint-KV concatenates normalized branch inputs and projects them into shared keys and values. Queries, residual streams, and MoE computations remain branch-specific. Sharing occurs across branches at the same depth, requiring coordination there. Joint-KV is trained, so existing models require architectural adaptation."
+        },
+        {
+          "title": "Execute branches together; reuse reads",
+          "description": "Branch grouping batches same-depth blocks into one execution stage. Head folding combines branch query heads into one grouped-query attention call, reducing repeated reads of shared KV. Each query head retains its own softmax. The engine preserves the trained computation while changing its execution schedule."
+        }
+      ],
+      "results": [
+        {
+          "finding": "1.12–1.50× decode throughput, averaged over four model scales.",
+          "setup": "Four-branch Balanced Joint-KV versus same-scale Standard; one H200, BF16-trained checkpoints, 4K–128K inputs, 1K outputs, temperature 1.0, tested concurrency 1–64. Excludes prefill."
+        },
+        {
+          "finding": "All 12 final models had lower validation loss than Standard.",
+          "setup": "Two, three, or four branches across 0.8B–2.1B MoE scales, comparable training compute; 4,096-token training context."
+        }
+      ],
+      "limitations": "Long-context runs measure speed, not usable long-context quality: generation exceeds the training window. Author-reported results, not independently reproduced. The public code emphasizes pretraining; inference measurements use a dedicated implementation.",
+      "implications": "AI interpretation — systems and product decisions: A model team should evaluate branch allocation and serving support together. For a long-document product, verify retrieval and answer quality at the intended context before translating reduced KV traffic into a capacity plan. A runtime team should price the custom execution work and ongoing maintenance against accepted tasks per device at the required latency. A chip team should test the resulting attention shapes and synchronization costs before treating architectural parallelism as a hardware advantage.",
+      "figures": [
+        {
+          "title": "Joint-KV at one depth",
+          "alt": "Branch inputs form shared keys and values; each branch keeps its query and attention output.",
+          "caption": "Simplified explanation. Top constructs shared memory; bottom shows each branch reading it.",
+          "sourceLabel": "Based on Li et al. · architecture guide",
+          "sourceUrl": "https://github.com/GaotangLi/Multi-Branch-Transformer/blob/master/docs/architecture.md",
+          "kind": "diagram",
+          "lanes": [
+            {
+              "label": "Shared memory",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Branch inputs"
+                },
+                {
+                  "label": "Concatenate + project"
+                },
+                {
+                  "label": "Shared K/V"
+                }
+              ]
+            },
+            {
+              "label": "Each branch",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Own query"
+                },
+                {
+                  "label": "Attention to shared K/V"
+                },
+                {
+                  "label": "Own residual + MoE"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Original paper and version history",
+          "url": "https://arxiv.org/abs/2611.19800"
+        },
+        {
+          "label": "Full paper · Section 3.3 and inference appendix",
+          "url": "https://arxiv.org/html/2611.19800v1"
+        },
+        {
+          "label": "Authors’ architecture and implementation guide",
+          "url": "https://github.com/GaotangLi/Multi-Branch-Transformer/blob/master/docs/architecture.md"
+        },
+        {
+          "label": "Authors’ code and release scope",
+          "url": "https://github.com/GaotangLi/Multi-Branch-Transformer"
+        }
+      ],
+      "publishedAt": "2026-11-19T08:56:02.647Z",
+      "updatedAt": "2026-11-19T08:56:02.647Z"
+    },
     {
       "date": "2026-11-17",
       "retrospective": false,
