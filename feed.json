@@ -1,7 +1,157 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-19T13:03:40.661Z",
+  "generatedAt": "2026-11-20T11:42:01.687Z",
   "editions": [
+    {
+      "date": "2026-11-19",
+      "headline": "AI efficiency moves into the workflow around the model",
+      "dek": "November 19, Pacific time: OpenAI details automated performance investigations, Google defers tool schemas, Dnotitia demonstrates retrieval silicon, and Anthropic begins public trading.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "openai-performance-factory",
+          "title": "OpenAI connects automated diagnosis to verified recovery",
+          "category": "Products & adoption",
+          "company": "OpenAI",
+          "tags": [
+            "AI agents",
+            "Developer tools",
+            "Enterprise adoption"
+          ],
+          "summary": "OpenAI described Performance Factory, its internal system for investigating slowdowns, proposing fixes, and checking recovery after deployment. Persistent tasks connect those stages across separate agent runs and engineer reviews. The advance is continuity of execution, with people still deciding what ships.",
+          "why": "For a service team, more diagnoses help only when they become accepted fixes. Review capacity and ownership belong in the automation business case.",
+          "facts": [
+            "OpenAI reports over 1,700 investigations and over 600 root-caused cases in just over three months.",
+            "A manual assessment judged 70% of 100 root-cause suggestions accurate."
+          ],
+          "context": "Earlier automation ended with a diagnosis in Slack. The new workflow stores progress outside an individual agent session, dispatches the next step, and resumes on review or deployment events. A separate agent challenges causal explanations against telemetry. Engineers approve changes; subsequent checks test recovery. This avoids treating a plausible diagnosis as resolution. The reported investigation counts do not establish how many fixes shipped or how much latency improved.",
+          "insight": "Pilot on a recurring incident class with retained telemetry and a clear recovery criterion. Compare verified resolutions per engineer hour, including review and rework, against the existing process. If findings accumulate faster than reviewers can accept them, prioritize by service impact before increasing agent volume. Assign an owner to both the monitored service and the diagnostic tooling.",
+          "watch": "Accepted fixes, time to verified recovery, false diagnoses, review backlog, and regressions introduced by proposed changes.",
+          "caveat": "This is an internal deployment report, not a generally available product or independent productivity study.",
+          "sources": [
+            {
+              "label": "OpenAI · Internal workflow and evaluation results",
+              "url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast/",
+              "publishedDate": "2026-11-19"
+            }
+          ]
+        },
+        {
+          "id": "gemini-tool-retrieval",
+          "title": "Gemini defers tool schemas while retaining the tool directory",
+          "category": "Products & adoption",
+          "company": "Google",
+          "tags": [
+            "AI agents",
+            "Cost of intelligence",
+            "Developer tools"
+          ],
+          "summary": "Google introduced Tool Retrieval in preview for the Gemini Interactions API. Agents can see tool names and descriptions while loading detailed argument schemas only when needed. This targets prompt overhead from large tool libraries without removing the directory used to choose a tool.",
+          "why": "An integration-heavy agent should be evaluated on completed workflows and billed tokens. Deferring rarely used schemas offers a concrete place to test savings.",
+          "facts": [
+            "The model requests a tool by name; the API loads its schema and produces the function call within the same request.",
+            "There is no separate retrieval fee; normal token charges apply."
+          ],
+          "context": "A schema defines a function’s inputs and constraints. Sending every schema up front spends context on tools the task may never use. Deferred schemas enter later, preserving a stable cached prefix. Once loaded, they remain billable input in the conversation. Client-managed retrieval supports a custom registry or permission filter, but adds a round trip. Thus library size, reuse, and search overhead determine the benefit; the announcement provides no quantified workload comparison.",
+          "insight": "Compare always-loaded, selectively deferred, and client-filtered tools on your real task mix. Keep frequent tools ready, then measure token spend, tail latency, wrong-tool choices, and completed tasks. Prefer client control when permission-aware discovery is essential, and include its extra round trip. Treat tool names and descriptions as maintained product interfaces: ambiguous discovery can move savings into retries.",
+          "watch": "Savings after caching, schema reuse across long conversations, selection accuracy, and behavior when integrations change.",
+          "caveat": "Preview support covers Gemini 3.6 and later in the Interactions API. Token reduction does not guarantee lower end-to-end latency.",
+          "sources": [
+            {
+              "label": "Google · Tool Retrieval mechanism, billing and preview scope",
+              "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+              "publishedDate": "2026-11-19"
+            }
+          ]
+        },
+        {
+          "id": "dnotitia-vdpu-asic-demo",
+          "title": "Dnotitia moves vector-search offload from FPGA to a live ASIC demo",
+          "category": "Chips & infrastructure",
+          "company": "Dnotitia",
+          "tags": [
+            "AI infrastructure",
+            "Inference",
+            "Enterprise adoption"
+          ],
+          "summary": "Dnotitia announced a live SC26 demonstration of its dedicated vector-search ASIC, following earlier FPGA evaluation. The chip searched roughly 2.6 million video frames from natural-language queries. The reported benefit concerns retrieval offload and host CPU use, rather than faster model generation.",
+          "why": "A retrieval accelerator earns its place when search limits a deployed service. Freed host capacity matters only if it improves throughput or avoids other spending.",
+          "facts": [
+            "The company reports at least 90% lower host CPU utilization than CPU-only execution of the same search workload.",
+            "Approximately 10× search performance versus a dual-socket CPU server is a multi-card system target, not a demonstrated result."
+          ],
+          "context": "Vector search compares numerical representations of content to find semantic matches. VDPU assigns that search work to dedicated silicon, leaving the host to run services. Dnotitia also develops the Seahorse database and is evaluating server and storage integration. This makes software compatibility part of the route to market. The release omits enough detail on hardware, recall, query load, and power to prevent a normalized cost or performance comparison.",
+          "insight": "Before designing in another accelerator, profile retrieval’s share of task latency and host capacity. Request a comparison at matched recall, dataset size, update rate, and concurrency, including card power and software overhead. For a server partner, a repeatable database integration and support commitment may decide adoption more than an isolated search speedup.",
+          "watch": "Measured throughput and tail latency at matched recall, index-update behavior, system power, card pricing, and production integration support.",
+          "caveat": "Vendor-reported SC26 demonstration, announced November 19; the exhibition ran November 17–19. Commercial readiness and customer savings remain unproven.",
+          "sources": [
+            {
+              "label": "Dnotitia · Original company release via PR Newswire",
+              "url": "https://www.prnewswire.com/news-releases/dnotitia-presents-first-live-demonstration-of-its-vdpu-vector-search-asic-at-sc26-302945556.html",
+              "publishedDate": "2026-11-19"
+            }
+          ]
+        },
+        {
+          "id": "anthropic-public-trading",
+          "title": "Anthropic begins trading; the market price is distinct from operating resources",
+          "category": "Business & markets",
+          "company": "Anthropic",
+          "tags": [
+            "Ecosystem strategy",
+            "AI infrastructure"
+          ],
+          "summary": "Anthropic began trading on Nasdaq under ANT, completing the transition from an announced offering to a traded stock. Nasdaq reports an opening price of $111.50; Reuters reports a $97.17 close. The new event is public trading, following yesterday’s IPO pricing.",
+          "why": "For customers and infrastructure partners, public disclosures can support supplier assessment. Daily share-price changes do not measure the reliability or economics of the service.",
+          "facts": [
+            "The closing price was approximately 17% above the $83 offering price.",
+            "Reuters reports that CEO Dario Amodei said the company would like to use debt financing in the future."
+          ],
+          "context": "The offering price governs the shares sold in the IPO; subsequent market trades establish a changing price between investors. A higher trading price does not automatically add cash to the company. Anthropic’s November 18 announcement expected the offering to close November 20, subject to conditions. Trading therefore should not be confused with confirmation of settlement. Future financing flexibility and the economics of serving customers remain separate questions.",
+          "insight": "Use subsequent financial disclosures to reassess committed infrastructure spending, cash generation, and reliance on further financing. For a long-term capacity or platform agreement, keep delivery milestones and exit options tied to operating evidence. A public market price provides visibility into investor expectations; it cannot substitute for workload economics or contractual service performance.",
+          "watch": "Confirmed closing, net proceeds, cash-flow disclosures, and the terms of any actual debt financing.",
+          "caveat": "The debut is a new event; the offering terms were covered November 18. No closing confirmation or debt issuance is asserted here.",
+          "sources": [
+            {
+              "label": "Nasdaq · Confirmed trading debut and opening price",
+              "url": "https://www.nasdaq.com/newsroom/anthropic-marks-ipo-at-nasdaq",
+              "publishedDate": "2026-11-19"
+            },
+            {
+              "label": "Reuters · First-day close and CEO financing comments",
+              "url": "https://www.reuters.com/business/finance/anthropics-historic-debut-put-ais-promise-peril-wall-st-test-2026-11-19/",
+              "publishedDate": "2026-11-19"
+            },
+            {
+              "label": "Anthropic · Earlier offering terms and expected closing",
+              "url": "https://www.anthropic.com/news/anthropic-prices-initial-public-offering",
+              "publishedDate": "2026-11-18"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Measure the constrained stage, then the complete task",
+          "description": "AI interpretation: Deferring schemas and offloading search address different parts of an agent’s execution. Measure each stage and then the accepted task; a local reduction can leave another stage dominating latency or cost.",
+          "storyIds": [
+            "gemini-tool-retrieval",
+            "dnotitia-vdpu-asic-demo"
+          ]
+        },
+        {
+          "title": "Operational integration determines whether a capability gets used",
+          "description": "AI interpretation: Automated investigations require accountable review, while retrieval silicon requires usable database integration. In both cases, evaluate who maintains the surrounding workflow and handles failures before treating the capability as deployable value.",
+          "storyIds": [
+            "openai-performance-factory",
+            "dnotitia-vdpu-asic-demo"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-20T08:35:10.786Z",
+      "updatedAt": "2026-11-20T08:35:10.786Z"
+    },
     {
       "date": "2026-11-18",
       "headline": "AI moves deeper into engineering, while funding and verification set the boundaries",
@@ -3180,6 +3330,59 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-19",
+      "retrospective": false,
+      "paperId": "arxiv:2611.24733",
+      "title": "Mechanistic Critics for Sample-Efficient NPU Design-Space Exploration",
+      "headline": "Spend simulator calls on designs that can remove the bottleneck",
+      "authors": "Yicheng He, Yuqi Xue, Tianyang Wu, Jian Huang, Bin Hu · University of Illinois Urbana-Champaign",
+      "publicationDate": "2026-11-18",
+      "revisionDate": "2026-11-18",
+      "venue": "arXiv · cs.AR · v1; authors report NeurIPS 2026 acceptance",
+      "status": "Preprint",
+      "category": "AI chip architecture",
+      "summary": "CriticNPU uses a calibrated hardware model to screen proposed NPU designs before simulation and guide subsequent changes.",
+      "problem": "Scalar latency ranks designs but poorly explains which resource to change. Black-box search spends evaluations learning that relationship; diagnosis alone cannot screen the next candidate.",
+      "method": [
+        {
+          "title": "Separate proposal from evaluation",
+          "description": "The released implementation uses LLM agents for workload extraction and architecture proposals, deterministic calculations for the critic, and NeuSIM for latency, power, and memory evaluation. Prefill and decode designs are optimized separately."
+        },
+        {
+          "title": "Calibrate the bottleneck model",
+          "description": "Roofline bounds throughput by compute capacity and bandwidth times arithmetic intensity. CriticNPU learns attainable fractions of those ceilings per operator type from simulation feedback, correcting classifications based on overstated peak resources."
+        },
+        {
+          "title": "Filter, then feed evidence back",
+          "description": "After warm-up, the critic skips candidates predicted worse than the incumbent. For simulated designs, it summarizes phase-specific bottlenecks and estimates small parameter changes, directing the planner toward the limiting resource."
+        }
+      ],
+      "results": [
+        {
+          "finding": "Near-best designs with fewer evaluations",
+          "setup": "Author-reported NeuSIM study: six LLMs × 16 settings; approximately 54 calls versus 2.2–2.4× as many for classical baselines. Best-or-tied latency: 74% prefill, 87.5% decode."
+        }
+      ],
+      "limitations": "Simulation, not silicon measurement; not independently reproduced here. Irregular MoE behavior weakens the model: DeepSeek-V3 decode wins were 8/16 versus Bayesian optimization’s 15/16.",
+      "implications": "AI interpretation — The customer is an architecture team with a queue of expensive evaluations. Pilot the critic against your current search at equal simulation budgets, then compare the best feasible design reached, total elapsed time, and engineering review. Fewer calls become useful only if the filter preserves candidates that matter for the product.\n\nAudit a sample of rejected proposals with the full simulator. Track missed improvements separately from prediction error: a useful average estimate can still reject the winning design. Assign ownership of operator profiles and calibration to the performance-modeling team, with architecture engineers approving resource trade-offs. For an irregular MoE target, retain a broader search path until the critic demonstrates reliable screening on representative routing and load. Search efficiency alone cannot establish lower manufacturing cost or better customer task economics.",
+      "sources": [
+        {
+          "label": "Original paper and version history · arXiv",
+          "url": "https://arxiv.org/abs/2611.24733"
+        },
+        {
+          "label": "Full paper · mechanism, evaluation and limitations",
+          "url": "https://arxiv.org/html/2611.24733v1"
+        },
+        {
+          "label": "Authors’ implementation · deterministic critic and NeuSIM integration",
+          "url": "https://github.com/bruno686/CriticNPU"
+        }
+      ],
+      "publishedAt": "2026-11-20T08:53:39.868Z",
+      "updatedAt": "2026-11-20T08:53:39.868Z"
+    },
     {
       "date": "2026-11-18",
       "retrospective": false,
