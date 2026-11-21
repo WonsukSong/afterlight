@@ -1,7 +1,145 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-20T11:42:01.687Z",
+  "generatedAt": "2026-11-21T09:49:12.971Z",
   "editions": [
+    {
+      "date": "2026-11-20",
+      "headline": "AI deployment needs evidence at the point where decisions become costly",
+      "dek": "November 20, Pacific time: a $44 billion GPU financing is priced, MedChemBench tests compound decisions, OpenAI reports stronger extraction defenses, and Google shares wildfire-monitoring results.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "spacex-gpu-financing",
+          "title": "SpaceX GPU financing links capital to equipment delivery",
+          "category": "Business & markets",
+          "company": "Apollo · Goldman Sachs · SpaceX",
+          "tags": [
+            "AI infrastructure",
+            "Ecosystem strategy"
+          ],
+          "summary": "Apollo and Goldman Sachs announced pricing of approximately $44 billion in notes to fund GPUs and related equipment for SpaceX. The financing supports a terrestrial Vera Rubin buildout, with leases expected to start on delivery in the first half of 2027.",
+          "why": "Financing secures a path to equipment; useful capacity still depends on delivery and operation. Procurement needs to align those milestones with payment commitments.",
+          "facts": [
+            "The package includes senior and subordinated notes, which have different repayment priorities.",
+            "Apollo says investor demand allowed the transaction to be increased in size."
+          ],
+          "context": "The structure brings investor capital into equipment purchases that support a lease arrangement. The announcement specifies an expected delivery window and lease commencement, but does not establish installed capacity, utilization, or serving cost. Senior and subordinated financing divides financial risk; it does not remove the physical work of commissioning compute. For an infrastructure plan, track financing, hardware receipt, operational acceptance, and workload demand separately. The release does not disclose enough lease economics to calculate a cost advantage over owning or renting equivalent capacity elsewhere.",
+          "insight": "For a capacity buyer, align payment triggers with usable service and define remedies for delayed acceptance. Stress-test the commitment against slower demand growth and changes in accelerator economics. For a supplier, evaluate the customer’s funded delivery schedule alongside power, networking, and deployment readiness. The practical decision is how much capacity to commit before those dependencies are proven.",
+          "watch": "Actual delivery and acceptance dates, lease terms, and the workload utilization needed to cover committed costs.",
+          "caveat": "Pricing is confirmed by the transaction sponsors. Delivery and lease commencement remain forward-looking; no customer ROI is established.",
+          "sources": [
+            {
+              "label": "Apollo · Official financing announcement",
+              "url": "https://ir.apollo.com/news-events/press-releases/detail/662/apollo-and-goldman-sachs-announce-pricing-of-44-billion",
+              "publishedDate": "2026-11-20"
+            }
+          ]
+        },
+        {
+          "id": "medchembench-evaluation",
+          "title": "MedChemBench separates molecular understanding from compound selection",
+          "category": "Models & research",
+          "company": "OpenAI",
+          "tags": [
+            "Specialized models",
+            "Enterprise adoption"
+          ],
+          "summary": "OpenAI introduced MedChemBench to test reasoning over molecular structures and experimental evidence. Its component scores expose a deployment distinction: reconstructing a molecule and explaining results can be easier than choosing the next compound or predicting its properties. That distinction matters when experiments are costly.",
+          "why": "A research assistant can be useful before it can reliably select experiments. Product scope should follow the specific decisions it improves under expert review.",
+          "facts": [
+            "The benchmark has 99 problems drawn from published research. GPT-6.2 Astra earned 84.5% of available credit at xhigh.",
+            "For GPT-6 Astra, structure credit was 95.4%, while selection and numerical prediction earned about half the available credit."
+          ],
+          "context": "Medicinal chemistry balances properties that can conflict, such as biological activity and absorption. Tasks provide structures and earlier findings, then assess reconstructions, explanations, choices, and predictions against source evidence. Partial-credit scoring means an aggregate percentage is not a count of successful discoveries. Component categories also use different scoring rules. The test is retrospective: prior exposure to its published sources cannot be excluded, and each response had one attempt without tools or new experiments.",
+          "insight": "Start evaluation with a bounded workflow such as checking extracted structures or organizing evidence. Before allowing recommendations to influence an experiment queue, test on unpublished cases and record expert corrections, rejected suggestions, and resulting experimental decisions. Compare saved scientist time with verification effort; a compelling explanation alone should not determine which compound receives a costly synthesis slot.",
+          "watch": "Prospective results on unpublished programs, component-specific errors, expert review effort, and whether recommendations improve actual experiment selection.",
+          "caveat": "Vendor evaluation; the scores do not establish new-drug discovery or improved laboratory decisions.",
+          "sources": [
+            {
+              "label": "OpenAI · Benchmark design, scores and limitations",
+              "url": "https://openai.com/index/introducing-medchembench/",
+              "publishedDate": "2026-11-20"
+            }
+          ]
+        },
+        {
+          "id": "openai-distillation-defenses",
+          "title": "OpenAI reports stronger defenses against extracting protected reasoning",
+          "category": "Models & research",
+          "company": "OpenAI",
+          "tags": [
+            "Security & trust",
+            "AI governance",
+            "Ecosystem strategy"
+          ],
+          "summary": "OpenAI published results for defenses against unauthorized distillation, where another model learns from collected outputs. The work combines request checks with investigation of coordinated accounts. Its reported reduction concerns extraction of protected reasoning under a defined internal test, rather than all capability copying.",
+          "why": "A model provider’s differentiation depends partly on controlling capability transfer. Defense must cover the API and operating process as well as model behavior.",
+          "facts": [
+            "Adaptive black-box tests across six attacker models reported earlier-request extraction success of 54.0% on GPT-6 Astra versus 0.2% on GPT-6.2 Astra.",
+            "The comparison changes both the model version and its safeguard stack."
+          ],
+          "context": "Protected reasoning is the intermediate trace generated during a task. OpenAI checks outputs and tool arguments for leaks, restricts reuse of reasoning across conversation and model boundaries, and investigates coordinated collection. These controls address different exposure paths. The training study also compares students using exact traces versus summaries; performance depends on training and inference budget. This supports a narrower conclusion than claiming that every trace transfers more capability or that answer-only distillation has been prevented.",
+          "insight": "For a provider, evaluate legitimate-user friction alongside extraction resistance and response time to coordinated misuse. For an application team, test conversation editing and model fallback behavior against the API’s documented state rules. If a product depends on retaining reasoning across changes, include that dependency in migration testing and assign ownership of failures at the model-provider boundary.",
+          "watch": "Independent adaptive testing, false-positive rates, and whether enforcement reduces useful data collected across repeated requests.",
+          "caveat": "Internal evaluation of a particular attack and defense setup; the result does not isolate which safeguard caused the improvement.",
+          "sources": [
+            {
+              "label": "OpenAI · Distillation studies and defense evaluation",
+              "url": "https://openai.com/index/combatting-adversarial-distillation/",
+              "publishedDate": "2026-11-20"
+            }
+          ]
+        },
+        {
+          "id": "watch-duty-radio-results",
+          "title": "Watch Duty uses AI transcription to bring incidents to human reviewers",
+          "category": "Products & adoption",
+          "company": "Google · Watch Duty",
+          "tags": [
+            "Enterprise adoption",
+            "Specialized models"
+          ],
+          "summary": "Google published results from Watch Duty’s Gemini-based radio monitoring tool. It converts noisy dispatch audio into searchable text and flags possible fires for reporters to verify. The operational value is broader monitoring and faster triage, with human judgment still between detection and public alerts.",
+          "why": "A monitoring product earns value by finding consequential events that operators would otherwise miss, while keeping verification workload manageable as coverage grows.",
+          "facts": [
+            "Google reports word error rate falling from 38% to 22.34% on degraded VHF audio.",
+            "Reported operation covers about 400 active feeds and over 200 hours of speech daily; testing above 10,000 feeds is a separate scale claim."
+          ],
+          "context": "Analog radio carries static and specialist terminology that make manual listening difficult. The collaboration used historical recordings and six months of embedded engineering to build transcription that supports incident verification. Google reports signals reaching reporters within 30 seconds; that is not the full time to a public warning. Its live-fire example occurred in July. November 20 brings the published operating results, not a newly occurring fire or first deployment.",
+          "insight": "Evaluate dispatch detection at the event level: missed fires, false alarms, reviewer time, and delay to a verified alert. A lower word error rate may still leave critical place names or numbers wrong. Before expanding coverage, budget for review staffing and measure performance on unfamiliar local terminology and poor reception. The deployment question is how many more feeds the same accountable team can monitor reliably.",
+          "watch": "Event-level precision and recall, verification delay, reviewer capacity, and sustained performance as geographic coverage expands.",
+          "caveat": "Partner-reported results; no independent validation, controlled alert-time comparison, or quantified reduction in harm is established.",
+          "sources": [
+            {
+              "label": "Google · Newly published Watch Duty deployment results",
+              "url": "https://blog.google/company-news/outreach-and-initiatives/google-org/watch-duty-gemini-tool/",
+              "publishedDate": "2026-11-20"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Choose the decision boundary before choosing the metric",
+          "description": "AI interpretation: Molecular reconstruction and radio transcription are intermediate capabilities. Their value depends on better experiment selection or verified alerts. Evaluate the downstream decision and the review work between the model output and action.",
+          "storyIds": [
+            "medchembench-evaluation",
+            "watch-duty-radio-results"
+          ]
+        },
+        {
+          "title": "Commitments need an operating owner",
+          "description": "AI interpretation: GPU financing creates delivery obligations, while extraction defenses require ongoing monitoring and enforcement. In both settings, name the team accountable for the gap between an announced capability and its dependable operation.",
+          "storyIds": [
+            "spacex-gpu-financing",
+            "openai-distillation-defenses"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-21T08:36:38.899Z",
+      "updatedAt": "2026-11-21T08:36:38.899Z"
+    },
     {
       "date": "2026-11-19",
       "headline": "AI efficiency moves into the workflow around the model",
@@ -3330,6 +3468,104 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-20",
+      "retrospective": false,
+      "paperId": "arxiv:2611.23388",
+      "title": "QDA: Closed-Loop LLM Quantization Design with Agents",
+      "headline": "Make quantization search cheap enough to repeat for each model",
+      "authors": "Xingyang Li, Tianlang Zhao, Song Han, Ligeng Zhu · MIT and NVIDIA",
+      "publicationDate": "2026-11-17",
+      "revisionDate": "2026-11-17",
+      "venue": "arXiv · cs.LG · v1",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "QDA combines an agent, reusable quantizers, and a fast evaluator to search for model-specific recipes that retain existing serving formats.",
+      "problem": "Quantization recipes combine transformations, rounding, scales, and calibration data. Their ranking changes with model and precision. Layer-local error misses accumulated effects, while repeatedly generating long reasoning answers makes full evaluation expensive. Combining separate research implementations also consumes engineering time.",
+      "method": [
+        {
+          "title": "Build many compatible candidates",
+          "description": "The agent proposes a recipe, builds it, reads feedback, and chooses the next change. The authors describe 21 composable post-training quantization methods and searches trying up to 36 candidates in eight hours. A shared library makes combinations practical without reimplementing every method during each search. Checkpoints must preserve the baseline format and use existing kernels."
+        },
+        {
+          "title": "Compare the served model’s predictions",
+          "description": "KL divergence measures how two probability distributions differ. QDA compares candidate next-token probabilities with the original model on hidden reference traces, using the actual serving kernel. Cached teacher probabilities make scoring cheap; the evaluator retains the top 128 tokens and groups the remainder. Thus the score captures errors that appear only in serving, while the agent cannot calibrate directly on the hidden traces."
+        },
+        {
+          "title": "Check whether reasoning actually finishes",
+          "description": "Promising candidates also generate complete answers. This exposes repetition and truncation that scoring fixed prefixes can miss. The agent uses both signals to revise the recipe; only its final submission receives benchmark evaluation. The diagram separates routine scoring from these selective checks."
+        }
+      ],
+      "results": [
+        {
+          "finding": "Higher accuracy at fixed quantization formats",
+          "setup": "Author-reported four-model study on GH200 with vLLM: average gains of 0.9/1.4/2.2 percentage points over the strongest public recipe at W4A16/W4A8/W3A16; 64 GPU-hours per search."
+        }
+      ],
+      "limitations": "Preprint; not independently reproduced here. KL is a proxy, and limited generation checks cannot establish reliability across customer workloads. Final benchmark evaluation is outside the search budget.",
+      "implications": "AI interpretation — For a model-serving team, the decision is whether repeated recipe search releases a useful checkpoint sooner than manual tuning. Compare total search, final validation, and engineer effort against the resulting task quality at your required precision. Keep production latency and cost per accepted task in that comparison.\n\nFor an accelerator team, test the evaluator on the exact kernel, scale format, and workload intended for deployment. A recipe that fits a supported format can reduce adoption work, but that does not establish portability to another runtime. Assign an owner to the quantizer–kernel contract and retain customer-specific acceptance tests.",
+      "figures": [
+        {
+          "title": "Two evaluation paths",
+          "alt": "Every candidate receives KL scoring; selected candidates also receive full-generation checks.",
+          "caption": "Simplified explanation by Afterlight, grounded in Li et al., Figure 3. Read each lane left to right; both return feedback to the agent. This is not experimental evidence.",
+          "sourceLabel": "Li et al. · QDA, Figure 3",
+          "sourceUrl": "https://arxiv.org/html/2611.23388v1#S4.F3",
+          "kind": "diagram",
+          "lanes": [
+            {
+              "label": "Every candidate",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Propose"
+                },
+                {
+                  "label": "Build"
+                },
+                {
+                  "label": "KL score"
+                },
+                {
+                  "label": "Revise"
+                }
+              ]
+            },
+            {
+              "label": "Selected candidates",
+              "flow": "sequence",
+              "nodes": [
+                {
+                  "label": "Generate answers"
+                },
+                {
+                  "label": "Check failures"
+                },
+                {
+                  "label": "Revise"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Original paper and version history",
+          "url": "https://arxiv.org/abs/2611.23388"
+        },
+        {
+          "label": "Full paper · mechanism and evaluation",
+          "url": "https://arxiv.org/html/2611.23388v1"
+        },
+        {
+          "label": "Author’s explanation · search loop and composable library",
+          "url": "https://huggingface.co/papers/2611.23388"
+        }
+      ],
+      "publishedAt": "2026-11-21T08:50:42.466Z",
+      "updatedAt": "2026-11-21T08:50:42.466Z"
+    },
     {
       "date": "2026-11-19",
       "retrospective": false,
