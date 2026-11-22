@@ -1,7 +1,57 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-21T09:49:12.971Z",
+  "generatedAt": "2026-11-22T11:23:29.915Z",
   "editions": [
+    {
+      "date": "2026-11-21",
+      "headline": "AI-assisted mathematics gains an independently checkable result",
+      "dek": "November 21, Pacific time: the Lean and Mathlib communities certify an AI-assisted Riemann Hypothesis proof. Today’s single story examines what their checks establish—and what remains outside that evidence.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "riemann-proof-verification",
+          "title": "Independent checks strengthen the evidence for an AI-assisted Riemann proof",
+          "category": "Models & research",
+          "company": "Lean and Mathlib communities · Levent Alpöge · Anthropic",
+          "tags": [
+            "Specialized models",
+            "Security & trust",
+            "Enterprise adoption"
+          ],
+          "summary": "The Lean and Mathlib communities certified Levent Alpöge’s Riemann Hypothesis proof on November 21, following his Claude-assisted announcement the previous day. Their verification separates whether the code proves the intended mathematical statement from whether its proof obeys the formal system’s rules.",
+          "why": "For teams adopting AI in correctness-sensitive work, the useful lesson is designing outputs that can be independently checked, with explicit ownership of the specification.",
+          "facts": [
+            "The community reports successful compilation of a 17-million-line Lean library and checks against Mathlib’s established statement of the Riemann Hypothesis.",
+            "Andrew Sutherland’s verification log records a sandboxed rebuild producing the same proof export and acceptance by independently written checkers."
+          ],
+          "context": "Lean is a proof assistant: it represents mathematical statements and checks deductions against explicit logical rules. Mathlib supplies shared mathematical definitions and results. A successful build alone is insufficient: code could establish a different claim from the one readers intended. The reviewers therefore isolated the target statement and compared it with the submitted theorem, then checked an exported proof independently of the original source code. This reduces reliance on trusting either the AI-generated argument or one checker implementation. Sutherland’s log also distinguishes checks that passed from additional runs still underway. Alpöge says he worked with Claude and intends to explain and simplify the argument; the verification establishes formal correctness, not how much discovery came from the model or how readily people can understand the proof.",
+          "insight": "AI interpretation: For a hardware or systems team, this suggests evaluating a bounded proof-producing workflow where an engineer owns the specification and a separate verifier accepts or rejects the output. Start with a property whose failure is expensive and whose formal statement is manageable. Compare total engineering time—including specification, failed attempts, checking, and maintenance—with the existing process. A checkable artifact can improve customer confidence, but only if the specification captures the requirement the customer actually needs.",
+          "watch": "AI interpretation: Look for reproducible generation workflows, disclosed model and compute budgets, and measurements of expert effort. One verified result does not establish repeatable research productivity.",
+          "caveat": "Afterlight reviewed the sources, not the complete proof by rerunning it. Sutherland’s log was updated November 22 at 04:35 UTC—November 21 at 20:35 Pacific—and still listed additional verification runs as unfinished.",
+          "sources": [
+            {
+              "label": "Lean and Mathlib communities · November 21 verification statement",
+              "url": "https://leanprover-community.github.io/blog/posts/riemann-hypothesis/",
+              "publishedDate": "2026-11-21"
+            },
+            {
+              "label": "Andrew Sutherland, MIT · Verification results as of November 21 Pacific",
+              "url": "https://math.mit.edu/~drew/grh/",
+              "publishedDate": "2026-11-22"
+            },
+            {
+              "label": "Levent Alpöge · Original November 20 announcement",
+              "url": "https://alpo.ge/remark.pdf",
+              "publishedDate": "2026-11-20"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-22T08:37:35.062Z",
+      "updatedAt": "2026-11-22T08:37:35.062Z"
+    },
     {
       "date": "2026-11-20",
       "headline": "AI deployment needs evidence at the point where decisions become costly",
@@ -3468,6 +3518,63 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-21",
+      "retrospective": false,
+      "paperId": "arxiv:2611.26268",
+      "title": "Accelerating Mixture of Block Attention via Dynamic Routing, KV-Centric Execution and Runtime Pipelining",
+      "headline": "Make sparse attention reuse the data it selects",
+      "authors": "Yingqi Shi, Junru Lu, Yun Liu, Di Yin, Xing Sun",
+      "publicationDate": "2026-11-19",
+      "revisionDate": "2026-11-19",
+      "venue": "arXiv · cs.DC · v1",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "LightningMoBA combines adaptive block selection with GPU work scheduling. The useful change is turning an irregular sparse pattern into work that reuses KV data and overlaps transfers with computation.",
+      "problem": "Mixture of Block Attention (MoBA) scores groups of keys and keeps selected blocks for each query. FlashMoBA uses a fixed Top-k count and assigns work by query range. That can retain weak blocks for one query while dropping useful ones for another. Separate query ranges can also reload the same KV block, leaving fewer useful rows per matrix tile. Reduced attention arithmetic therefore need not translate into proportional speedup.",
+      "method": [
+        {
+          "title": "Select by relative score, rather than a fixed count",
+          "description": "LightningMoBA keeps optional blocks whose scores lie within a margin of that query’s strongest preceding block. A sharply concentrated query can retain fewer blocks; a diffuse query can retain more. Required initial and nearby blocks remain. The scorer and model weights stay unchanged. Held-out calibration sets the threshold to match an average retention budget, rather than enforcing that count on every query."
+        },
+        {
+          "title": "Group consumers around the KV block",
+          "description": "Within each query head, selected query rows are grouped by the KV block they need. Each work unit reuses its loaded K/V tile across those rows. Fanout—the number of queries selecting a block—can be highly uneven. Popular blocks are therefore divided into bounded tasks, trading some repeated loads for better parallelism and a shorter scheduling tail."
+        },
+        {
+          "title": "Overlap two different access patterns",
+          "description": "On Hopper, contiguous K/V transfers and irregular query gathers use separate producer paths while Tensor Cores compute. The released default kernel requires SM90, CUDA 12.3 or later, BF16 inputs and head dimension 128. Its sparse prefill is paired with dense decoding in the main evaluation."
+        }
+      ],
+      "results": [
+        {
+          "finding": "Table 1 reports 1.20–1.60× generation-loop speedups across five checkpoints.",
+          "setup": "Author measurements versus FlashMoBA: 6,500 RULER examples, 4K–128K contexts, batch 1, tensor parallelism 8, matched average Top-16 retention; both use CUDA Graph dense decode. RULER tests long-context retrieval and reasoning."
+        }
+      ],
+      "limitations": "Not independently reproduced. Table 1 and the repository agree on the speedup range above; adjacent paper prose gives a different range. Quality gains are uneven, including regressions at some lengths. The timing covers an evaluation loop, not a production latency guarantee. Hopper-specific pipelining and batch-one tests limit direct extrapolation.",
+      "implications": "AI interpretation: For a long-document service, test accepted answers per GPU-hour at the required tail latency, including failures caused by omitted context. Assign threshold calibration and regression checks to the serving team. For an NPU designer, investigate concurrent indexed gathers, regular transfers and matrix work before projecting these gains onto different hardware; sparse FLOP counts alone miss that execution requirement.",
+      "sources": [
+        {
+          "label": "Original preprint · metadata and version",
+          "url": "https://arxiv.org/abs/2611.26268"
+        },
+        {
+          "label": "Full paper · methods, Table 1 and appendices",
+          "url": "https://arxiv.org/html/2611.26268v1"
+        },
+        {
+          "label": "Authors’ implementation and supported kernel configurations",
+          "url": "https://github.com/Tencent/LightningMoBA"
+        },
+        {
+          "label": "Author explanation of routing and execution",
+          "url": "https://huggingface.co/papers/2611.26268"
+        }
+      ],
+      "publishedAt": "2026-11-22T08:55:50.528Z",
+      "updatedAt": "2026-11-22T08:55:50.528Z"
+    },
     {
       "date": "2026-11-20",
       "retrospective": false,
