@@ -1,7 +1,52 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-22T11:23:29.915Z",
+  "generatedAt": "2026-11-23T09:02:31.738Z",
   "editions": [
+    {
+      "date": "2026-11-22",
+      "headline": "A proposal to tie frontier development to measurable safety progress",
+      "dek": "November 22, Pacific time: OpenAI publishes internal pretraining measurements and proposes shared development limits. The central question is whether a comparable metric can support an enforceable decision.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "openai-perplexity-pacing-proposal",
+          "title": "OpenAI proposes common development limits tied to pretraining progress",
+          "category": "Policy & society",
+          "company": "OpenAI",
+          "tags": [
+            "AI governance",
+            "Security & trust",
+            "AI infrastructure"
+          ],
+          "summary": "OpenAI chief scientist Jakub Pachocki published internal pretraining measurements and proposed limits that frontier developers would cross only after meeting monitoring milestones. Reuters reports Sam Altman’s support. This is a proposal for shared standards; it does not establish an industry agreement.",
+          "why": "A development gate could change when capability gains become deployable products. Its usefulness depends on comparable measurements, defined milestones, and accountable decisions to proceed.",
+          "facts": [
+            "The disclosed measurements use a fixed held-out snapshot of OpenAI’s internal codebase.",
+            "Pachocki proposes combining perplexity with other measurements, with further development conditional on better understanding and monitoring of model behavior."
+          ],
+          "context": "Perplexity measures average next-token prediction quality; lower is better. Its logarithm is cross-entropy loss. Pachocki argues that it offers continuity as downstream benchmarks saturate and change. But comparison requires care: evaluation data and training mixtures differ across labs, and better reasoning can increase task capability without reducing this metric. A threshold therefore needs a shared measurement protocol and complementary evaluations. The proposed gate would connect a development limit to a concrete monitoring milestone. The essay does not supply a finalized cross-lab protocol or a jointly adopted threshold.",
+          "insight": "AI interpretation: A model team should treat the measurement protocol, independent review, and authority to approve further development as separate design decisions. For a product or capacity plan, distinguish expected training progress from expected release availability. Keep customer commitments conditional on actual release evidence; this proposal alone provides no basis for assuming a pause or calculating its financial impact.",
+          "watch": "AI interpretation: Watch for other labs’ commitments, a comparable evaluation dataset, explicit monitoring milestones, and a process for resolving disputed measurements.",
+          "caveat": "The measurements are company-reported and dataset-specific. The proposal is neither an enacted rule nor a confirmed industry commitment.",
+          "sources": [
+            {
+              "label": "OpenAI · Original essay and measurement limitations",
+              "url": "https://openai.com/index/perplexity-and-intelligence/",
+              "publishedDate": "2026-11-22"
+            },
+            {
+              "label": "Reuters · Proposal and Altman’s support",
+              "url": "https://www.reuters.com/business/openai-scientist-proposes-industry-ai-limits-tied-model-intelligence-metric-2026-11-22/",
+              "publishedDate": "2026-11-22"
+            }
+          ]
+        }
+      ],
+      "connections": [],
+      "publishedAt": "2026-11-23T08:30:29.319Z",
+      "updatedAt": "2026-11-23T08:30:29.319Z"
+    },
     {
       "date": "2026-11-21",
       "headline": "AI-assisted mathematics gains an independently checkable result",
@@ -3518,6 +3563,49 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-22",
+      "paperId": "arxiv:2611.25971",
+      "title": "Kameleo: In-Situ Activation-Precision Selection for Bit-Serial LLM Accelerators",
+      "headline": "Choose activation precision from deployment data",
+      "authors": "Robin Geens, Thomas Debelle, Marian Verhelst, Chao Fang",
+      "publicationDate": "2026-11-19",
+      "venue": "arXiv · cs.AR · v1",
+      "status": "Preprint",
+      "category": "AI chip architecture",
+      "summary": "Kameleo replaces offline precision calibration with local output comparisons.",
+      "problem": "Bit-serial accelerators process activation mantissa bits sequentially; shorter mantissas save cycles. Prior calibration repeatedly evaluates whole-model perplexity, a next-token prediction uncertainty measure. Settings selected on one dataset can lose quality on another.",
+      "method": [
+        {
+          "title": "Reuse partial sums",
+          "description": "Kameleo captures reduced-precision candidates during full-precision computation: intermediate sums already contain the shorter-mantissa results. Extra registers preserve candidates for comparison."
+        },
+        {
+          "title": "Select, then lock",
+          "description": "A local rule counts outputs exceeding a relative-error tolerance. Two passes narrow nine candidate lengths, then lock each GEMM’s precision. Selection uses deployment tokens; outputs remain usable. Reselection timing is an operating policy. The shortest passing length wins; fewer retained bits shorten subsequent computation."
+        }
+      ],
+      "results": [
+        {
+          "finding": "2.12–2.29× fewer prefill matrix-unit cycles on WikiText2",
+          "setup": "Four models, INT4 weights; cycle baseline: FP16 activations. Perplexity degradation stayed below 1% against full 11-bit block-floating activations, which share exponents across groups."
+        }
+      ],
+      "limitations": "Software precision emulation and RTL cycle simulation, not silicon measurements; no independent reproduction here. A local error proxy cannot guarantee future task accuracy.",
+      "implications": "AI interpretation — systems/chips: For an NPU supplier, the product opportunity is reducing customer-specific calibration work. The adoption test should pair a drifting customer workload with task acceptance checks and a defined fallback precision. Runtime owners must decide when to reselect and account for the slower selection period. Measure end-to-end latency and energy through those transitions before committing hardware area: matrix-unit cycle savings alone cannot establish cost per successful task.",
+      "sources": [
+        {
+          "label": "Original preprint · metadata and version history",
+          "url": "https://arxiv.org/abs/2611.25971"
+        },
+        {
+          "label": "Full paper · mechanism, Table I and evaluation",
+          "url": "https://arxiv.org/html/2611.25971v1"
+        }
+      ],
+      "publishedAt": "2026-11-23T08:47:34.528Z",
+      "updatedAt": "2026-11-23T08:47:34.528Z"
+    },
     {
       "date": "2026-11-21",
       "retrospective": false,
