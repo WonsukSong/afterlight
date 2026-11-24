@@ -1,7 +1,156 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-23T09:02:31.738Z",
+  "generatedAt": "2026-11-24T17:42:58.720Z",
   "editions": [
+    {
+      "date": "2026-11-23",
+      "headline": "AI advantage depends on integration—and on who controls deployment.",
+      "dek": "November 23, Pacific time: Amazon moves to acquire optimization technology, Shirudo targets the patching gap, Google extends personal context into Search, and NVIDIA restores its CEO while governance work continues.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "amazon-decart-optimization",
+          "title": "Amazon agrees to buy Decart technology and hire its optimization team",
+          "category": "Chips & infrastructure",
+          "company": "Amazon · Decart",
+          "tags": [
+            "AI infrastructure",
+            "Cost of intelligence"
+          ],
+          "summary": "Amazon signed an agreement to buy the technology behind Decart Optimization Stack and bring its founders and engineering team into Amazon. The proposed transaction targets inference and custom-silicon performance; it does not yet establish a delivered improvement in customer workload cost.",
+          "why": "For a chip platform, owning the software expertise that turns hardware capacity into usable performance can be as strategic as designing another accelerator.",
+          "facts": [
+            "Amazon says the teams have collaborated on Trainium since 2025.",
+            "Completion remains subject to closing conditions, including regulatory clearance."
+          ],
+          "context": "The announcement describes optimization across hardware and software rather than a new chip architecture. Amazon is moving an existing collaboration toward ownership of the underlying technology and recruitment of its developers. Reuters describes DOS as helping workloads run across different suppliers’ chips; Amazon emphasizes strengthening its own inference and silicon stack. Neither account supplies a matched workload benchmark for the proposed integration. There is therefore no basis here to assign the benefit specifically to kernels, compilation, scheduling, or memory movement, or to translate it into a percentage reduction in serving cost.",
+          "insight": "AI interpretation: A Trainium buyer should ask which models and operators become supported, how much porting work disappears, and who owns performance regressions after updates. The competitive opportunity is a repeatable migration path that makes the platform easier to adopt. If improvements remain bespoke engineering engagements, the benefit may be harder to scale across customers.",
+          "watch": "AI interpretation: Track closing, supported software releases, migration effort, and cost per accepted task at matched quality and latency—not only peak chip utilization.",
+          "caveat": "This is a technology-purchase and hiring agreement, not a completed integration. Amazon has not disclosed financial terms; reported deal valuations remain unconfirmed.",
+          "sources": [
+            {
+              "label": "Amazon · Agreement and conditions",
+              "url": "https://www.aboutamazon.com/news/company-news/amazon-decart-ai-optimization",
+              "publishedDate": "2026-11-23"
+            },
+            {
+              "label": "Reuters · Technology scope and undisclosed terms",
+              "url": "https://www.reuters.com/business/retail-consumer/amazon-buy-decarts-ai-chip-optimization-tech-latest-ai-talent-grab-2026-11-23/",
+              "publishedDate": "2026-11-23"
+            }
+          ]
+        },
+        {
+          "id": "shirudo-runtime-protection",
+          "title": "Shirudo puts temporary protection between vulnerability discovery and patch deployment",
+          "category": "Products & adoption",
+          "company": "OpenAI · Cisco",
+          "tags": [
+            "Security & trust",
+            "AI agents",
+            "Enterprise adoption"
+          ],
+          "summary": "OpenAI and Cisco released Shirudo, an open-source Linux runtime for temporary security protections. In a controlled test, a Codex-generated shield blocked a Java4Shell exploit against running Elasticsearch. Operators retain deployment control while a permanent fix is prepared and tested.",
+          "why": "Faster vulnerability discovery helps only if operators can protect exposed services without breaking legitimate work during the interval before a patch is deployed.",
+          "facts": [
+            "Shields use eBPF, which runs small programs at selected operating-system hooks.",
+            "Signed shields and TPM-backed records support verification of what was loaded or removed."
+          ],
+          "context": "A broad block on a vulnerable operation can also stop valid requests. Shirudo instead supports targeted checks on running code paths, with observation before enforcement. Cisco’s walkthrough describes the demonstration shield as injected Java bytecode, rather than a replacement kernel patch. It added an input check to Java’s Base64 decoder and rejected malicious input without restarting Elasticsearch. The Linux eBPF verifier checks program safety rules; signatures establish authorized provenance. Those checks serve different purposes from testing whether the shield actually stops an exploit while preserving application behavior. The announcement describes a temporary protection mechanism, not automatic replacement of permanent patches.",
+          "insight": "AI interpretation: Pilot this where patch rollout is slow and service interruption is expensive. Security engineering should own exploit validation; service owners should approve compatibility and rollback criteria. Measure exposure time, false blocks and operational effort together. Faster shield generation is useful only when review and deployment can keep pace.",
+          "watch": "AI interpretation: Test workload overhead, false-positive rates, rollback reliability and the process for retiring shields after permanent remediation.",
+          "caveat": "The reported exploit block is a controlled company test, not evidence of fleet-wide protection or independently measured availability gains.",
+          "sources": [
+            {
+              "label": "OpenAI · Release and controlled test",
+              "url": "https://openai.com/index/introducing-shirudo/",
+              "publishedDate": "2026-11-23"
+            },
+            {
+              "label": "Cisco Isovalent · Technical walkthrough",
+              "url": "https://isovalent.com/blog/post/cisco-openai-shirudo/",
+              "publishedDate": "2026-11-23"
+            }
+          ]
+        },
+        {
+          "id": "google-search-wallet-context",
+          "title": "Google brings Wallet context into Search, with Drive and Gemini connections to follow",
+          "category": "Products & adoption",
+          "company": "Google",
+          "tags": [
+            "AI agents",
+            "Enterprise adoption",
+            "Security & trust"
+          ],
+          "summary": "Google began rolling out an optional Wallet connection for Personal Intelligence in Search AI Mode. Drive and Gemini-app connections are planned for the coming weeks. The change puts personal context inside an existing search workflow, while Wallet access remains read-only.",
+          "why": "An assistant can become more useful by reducing repeated context gathering; distribution and permissioned data access may differentiate products independently of base-model scores.",
+          "facts": [
+            "Users can enable or disable connected apps in Search personalization settings.",
+            "Google says a forthcoming Personalization icon will show the context used in tailored responses."
+          ],
+          "context": "Generic search begins with the information supplied in a query. These connections let AI Mode also draw on opted-in account context: Wallet can inform spending and card-benefit questions, while the planned Drive connection can draw on documents. The planned Gemini connection would carry context between chat and Search. This is an integration and distribution change, not a disclosed model-architecture improvement. Google explicitly limits Wallet access to reading account information; the feature cannot move, manage or invest money. The rollout announcement does not quantify answer accuracy or user time saved.",
+          "insight": "AI interpretation: For a specialized assistant vendor, the competitive question is which workflow it completes better once general search already has personal context. Test differentiation through reliable task completion, transparent data use and useful controls, rather than another chat interface. For Google, increased context could improve retention, but that depends on users choosing to connect accounts and trusting the results.",
+          "watch": "AI interpretation: Track actual connector availability, source visibility, errors caused by stale context and whether users continue using the feature after opting in.",
+          "caveat": "Wallet rollout begins now; Drive, Gemini and context-display additions are not all immediately available. Read access is not transaction authority.",
+          "sources": [
+            {
+              "label": "Google · Rollout and access boundaries",
+              "url": "https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/",
+              "publishedDate": "2026-11-23"
+            }
+          ]
+        },
+        {
+          "id": "nvidia-huang-reinstatement",
+          "title": "NVIDIA reinstates Huang while keeping its investigation and compliance work active",
+          "category": "Business & markets",
+          "company": "NVIDIA",
+          "tags": [
+            "AI infrastructure",
+            "AI regulation"
+          ],
+          "summary": "NVIDIA reinstated Jensen Huang as president, CEO and a board director, effective immediately. The board separately said its independent investigation will continue. Leadership continuity and the resolution of governance questions are therefore distinct developments for customers planning long-term infrastructure commitments.",
+          "why": "Large infrastructure purchases depend on sustained execution and access to supply; a leadership decision does not itself resolve regulatory or contractual uncertainty.",
+          "facts": [
+            "Harvey Jones remains board chair; Colette Kress continues as CFO after serving as interim CEO.",
+            "NVIDIA is seeking a chief compliance officer and has established independent national-security and export-control oversight."
+          ],
+          "context": "The board said its unanimous reinstatement decision followed discussions with Huang and input from senior US government officials. Its confidence concerning national-security risk is the board’s stated assessment. The company also said an independent-director committee, assisted by outside counsel, would finish its investigation and that cooperation with government inquiries would continue. These parallel actions matter: the operating leadership decision is immediate, while the investigative and compliance processes remain open. The announcement contains no new shipment commitment, export authorization or product-performance result.",
+          "insight": "AI interpretation: Infrastructure buyers should keep procurement decisions tied to delivery milestones, support obligations and applicable export eligibility. Leadership continuity may simplify escalation and roadmap discussions, but should not substitute for those contractual checks. Platform teams should also distinguish dependence on one executive from dependence on the broader engineering and supplier organization.",
+          "watch": "AI interpretation: Watch investigation outcomes, the compliance appointment, and any concrete changes to customer eligibility or delivery commitments.",
+          "caveat": "The reinstatement does not establish the findings of an unfinished investigation. No inference about individual wrongdoing is warranted from this announcement.",
+          "sources": [
+            {
+              "label": "NVIDIA · Board decision and ongoing processes",
+              "url": "https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director",
+              "publishedDate": "2026-11-23"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Integration can decide who captures the value",
+          "description": "AI interpretation: Amazon seeks optimization expertise for its silicon platform; Google adds permissioned context to Search. Both connect technical assets to an existing customer channel. Buyers should test the resulting workflow advantage separately from the cost of becoming more dependent on that platform.",
+          "storyIds": [
+            "amazon-decart-optimization",
+            "google-search-wallet-context"
+          ]
+        },
+        {
+          "title": "Capability and authority need separate checks",
+          "description": "AI interpretation: Shirudo keeps deployment approval with operators; Google distinguishes reading account context from moving money. Both illustrate a useful product boundary: determine what the system can do, then explicitly define what it is allowed to do.",
+          "storyIds": [
+            "shirudo-runtime-protection",
+            "google-search-wallet-context"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-24T08:35:42.680Z",
+      "updatedAt": "2026-11-24T08:35:42.680Z"
+    },
     {
       "date": "2026-11-22",
       "headline": "A proposal to tie frontier development to measurable safety progress",
@@ -3563,6 +3712,49 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-23",
+      "paperId": "arxiv:2611.27323",
+      "title": "Cruella: A Unified Microscaling and Floating-Point Dot-Product Unit for LLM Inference on FPGAs",
+      "headline": "Share the hardware across precision modes",
+      "authors": "Jinho Yang and 14 coauthors",
+      "publicationDate": "2026-11-20",
+      "venue": "arXiv · cs.AR · v1",
+      "status": "Preprint",
+      "category": "AI chip architecture",
+      "summary": "Shared FPGA arithmetic for mixed-precision decoding.",
+      "problem": "Single-batch decode alternates these modes. Separate units idle during the other mode; expanding MXFP4 into BF16 increases alignment logic.",
+      "method": [
+        {
+          "title": "Combine before aligning",
+          "description": "MXFP4 blocks share a power-of-two scale. Cruella pre-aligns four activations, truncates them, and sums their products before the shared alignment-and-accumulation pipeline. Four narrow products occupy one pipeline input. Pre-alignment shifts activations to their largest exponent; grouping reduces the number of expensive per-product alignment shifters."
+        },
+        {
+          "title": "Reuse packed multipliers",
+          "description": "An FPGA DSP slice packs two narrow products with a sign correction. BF16 mantissas split into slices for the same multipliers; recombination restores their products. Both modes reuse the downstream pipeline."
+        }
+      ],
+      "results": [
+        {
+          "finding": "23% fewer DSP slices; 36% fewer LUTs (programmable logic)",
+          "setup": "Post-route U55C unit comparison against separate units at equal per-mode throughput."
+        }
+      ],
+      "limitations": "Pre-alignment adds up to 0.7% perplexity (prediction uncertainty) degradation versus exact MXFP4 products on tested dense models. Board decoding was measured; unit comparisons use place-and-route. No independent reproduction here. Overlapping modes across sub-batches can favor separate units.",
+      "implications": "AI interpretation — systems/chips: For an FPGA supplier supporting changing checkpoint formats, the buying question is whether shared arithmetic leaves enough resources for the rest of a usable inference system. Evaluate a customer’s complete operator mix and context lengths before choosing a specialized low-bit unit. A resource saving becomes valuable if it enables a better configuration or avoids a larger device; it does not automatically shorten a request. Compare accepted-task latency, energy and engineering effort on the resulting system. For an ASIC team, treat this as a mapping idea to investigate: FPGA hard multipliers and programmable logic have a different cost balance from custom gates.",
+      "sources": [
+        {
+          "label": "Original preprint · authors and version history",
+          "url": "https://arxiv.org/abs/2611.27323"
+        },
+        {
+          "label": "Full paper · Sections 4 and 7, Tables 5–6",
+          "url": "https://arxiv.org/html/2611.27323v1"
+        }
+      ],
+      "publishedAt": "2026-11-24T08:48:41.796Z",
+      "updatedAt": "2026-11-24T08:48:41.796Z"
+    },
     {
       "date": "2026-11-22",
       "paperId": "arxiv:2611.25971",
