@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-24T17:42:58.720Z",
+  "generatedAt": "2026-11-25T12:53:01.656Z",
   "editions": [
     {
       "date": "2026-11-23",
@@ -3712,6 +3712,51 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-24",
+      "retrospective": false,
+      "paperId": "arxiv:2611.27376",
+      "title": "Composable Soft-Prompt Distillation of RL Experts: Toward Continual Post-Training",
+      "headline": "Add expert behavior through inputs while keeping the model fixed",
+      "authors": "Zhen Zhang, Changyi Yang, Xuehai He and 25 coauthors",
+      "publicationDate": "2026-11-20",
+      "revisionDate": "2026-11-24",
+      "venue": "arXiv · cs.LG · v2",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "CSPD distills reinforcement-learning experts into independently trained input modules.",
+      "problem": "Combining experts through weight updates can cause interference. Multi-teacher distillation retrains a shared student when capabilities change; separate low-rank weight adapters add work during decoding.",
+      "method": [
+        {
+          "title": "Train the input instead of the backbone",
+          "description": "A soft prompt is a sequence of learned embedding vectors, rather than readable instructions. CSPD freezes the pre-RL model and trains 256 vectors per expert to predict verifier-approved teacher responses. Each module uses only its own teacher and data. The loss rewards reproducing accepted responses, changing how the fixed model uses its existing capabilities."
+        },
+        {
+          "title": "Prepare independent modules to coexist",
+          "description": "Half the training examples put unrelated same-domain text before the prompt, preparing it to follow other inputs. Inference concatenates selected prompts without joint training. They pass through prefill; decode attends to cached keys and values. Adding modules therefore increases context and KV storage."
+        }
+      ],
+      "results": [
+        {
+          "finding": "Four composed prompts scored 67.83 versus 67.79 for multi-teacher distillation.",
+          "setup": "Authors’ Qwen3-4B-derived student; mean across math, code, science and instruction-following benchmarks."
+        }
+      ],
+      "limitations": "Composition used one backbone and training seed; domains can interfere. Prompts require re-distillation after backbone changes. No independent reproduction verified.",
+      "implications": "AI interpretation — systems/chips: For a platform maintaining customer-specific skills, pilot these modules against the current adapter workflow. Start with two skills, add a third, and compare accepted outcomes, regression review effort and total serving cost. A shared checkpoint could simplify rollback and capacity planning, but a platform owner must still validate combinations.\n\nTreat the backbone as a compatibility commitment: upgrading it could trigger library-wide revalidation. For accelerator evaluation, measure extra prefill and KV pressure at the actual module count and concurrency. A compact module’s overhead should not be priced as a saving for a large library.",
+      "sources": [
+        {
+          "label": "Original paper · Submission and revision record",
+          "url": "https://arxiv.org/abs/2611.27376"
+        },
+        {
+          "label": "Full paper · Method, Table 2 and limitations",
+          "url": "https://arxiv.org/html/2611.27376v2"
+        }
+      ],
+      "publishedAt": "2026-11-25T08:52:49.828Z",
+      "updatedAt": "2026-11-25T08:52:49.828Z"
+    },
     {
       "date": "2026-11-23",
       "paperId": "arxiv:2611.27323",
