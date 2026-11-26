@@ -1,7 +1,125 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-25T12:53:01.656Z",
+  "generatedAt": "2026-11-26T15:14:03.623Z",
   "editions": [
+    {
+      "date": "2026-11-25",
+      "headline": "AI efficiency needs proof at the service, task and infrastructure level.",
+      "dek": "November 25, Pacific time: Anthropic details production verification, JetBrains offers a concise coding model, and the FCC authorizes a new orbital compute platform.",
+      "preview": false,
+      "retrospective": false,
+      "stories": [
+        {
+          "id": "anthropic-rust-api-verification",
+          "title": "Anthropic shows how production behavior verified its Rust API migration",
+          "category": "Products & adoption",
+          "company": "Anthropic",
+          "tags": [
+            "AI agents",
+            "Enterprise adoption",
+            "Cost of intelligence"
+          ],
+          "summary": "Anthropic published the verification approach behind its completed Python-to-Rust Messages API migration. It reports lower CPU use and first-token latency. The useful new evidence is how production comparisons caught differences that a largely passing test suite missed during an agent-assisted rewrite.",
+          "why": "For an engineering owner considering a rewrite, the business case depends on preserving customer behavior while reducing operating cost and the burden of verification.",
+          "facts": [
+            "Anthropic reports about 70% lower CPU per request in one measured region and about 20% lower median first-token latency for measured Claude Code traffic."
+          ],
+          "context": "The API performs validation, prompt construction and output parsing around inference. A partial Rust rewrite left repeated language crossings; the full rewrite moved the surrounding request path. Verification was harder than generating code: tests changed alongside implementations and missed production combinations. Anthropic shadowed requests, running the model once and replaying its output to Rust so generation randomness could not obscure API differences. Stage-by-stage comparisons identified mismatches without exposing customer text to debugging agents. The resulting loop connected production discrepancies to locally generated reproductions and fixes.",
+          "insight": "AI interpretation: Before authorizing a broad agent-assisted migration, fund the independent comparison path and define which behaviors must remain identical. The service owner should approve those criteria and rollout gates. If the team cannot isolate nondeterminism or prevent duplicated side effects, generating replacement code faster may simply enlarge the verification backlog. Measure infrastructure savings alongside engineer review effort and customer-visible regressions.",
+          "watch": "AI interpretation: Track parity on real traffic, exceptions requiring human judgment, rollback reliability and sustained CPU savings under comparable workloads.",
+          "caveat": "This is a newly published retrospective of a September migration. Company measurements use different windows and populations; they are not controlled model-inference benchmarks.",
+          "sources": [
+            {
+              "label": "Anthropic · Migration method, measurement scope and dates",
+              "url": "https://www.anthropic.com/research/migrating-api-to-rust",
+              "publishedDate": "2026-11-25"
+            }
+          ]
+        },
+        {
+          "id": "mellum-instruct-task-routing",
+          "title": "Mellum2.1 Instruct makes shorter answers a deployable coding-model choice",
+          "category": "Models & research",
+          "company": "JetBrains",
+          "tags": [
+            "Specialized models",
+            "AI agents",
+            "Cost of intelligence"
+          ],
+          "summary": "JetBrains announced Mellum2.1 Instruct, a direct-answer sibling of its Thinking model. It retains the 12B-parameter mixture-of-experts architecture with 2.5B active parameters. The product decision is which coding steps benefit from shorter generation, and which still need a stronger reasoning path.",
+          "why": "A local coding assistant can reduce waiting and serving work on routine steps, provided retries and escalation do not consume the apparent token savings.",
+          "facts": [
+            "JetBrains reports 40.4% resolved on SWE-bench Verified for Instruct versus 47.0% for Thinking in its evaluation.",
+            "The release includes Apache 2.0 weights, GGUF builds and a multi-token prediction head."
+          ],
+          "context": "The release changes post-training and response behavior rather than the base architecture. Training first covers standalone tasks, then repository work with shell and file tools rewarded by hidden-test success. JetBrains adjusted the length penalty for concise direct answers. Its model card reports roughly half the generated tokens on repository validation tasks versus Thinking; this is distinct from faster tokens per second. Agentic benchmark comparisons use Pi v0.73.1 with shell/file tools, each model’s default sampling, a 114K context and up to 16K tokens per turn. Harder reasoning tasks retain a substantial quality gap.",
+          "insight": "AI interpretation: Route bounded edits, command selection and code questions to a pilot deployment, with acceptance tests and explicit escalation rules. Compare total time and compute per accepted change, including the stronger model used after failure. Self-hosting also transfers runtime upgrades, model evaluation and capacity management to the buyer; code privacy alone does not establish an economical operating model.",
+          "watch": "AI interpretation: Measure retry rates, human corrections, output length and latency on the same repositories and hardware before expanding task coverage.",
+          "caveat": "November 25 is the announcement date; repository history shows weights uploaded November 17. Results are vendor-reported. Fewer output tokens do not imply equal full-workflow savings.",
+          "sources": [
+            {
+              "label": "JetBrains · Instruct announcement and training changes",
+              "url": "https://blog.jetbrains.com/ai/2026/11/mellum2-1-instruct-is-out-bringing-faster-answers-for-coding-agents/",
+              "publishedDate": "2026-11-25"
+            },
+            {
+              "label": "JetBrains · Model card and evaluation setup (updated November 19)",
+              "url": "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Instruct",
+              "publishedDate": "2026-11-19"
+            }
+          ]
+        },
+        {
+          "id": "fcc-starmind-authorization",
+          "title": "FCC authorization opens a development path for orbital AI infrastructure",
+          "category": "Policy & society",
+          "company": "FCC · SpaceX",
+          "tags": [
+            "AI infrastructure",
+            "Policy & regulation"
+          ],
+          "summary": "The FCC authorized SpaceX’s Starmind constellation of up to one million orbital compute modules, subject to conditions. The decision advances a proposed infrastructure platform through a regulatory gate. It does not establish delivered AI capacity, a customer service date or competitive workload economics.",
+          "why": "Infrastructure commitments become actionable at different stages. A regulatory authorization can support development while leaving launch execution, service performance and customer economics to be demonstrated.",
+          "facts": [
+            "Reuters reports deployment milestones of starting by November 2033, reaching 10% by November 2035 and 50% by November 2038."
+          ],
+          "context": "The system is designed around optical communications, with radio links authorized for backup telemetry, tracking and command—the functions needed to monitor and control satellites. The order places those radio operations on an unprotected, non-interference basis: they cannot claim protection from other operators or cause harmful interference. This establishes part of the operating permission for the proposed network. SpaceX’s earlier application sought a large constellation for processing data used on Earth; the new development is authorization, rather than a measured improvement in AI serving. The maximum licensed count should not be read as a deployment forecast.",
+          "insight": "AI interpretation: An AI infrastructure buyer should treat this as a development option until a supplier can quote usable capacity, service availability, data-transfer performance and full delivered cost. A chip or systems vendor considering the market should first identify a workload whose value survives communications and maintenance constraints. Staged demonstrations would provide a stronger basis for product investment than the authorized satellite count.",
+          "watch": "AI interpretation: Look for operational demonstrations, customer contracts, measured application performance and launch milestones before including orbital capacity in a near-term sourcing plan.",
+          "caveat": "Authorization is conditional. No independently verified workload-cost advantage is established by these sources.",
+          "sources": [
+            {
+              "label": "FCC · Authorization announcement",
+              "url": "https://eu-assets.contentstack.com/v3/assets/blt23eb5bbc4124baa6/blt3284fad4ee39d97e/6b071287af911015536d731d/FCC_Authorizes_1_Million_Satellites_for_Data_Centers_in_Space_PR_11-25-2026.pdf",
+              "publishedDate": "2026-11-25"
+            },
+            {
+              "label": "FCC · Order and operating conditions",
+              "url": "https://eu-assets.contentstack.com/v3/assets/blt23eb5bbc4124baa6/bltf4cdf2af47159e12/6b071c5f5506bb38bca5b0ec/FCC_report_and_order_on_SpaceX_Starmind_AI_constellation_11-25-2026.pdf",
+              "publishedDate": "2026-11-25"
+            },
+            {
+              "label": "Reuters via StreetInsider · Authorization and deployment milestones",
+              "url": "https://www.streetinsider.com/Reuters/US%2Bauthorizes%2BSpaceX%2Bto%2Bdeploy%2B1%2Bmillion%2Bsatellites%2Bfor%2Bdata%2Bcenters%2Bin%2Bspace/27400675.html",
+              "publishedDate": "2026-11-25"
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "title": "Choose an acceptance gate that matches the decision",
+          "description": "AI interpretation: A rewrite needs behavioral parity, a model-routing change needs accepted-task economics, and a new infrastructure platform needs demonstrated service capacity. Each story points to a different test before committing operating responsibility or capital. Faster code generation, shorter responses and authorization are useful intermediate milestones, but none answers the entire purchasing decision.",
+          "storyIds": [
+            "anthropic-rust-api-verification",
+            "mellum-instruct-task-routing",
+            "fcc-starmind-authorization"
+          ]
+        }
+      ],
+      "publishedAt": "2026-11-26T08:30:35.783Z",
+      "updatedAt": "2026-11-26T08:30:35.783Z"
+    },
     {
       "date": "2026-11-23",
       "headline": "AI advantage depends on integration—and on who controls deployment.",
@@ -3712,6 +3830,51 @@
   "takes": {},
   "persistent": true,
   "papers": [
+    {
+      "date": "2026-11-25",
+      "retrospective": false,
+      "paperId": "arxiv:2611.32035",
+      "title": "DeCo-Attention: Decompose to Compensate for Low-Precision Attention",
+      "headline": "Correct FP4 attention inside its matrix product",
+      "authors": "Yuhang He, Harrison Zhang, Fanrong Li, Chang Liu, RuQing G. Xu, Perkz Zheng, Zhenhua Wang, Rajeev Rao, Mengdi Wang, Sharan Chetlur, Jun Yang · NVIDIA",
+      "publicationDate": "2026-11-24",
+      "revisionDate": "2026-11-24",
+      "venue": "arXiv · cs.CV · v1",
+      "status": "Preprint",
+      "category": "Training & inference optimization",
+      "summary": "DeCo-Attention combines training-free rounding-error correction with softmax optimization for video generation.",
+      "problem": "Video attention processes long token sequences. Existing FP4 kernels accelerate matrix products, but Q/K rounding distorts scores; softmax exponentiation can amplify large errors. Finer scales alone cannot eliminate floating-point rounding.",
+      "method": [
+        {
+          "title": "Recover important error directions",
+          "description": "Rotate Q/K to spread outliers. Estimate principal directions—axes carrying concentrated signal energy—from sampled tokens using eigendecomposition. Project rounding residuals onto these directions, approximating the leading correction terms rather than computing two full-width correction products. Each head shares 32 directions between Q and K, estimated from 1/256 of tokens; the residual-times-residual term is omitted."
+        },
+        {
+          "title": "Fuse correction; shorten softmax",
+          "description": "Append those projections as FP4 channels: one widened dot product computes scores plus corrections. Softmax then limits speed. I-ExpCast approximates probabilities through floating-point bit patterns and hardware conversion; deferred rescaling and matrix-product row sums reduce remaining work."
+        }
+      ],
+      "results": [
+        {
+          "finding": "Authors report 1.55× faster whole-video generation.",
+          "setup": "Wan2.2, GB300, TensorRT-LLM VisualGen; FP4 QK/FP8 probability–value product versus BF16 attention; seven prompts."
+        }
+      ],
+      "limitations": "Preprint; not independently reproduced here. Approximate correction leaves quality differences; video tests do not establish LLM-serving gains.",
+      "implications": "AI interpretation — For a video-service owner, pilot this against accepted clips per GPU-hour, including rejected generations and review time. Fix resolution, denoising steps and quality criteria before comparing cost: a faster candidate that triggers more retries may lose its advantage. Give the runtime team ownership of numerical regression checks when models change. For a chip team, test the balance between matrix throughput, probability conversion and preparation overhead on customer workloads before adding FP4 capacity. The implementation opportunity is a usable kernel and validation package; peak arithmetic throughput alone is an incomplete purchasing argument.",
+      "sources": [
+        {
+          "label": "Original paper and submission history",
+          "url": "https://arxiv.org/abs/2611.32035"
+        },
+        {
+          "label": "Full text · mechanism, evaluation and limitations",
+          "url": "https://arxiv.org/html/2611.32035v1"
+        }
+      ],
+      "publishedAt": "2026-11-26T08:51:18.507Z",
+      "updatedAt": "2026-11-26T08:51:18.507Z"
+    },
     {
       "date": "2026-11-24",
       "retrospective": false,
